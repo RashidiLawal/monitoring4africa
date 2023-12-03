@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     
-    flex:'',
+    // flex:'',
     backgroundColor:'#D9D9D9',
     borderColor: '#F6F6F6',
     borderWidth: 25.8,
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     borderTopWidth:0,
   },
   bottomContainer: {
+    alignItems:'center',
     marginTop:35,
     paddingLeft:25.8,
     paddingRight:25.8,
@@ -56,23 +57,27 @@ const styles = StyleSheet.create({
   text1: {
     color: '#232323',
     textAlign: 'center',
-    fontFamily: 'Inter',
-    fontSize: 15,
+    // fontFamily: 'Inter',
+    fontSize: 20,
     fontStyle: 'normal',
-    fontWeight: 400,
+    fontWeight: '800',
+    letterSpacing: 1,
     
   },
   text2: {
     fontSize: 15,
     textAlign:'center',
     color: '#5F5E5E',
+    width:'102%',
+    // alignItems:'center',
   },
   button1: {
     backgroundColor:'#50555C',
     marginTop:30,
-    borderRadius: 17,
+    borderRadius: 10,
     paddingBottom:17,
     paddingTop:15,
+    width:'102%',
     
   },
   button2: {
@@ -80,9 +85,11 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff',  
     paddingBottom:17,
     paddingTop:17,
+    // paddingLeft:15,
     borderColor:'#50555C',
-    borderRadius: 15,
+    borderRadius: 10,
     borderWidth:2,
+    width:'102%',
   },
   textInPres1: {
     color:'#FFF',
