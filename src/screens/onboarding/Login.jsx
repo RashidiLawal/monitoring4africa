@@ -41,6 +41,9 @@ const Login = () => {
           <CheckBox 
           onClick={() => handleToggle()}
           style={styles.checkBox}
+          isChecked={checked}
+          checkedCheckBoxColor='#000'
+          uncheckedCheckBoxColor='#fff'
           />
           <View style={styles.texts}>
             <Text style={styles.texts2}>I agree to the</Text>
@@ -134,9 +137,10 @@ const styles = StyleSheet.create({
     marginTop:25,
     alignItems:'center',
   },
-  checkBox: {
-    color:'#000',
-    backgroundColor:'#000',
+  checkBox: {    
+    borderBlockColor:'#000',
+    borderWidth:'1',
+
   },
   texts: {
     flexDirection:'row',  
