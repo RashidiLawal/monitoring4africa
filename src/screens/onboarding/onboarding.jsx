@@ -1,7 +1,9 @@
 import * as React from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
+import {useNavigation} from "@react-navigation/native"
 
 export default function Onboarding() {
+  const navigation = useNavigation();
   return (
     <>
       <View style={styles.topContainer}></View>
@@ -15,7 +17,7 @@ export default function Onboarding() {
         <Pressable style={styles.button1}>
           <Text style={styles.textInPres1}>Create an account</Text>
         </Pressable>
-        <Pressable style={styles.button2}>
+        <Pressable style={styles.button2} onPress={()=>navigation.navigate("Login")}>
           <Text style={styles.textInPres2}>Log in to your account</Text>
         </Pressable>
       </View>
