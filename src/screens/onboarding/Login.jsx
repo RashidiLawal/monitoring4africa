@@ -5,12 +5,17 @@ import {
   StyleSheet,
   TextInput,
   Pressable,
-  ViewComponent,
+  ViewComponent, Image
 } from "react-native";
 import { Checkbox } from "react-native-paper";
-
+import CheckBox from 'react-native-check-box'
+// import Checkbox from "react-native-paper";
 const Login = () => {
   const [checked, setChecked] = useState(false);
+
+  const handleToggle = () => {
+    setChecked(!checked);
+  }
   return (
     <View style={styles.body}>
       <View>
@@ -22,20 +27,26 @@ const Login = () => {
         </View>
         <View style={styles.inputBox}>
           <Text style={styles.label}>Email</Text>
-          <TextInput style={styles.input} placeholder="example@gmail.com" />
+          <TextInput style={styles.input} placeholder="example@gmail.com" placeholderTextColor='#000' />
         </View>
-        <View>
-          <Checkbox
+        <View style={styles.checkBoxView}>
+          {/* <Checkbox
+            color="#000"
+            uncheckedColor="#33eedd"
             status={checked ? "checked" : "unchecked"}
             onPress={() => {
               setChecked(!checked);
             }}
+          /> */}
+          <CheckBox 
+          onClick={() => handleToggle()}
+          style={styles.checkBox}
           />
-          <View>
-            <Text>I agree to the</Text>
-            <Text>terms & condition</Text>
-            <Text>and</Text>
-            <Text>privacy policy</Text>
+          <View style={styles.texts}>
+            <Text style={styles.texts2}>I agree to the</Text>
+            <Text style={styles.texts1}>terms & condition</Text>
+            <Text style={styles.texts2}>and</Text>
+            <Text style={styles.texts1}>privacy policy</Text>
           </View>
         </View>
       </View>
@@ -106,9 +117,43 @@ const styles = StyleSheet.create({
   },
   input: {
     color: "#000",
-    fontSize: 11,
+    fontSize: 17,
     fontStyle: "normal",
-    fontWeight: "400",
+    fontWeight: "300",
+    letterSpacing: .1,
+    borderColor:'#90929B',
+    borderWidth:.5,
+    paddingTop:15,
+    paddingBottom:15,
+    paddingLeft:15,
+    marginTop:7,
+  },
+  checkBoxView: {
+    flexDirection:'row',
+    columnGap:'15',
+    marginTop:25,
+    alignItems:'center',
+  },
+  checkBox: {
+    color:'#000',
+    backgroundColor:'#000',
+  },
+  texts: {
+    flexDirection:'row',  
+    columnGap:'4'
+  },
+  texts1: {
+    color: "#000",
+    fontSize: 12,
+    fontStyle: "normal",
+    fontWeight: "300",
+    letterSpacing: .1,
+  },
+  texts2: {
+    color: "#858B97",
+    fontSize: 12,
+    fontStyle: "normal",
+    fontWeight: "300",
     letterSpacing: .1,
   },
   button1: {
