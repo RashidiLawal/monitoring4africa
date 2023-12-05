@@ -20,7 +20,10 @@ export default function Onboarding() {
         ]}>
           <Text style={styles.textInPres1}>Create an account</Text>
         </Pressable>
-        <Pressable style={styles.button2} onPress={()=>navigation.navigate("Login")}>
+        <Pressable style={({pressed}) => [
+          styles.button2,
+          {backgroundColor:pressed ? '#D9D9D9' : '#fff',}
+        ]} onPress={()=>navigation.navigate("Login")}>
           <Text style={styles.textInPres2}>Log in to your account</Text>
         </Pressable>
       </View>
@@ -72,7 +75,6 @@ const styles = StyleSheet.create({
   },
   button2: {
     marginTop: 30,
-    backgroundColor: "#fff",
     paddingBottom: 17,
     paddingTop: 17,
     borderColor: "#50555C",

@@ -43,7 +43,10 @@ const Login = () => {
           </View>
         </View>
       </View>
-      <Pressable style={styles.button1}>
+      <Pressable style={({pressed}) => [
+        styles.button1,
+        {backgroundColor:pressed ? '#D9D9D9' : '#50555C',}
+      ]}>
         <Text style={styles.textInPres1}>Login</Text>
       </Pressable>
     </View>
@@ -151,7 +154,6 @@ const styles = StyleSheet.create({
     letterSpacing: .1,
   },
   button1: {
-    backgroundColor: "#50555C",
     marginTop: 30,
     borderRadius: 10,
     paddingBottom: 17,
