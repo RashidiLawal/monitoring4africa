@@ -14,7 +14,10 @@ export default function Onboarding() {
           turpis. Pellentesque nisi vel ullamcorper augue accumsan
         </Text>
 
-        <Pressable style={styles.button1}>
+        <Pressable style={({pressed}) => [
+          styles.button1,
+          {backgroundColor:pressed ? '#D9D9D9' : '#50555C',}
+        ]}>
           <Text style={styles.textInPres1}>Create an account</Text>
         </Pressable>
         <Pressable style={styles.button2} onPress={()=>navigation.navigate("Login")}>
@@ -61,7 +64,6 @@ const styles = StyleSheet.create({
     lineHeight:25,
   },
   button1: {
-    backgroundColor: "#50555C",
     marginTop: 30,
     borderRadius: 10,
     paddingBottom: 17,

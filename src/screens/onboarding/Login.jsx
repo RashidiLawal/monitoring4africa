@@ -7,9 +7,7 @@ import {
   Pressable,
   ViewComponent, Image
 } from "react-native";
-import { Checkbox } from "react-native-paper";
 import CheckBox from 'react-native-check-box'
-// import Checkbox from "react-native-paper";
 const Login = () => {
   const [checked, setChecked] = useState(false);
 
@@ -29,15 +27,7 @@ const Login = () => {
           <Text style={styles.label}>Email</Text>
           <TextInput style={styles.input} placeholder="example@gmail.com" placeholderTextColor='#000' />
         </View>
-        <View style={styles.checkBoxView}>
-          {/* <Checkbox
-            color="#000"
-            uncheckedColor="#33eedd"
-            status={checked ? "checked" : "unchecked"}
-            onPress={() => {
-              setChecked(!checked);
-            }}
-          /> */}
+        <View style={styles.checkBoxView}>        
           <CheckBox 
           onClick={() => handleToggle()}
           style={styles.checkBox}
