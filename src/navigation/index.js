@@ -44,8 +44,19 @@ const Navigation = (props) => {
           <Stack.Screen
             name="Login"
             component={Login}
-            options={{ headerShown: true }}
-            
+            // options={{ headerShown: true }}
+            options={{
+              headerLeft: () => (
+                <LeftArrow />
+              ),
+              // headerRight: () => (
+              //   <View>
+              //     <Text>Switch to</Text>
+              //     <Text>Log In</Text> 
+              //   </View>                               
+              // ),
+              headerShown: true,
+            }} 
           />
         </Stack.Navigator>
       </NavigationContainer>
