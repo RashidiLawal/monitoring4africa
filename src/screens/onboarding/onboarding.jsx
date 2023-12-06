@@ -13,7 +13,6 @@ export default function Onboarding() {
           Lorem ipsum dolor sit amet consectetur. Pretium lacus in posuere in
           turpis. Pellentesque nisi vel ullamcorper augue accumsan
         </Text>
-
         <Pressable style={({pressed}) => [
           styles.button1,
           {backgroundColor:pressed ? '#D9D9D9' : '#50555C',}
