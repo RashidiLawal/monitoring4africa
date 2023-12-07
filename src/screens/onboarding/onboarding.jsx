@@ -1,94 +1,166 @@
 import * as React from "react";
-import { StyleSheet, Text, View, Pressable } from "react-native";
-import {useNavigation} from "@react-navigation/native"
+import { useState } from "react";
+import { StyleSheet, Text, View, Pressable, TextInput } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import CheckBox from "react-native-check-box";
 
 export default function Onboarding() {
+  const [checked, setChecked] = useState(false);
   const navigation = useNavigation();
+
+  const handleToggle = () => {
+    setChecked(!checked);
+  };
   return (
-    <>
-      <View style={styles.topContainer}></View>
-      <View style={styles.bottomContainer}>
-        <Text style={styles.text1}>The Only Construction Drive You need</Text>
-        <Text style={styles.text2}>
-          Lorem ipsum dolor sit amet consectetur. Pretium lacus in posuere in
-          turpis. Pellentesque nisi vel ullamcorper augue accumsan
-        </Text>
-        <Pressable style={({pressed}) => [
-          styles.button1,
-          {backgroundColor:pressed ? '#D9D9D9' : '#50555C',}
-        ]}>
-          <Text style={styles.textInPres1}>Create an account</Text>
-        </Pressable>
-        <Pressable style={({pressed}) => [
-          styles.button2,
-          {backgroundColor:pressed ? '#D9D9D9' : '#fff',}
-        ]} onPress={()=>navigation.navigate("Login")}>
-          <Text style={styles.textInPres2}>Log in to your account</Text>
-        </Pressable>
+    <View style={styles.container}>
+      <View style={styles.checkBoxAnd}>
+        <View style={styles.textAndInputs}>
+          <Text style={styles.text1}>Let’s get to know You</Text>
+          <View style={styles.topHolder}>
+            <View style={styles.bottomContainer}>
+              <View style={styles.inputBox}>
+                <Text style={styles.label}>First Name</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter First Name"
+                  placeholderTextColor="#8A9BA3"
+                />
+              </View>
+              <View style={styles.inputBox}>
+                <Text style={styles.label}>Last Name</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter Last Name"
+                  placeholderTextColor="#8A9BA3"
+                />
+              </View>
+            </View>
+            <View style={styles.inputBox1}>
+              <Text style={styles.label}>Work Email</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="example@gmail.com"
+                placeholderTextColor="#8A9BA3"
+              />
+            </View>
+          </View>
+        </View>
+        <View style={styles.checkBoxView}>
+          <CheckBox
+            onClick={() => handleToggle()}
+            style={styles.checkBox}
+            isChecked={checked}
+            checkBoxColor='#EA5540'
+            checkedCheckBoxColor="#EA5540"
+            uncheckedCheckBoxColor="#EA5540"
+          />
+          <View style={styles.texts}>
+            <Text style={styles.texts2}>I agree to the</Text>
+            <Text style={styles.texts1}>terms & condition</Text>
+            <Text style={styles.texts2}>and</Text>
+            <Text style={styles.texts1}>privacy policy</Text>
+          </View>
+        </View>
       </View>
-    </>
+      <Pressable
+        style={({ pressed }) => [
+          styles.button1,
+          { backgroundColor: pressed ? "#bee5ed" : "#31AEE8" },
+        ]}
+      >
+        <Text style={styles.textInPres1}>Continue</Text>
+      </Pressable>     
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: "column",
+    justifyContent: "space-between",
     height: "100%",
-    backgroundColor: "#FFF",
-  },
-  topContainer: {
-    backgroundColor: "#D9D9D9",
-    borderColor: "#F6F6F6",
-    borderWidth: 25.8,
-    width: "100%",
-    height: "40%",
-    borderTopWidth: 0,
-  },
-  bottomContainer: {
-    alignItems: "center",
-    marginTop: 35,
-    paddingLeft: 25.8,
-    paddingRight: 25.8,
+    backgroundColor: "#FFFFFF",
+    paddingHorizontal: 15,
+    paddingTop: 10,
+    paddingBottom: 95,
   },
   text1: {
     color: "#232323",
-    textAlign: "center",
-    // fontFamily: 'Inter',
-    fontSize: 20,
+    fontSize: 27,
     fontStyle: "normal",
-    fontWeight: "800",
+    fontWeight: "700",
     letterSpacing: 1,
   },
-  text2: {
-    fontSize: 15,
-    textAlign: "center",
-    color: "#5F5E5E",
-    width: "102%",
-    lineHeight:25,
+  textAndInputs: {
+    flexDirection: "column",
+    rowGap: 30,
+  },
+  topHolder: {
+    flexDirection: "column",
+    rowGap: 25,
+  },
+  checkBoxAnd: {
+    flexDirection: "column",
+    rowGap: 20,
+  },
+  bottomContainer: {
+    flexDirection: "row",
+    columnGap: 15,
+  },
+  inputBox: {
+    width: "48%",
+  },
+  inputBox1: {
+    width: "100%",
+  },
+  label: {
+    marginBottom: 5,
+  },
+  input: {
+    backgroundColor: "#F5F8FA",
+    borderColor: "#31AEE8",
+    borderWidth: 1,
+    paddingVertical: 20,
+    paddingHorizontal: 15,
+    borderRadius: 10,
+  },
+  checkBoxView: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  checkBox: {
+    color: "#EA5540",
+    // borderBlockColor:'#EA5540',
+    // borderWidth:'1',
+    // borderColor: '#EA5540',
+    // backgroundColor:'#EA5540'
+  },
+  texts: {
+    flexDirection: "row",
+    columnGap: 5,
+  },
+  texts1: {
+    fontSize: 14,
+    
+    color: "#EA5540",
+  
+  },
+  texts2: {
+    fontSize: 14,
+    
+    color: "#8A9BA3",
+    
   },
   button1: {
-    marginTop: 30,
     borderRadius: 10,
     paddingBottom: 17,
     paddingTop: 15,
-    width: "102%",
-  },
-  button2: {
-    marginTop: 30,
-    paddingBottom: 17,
-    paddingTop: 17,
-    borderColor: "#50555C",
-    borderRadius: 10,
-    borderWidth: 2,
     width: "102%",
   },
   textInPres1: {
     color: "#FFF",
     textAlign: "center",
     fontSize: 18,
-  },
-  textInPres2: {
-    color: "#000",
-    textAlign: "center",
-    fontSize: 18,
-  },
+    fontWeight: "700",
+  },  
 });

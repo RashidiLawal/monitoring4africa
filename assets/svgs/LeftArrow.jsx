@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SvgXml } from "react-native-svg";
-import { Pressable } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 export default function LeftArrow() {
   const navigation = useNavigation();
@@ -11,8 +11,17 @@ export default function LeftArrow() {
   const SvgImage = () => <SvgXml xml={svgMarkUp} width="301px" />;
 
   return (
-    <Pressable onPress={() => navigation.goBack()}>
+    <Pressable style={styles.pressable}  onPress={() => navigation.goBack()}>
       <SvgImage />
     </Pressable>
   );
 }
+
+const styles = StyleSheet.create({
+  pressable: {
+    alignItems:'flex-start',
+    marginRight:300,
+    // backgroundColor:'red',
+    // width:30
+  }
+})

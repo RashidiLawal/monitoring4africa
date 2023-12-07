@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     columnGap:'15',
     marginTop:25,
-    alignItems:'center',
+    
   },
   checkBox: {    
     borderBlockColor:'#000',
