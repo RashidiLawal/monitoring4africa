@@ -21,6 +21,10 @@ export default function Onboarding() {
               <View style={styles.inputBox}>
                 <Text style={styles.label}>First Name</Text>
                 <TextInput
+                  inputMode="text"
+                  autoFocus={true}
+                  // onFocus={() => {borderColor: "#31AEE8";
+                  // borderWidth: 1}}
                   style={styles.input}
                   placeholder="Enter First Name"
                   placeholderTextColor="#8A9BA3"
@@ -42,7 +46,9 @@ export default function Onboarding() {
                 placeholder="example@gmail.com"
                 placeholderTextColor="#8A9BA3"
               />
+              <Text style={styles.textFailed}>Wrong email ID, try again</Text>
             </View>
+            
           </View>
         </View>
         <View style={styles.checkBoxView}>
@@ -63,6 +69,7 @@ export default function Onboarding() {
         </View>
       </View>
       <Pressable
+        onPress={() => navigation.navigate("Login")}
         style={({ pressed }) => [
           styles.button1,
           { backgroundColor: pressed ? "#bee5ed" : "#31AEE8" },
@@ -118,38 +125,34 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#F5F8FA",
-    borderColor: "#31AEE8",
-    borderWidth: 1,
+    // borderColor: "#31AEE8",
+    // borderWidth: 1,
     paddingVertical: 20,
     paddingHorizontal: 15,
     borderRadius: 10,
   },
+  textFailed: {
+    marginTop: 10,
+    color:'#EA5540',
+    fontSize: 13,
+    fontWeight: "500",
+  },
   checkBoxView: {
     flexDirection: "row",
     alignItems: "center",
-  },
-  checkBox: {
-    color: "#EA5540",
-    // borderBlockColor:'#EA5540',
-    // borderWidth:'1',
-    // borderColor: '#EA5540',
-    // backgroundColor:'#EA5540'
+    columnGap:7,
   },
   texts: {
     flexDirection: "row",
     columnGap: 5,
   },
   texts1: {
-    fontSize: 14,
-    
+    fontSize: 13.5,
     color: "#EA5540",
-  
   },
   texts2: {
-    fontSize: 14,
-    
-    color: "#8A9BA3",
-    
+    fontSize: 13.5,
+    color: "#8A9BA3", 
   },
   button1: {
     borderRadius: 10,
