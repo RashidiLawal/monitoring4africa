@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { StyleSheet, Text, View, Pressable, TextInput,  TouchableOpacity, } from "react-native";
+import { StyleSheet, Text, View, Pressable, TextInput,  TouchableOpacity, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
 import { Appbar } from "react-native-paper";
@@ -47,7 +47,7 @@ export default function Onboarding() {
           </CustomView>
         </TouchableOpacity>
       </Appbar.Header>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
       <View style={styles.checkBoxAnd}>
         <View style={styles.textAndInputs}>
           <Text style={styles.text1}>Let’s get to know You</Text>
@@ -108,8 +108,10 @@ export default function Onboarding() {
             <Text style={styles.texts1}>privacy policy</Text>
           </View>
         </View>
-      </View>
-      <Pressable
+      </View>   
+      </ScrollView>
+      <CustomView padding={[20, 20, 35]} color='#fff'>
+      <CustomButton
         onPress={() => navigation.navigate("Login")}
         style={({ pressed }) => [
           styles.button1,
@@ -117,8 +119,8 @@ export default function Onboarding() {
         ]}
       >
         <Text style={styles.textInPres1}>Continue</Text>
-      </Pressable>     
-    </View>
+      </CustomButton>  
+      </CustomView>
     </>
   );
 }

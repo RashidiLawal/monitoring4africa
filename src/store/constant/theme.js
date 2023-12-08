@@ -1,5 +1,6 @@
 import { Dimensions, Platform } from 'react-native';
 
+
 const { width, height } = Dimensions.get('window');
 const screenWidth = width < height ? width : height;
 const screenHeight = width < height ? height : width;
@@ -8,7 +9,7 @@ export const COLORS = {
   //base color
   lightprimary: 'rgba(81, 153, 230,0.1)',
   lightsecondary: 'rgba(245, 45, 69, 0.5)',
-  primary: '#0c59bd',
+  primary: '#31AEE8',
   deepprimary: '#14b0ce',
   deeptextprimary: '#00ACCD',
   secondary: '#007C93',

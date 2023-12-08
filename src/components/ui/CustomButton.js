@@ -5,15 +5,45 @@ import {
   TouchableNativeFeedback,
   TouchableWithoutFeedback,
   TouchableHighlight,
-  Platform
+  Platform,
+  Pressable
 } from 'react-native';
 import { COLORS, SIZES } from '../../store/constant/theme';
 
 //constants
 
-const CustomButton = props => {
+const CustomButton = ({
+  pressable,
+  disabled,
+  opacity,
+  outlined,
+  flex,
+  height,
+  margin,
+  padding,
+  color,
+  transparent,
+  primary,
+  secondary,
+  tertiary,
+  black,
+  white,
+  grey,
+  error,
+  warning,
+  success,
+  info,
+  shadow,
+  small,
+  highlight,
+  nativeFeedback,
+  withoutFeedback,
+  style,
+  children,
+  block
+}) => {
   const handleMargins = () => {
-    const { margin } = props;
+   
     if (typeof margin === 'number') {
       return {
         marginTop: margin,
@@ -59,7 +89,7 @@ const CustomButton = props => {
   };
 
   const handlePaddings = () => {
-    const { padding } = props;
+   
     if (typeof padding === 'number') {
       return {
         paddingTop: padding,
@@ -102,41 +132,7 @@ const CustomButton = props => {
           };
       }
     }
-  };
-
-  const {
-    disabled,
-    opacity,
-    outlined,
-    flex,
-    height,
-    margin,
-    padding,
-    // colors
-    color,
-    transparent,
-    primary,
-    secondary,
-    tertiary,
-    black,
-    white,
-    grey,
-    error,
-    warning,
-    success,
-    info,
-    shadow,
-    // size
-    small,
-    // support for touchables
-    highlight,
-    nativeFeedback,
-    withoutFeedback,
-    style,
-    children,
-    block,
-    ...rest
-  } = props;
+  }; 
 
   const buttonStyles = StyleSheet.flatten([
     {
@@ -208,9 +204,11 @@ const CustomButton = props => {
     ? TouchableNativeFeedback
     : withoutFeedback
     ? TouchableWithoutFeedback
+    : Pressable
+    ? pressable
     : TouchableOpacity;
   return (
-    <ButtonType accessibilityRole='button' disabled={disabled} style={buttonStyles} activeOpacity={opacity} {...rest}>
+    <ButtonType accessibilityRole='button' disabled={disabled} style={buttonStyles} activeOpacity={opacity}>
       {children}
     </ButtonType>
   );
