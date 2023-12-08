@@ -51,28 +51,35 @@ export default function Onboarding() {
       <View style={styles.checkBoxAnd}>
         <View style={styles.textAndInputs}>
           <Text style={styles.text1}>Let’s get to know You</Text>
-          <CustomView flex={false} column style={{rowGap: 25,}}>
-            <CustomView flex={false} row style={{columnGap: 15,}}>
-             
-                
-                
-                <CustomInput
+          <CustomView  column >
+            <CustomView row wrap columnGap='15' rowGap='25'>               
+            <CustomView flexGrow='1' >
+            <CustomInput
 
-                  label='First Name'
+              label='First Name'
 
-                  placeholder="Enter First Name"
-              
-                />
-             
-             
-                
+              placeholder="Enter First Name"
+
+              />
+            </CustomView > 
+            <CustomView flexGrow='1' >
+            <CustomInput
+
+              label='First Name'
+
+              placeholder="Enter First Name"
+
+              />
+            </CustomView >                  
+                <CustomView  flexGrow='1'>
                 <CustomInput
                   label='Last Name'
                   placeholder="Enter Last Name"
                  
                 />
+                </CustomView>               
              
-            </CustomView>
+            </CustomView >
             <View style={styles.inputBox1}>
               <Text style={styles.label}>Work Email</Text>
               <TextInput

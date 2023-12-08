@@ -25,7 +25,7 @@ const CustomInput = ({  label,
   inputRef}) => 
    {
   return (
-    <CustomView flex={false} style={{width: '48%'}}>
+    <CustomView flex={false} style={{width: '100%'}}>
         {
           label ? <CustomText size={14} margin={[0, 0, 5]}>
             {label}

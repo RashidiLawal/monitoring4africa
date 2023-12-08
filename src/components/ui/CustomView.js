@@ -4,9 +4,43 @@ import { COLORS, SIZES } from '../../store/constant/theme';
 
 
 
-const CustomView = props => {
+const CustomView = ({flex,
+    flexGrow,
+    columnGap,
+    rowGap,
+    row,
+    column,
+    center,
+    middle,
+    left,
+    right,
+    top,
+    bottom,
+    card,
+    shadow,
+    elevation,
+    color,
+    primary,
+    secondary,
+    tertiary,
+    black,
+    white,
+    error,
+    success,
+    margin,
+    padding,
+    space,
+    radius,
+    wrap,
+    animated,
+    theme,
+    safe,
+    style,
+    children,
+    background
+    }) => {
     const handleMargins = () => {
-        const {margin} = props;
+        
         if (typeof margin === 'number') {
             return {
                 marginTop: margin,
@@ -52,7 +86,7 @@ const CustomView = props => {
     };
 
     const handlePaddings = () => {
-        const {padding} = props;
+       
         if (typeof padding === 'number') {
             return {
                 paddingTop: padding,
@@ -97,48 +131,13 @@ const CustomView = props => {
         }
     };
 
-    const {
-        flex,
-        row,
-        column,
-        center,
-        middle,
-        left,
-        right,
-        top,
-        bottom,
-        card,
-        shadow,
-        elevation,
-        // colors
-        color,
-        primary,
-        secondary,
-        tertiary,
-        black,
-        white,
-        error,
-        success,
-        // spacing
-        margin,
-        padding,
-        // positioning
-        space,
-        radius,
-        wrap,
-        animated,
-        theme,
-        safe,
-        style,
-        children,
-        background,
-        ...rest
-    } = props;
-
     const blockStyles = [
         styles.block,
         flex && {flex: 1},
-        flex === false && {flex: 0}, // reset / disable flex
+        !flex && {flex: 0}, 
+        flexGrow && {flexGrow},
+        rowGap && {rowGap},
+        columnGap && {columnGap},
         row && styles.row,
         column && styles.column,
         center && styles.center,
@@ -169,7 +168,7 @@ const CustomView = props => {
 
     if (animated) {
         return (
-            <Animated.View style={blockStyles} {...rest}>
+            <Animated.View style={blockStyles}>
                 {children}
             </Animated.View>
         );
@@ -177,14 +176,14 @@ const CustomView = props => {
 
     if (safe) {
         return (
-            <SafeAreaView style={blockStyles} {...rest}>
+            <SafeAreaView style={blockStyles} >
                 {children}
             </SafeAreaView>
         );
     }
 
     return (
-        <View style={blockStyles} {...rest}>
+        <View style={blockStyles} >
             {children}
         </View>
     );
@@ -194,6 +193,7 @@ export const styles = StyleSheet.create({
     block: {
         flex: 1
     },
+    
     row: {
         flexDirection: 'row'
     },
