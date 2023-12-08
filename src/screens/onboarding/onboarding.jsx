@@ -1,8 +1,18 @@
 import * as React from "react";
 import { useState } from "react";
-import { StyleSheet, Text, View, Pressable, TextInput } from "react-native";
+import { StyleSheet, Text, View, Pressable, TextInput,  TouchableOpacity, } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
+import { Appbar } from "react-native-paper";
+import SimplelineIcon from "@expo/vector-icons/SimpleLineIcons";
+import Entypo from "@expo/vector-icons/Entypo";
+import CustomButton from "../../components/ui/CustomButton";
+import CustomText from "../../components/ui/CustomText";
+import CustomView from "../../components/ui/CustomView";
+import { COLORS } from "../../store/constant/theme";
+import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
+import CustomInput from "../../components/ui/CustomInput";
+
 
 export default function Onboarding() {
   const [checked, setChecked] = useState(false);
@@ -12,33 +22,57 @@ export default function Onboarding() {
     setChecked(!checked);
   };
   return (
-    <View style={styles.container}>
+    <>   
+      <Appbar.Header style={{ backgroundColor: "#fff" }}>
+        <Pressable
+          onPress={() => navigation.goBack()}
+          shadow
+          padding={[10]}
+          margin={[0, 20]}
+        >
+          <BackIcon />
+          {/* <SimplelineIcon name="arrow-left" color={'white'} size={15} /> */}
+        </Pressable>
+
+        <CustomView center padding={[0]}>
+          {/* <CustomText>
+                       Supplies needed
+                    </CustomText> */}
+        </CustomView>
+        <TouchableOpacity style={{ marginRight: 30 }}>
+          {/* <Entypo name="dots-three-horizontal" size={20} /> */}
+          <CustomView row center>
+            <CustomText margin={[0, 5]}>Switch to</CustomText>
+            <CustomText color={COLORS.orange}>Log In</CustomText>
+          </CustomView>
+        </TouchableOpacity>
+      </Appbar.Header>
+      <View style={styles.container}>
       <View style={styles.checkBoxAnd}>
         <View style={styles.textAndInputs}>
           <Text style={styles.text1}>Let’s get to know You</Text>
-          <View style={styles.topHolder}>
-            <View style={styles.bottomContainer}>
-              <View style={styles.inputBox}>
-                <Text style={styles.label}>First Name</Text>
-                <TextInput
-                  inputMode="text"
-                  autoFocus={true}
-                  // onFocus={() => {borderColor: "#31AEE8";
-                  // borderWidth: 1}}
-                  style={styles.input}
+          <CustomView flex={false} column style={{rowGap: 25,}}>
+            <CustomView flex={false} row style={{columnGap: 15,}}>
+             
+                
+                
+                <CustomInput
+
+                  label='First Name'
+
                   placeholder="Enter First Name"
-                  placeholderTextColor="#8A9BA3"
+              
                 />
-              </View>
-              <View style={styles.inputBox}>
-                <Text style={styles.label}>Last Name</Text>
-                <TextInput
-                  style={styles.input}
+             
+             
+                
+                <CustomInput
+                  label='Last Name'
                   placeholder="Enter Last Name"
-                  placeholderTextColor="#8A9BA3"
+                 
                 />
-              </View>
-            </View>
+             
+            </CustomView>
             <View style={styles.inputBox1}>
               <Text style={styles.label}>Work Email</Text>
               <TextInput
@@ -49,7 +83,7 @@ export default function Onboarding() {
               <Text style={styles.textFailed}>Wrong email ID, try again</Text>
             </View>
             
-          </View>
+          </CustomView>
         </View>
         <View style={styles.checkBoxView}>
           <CheckBox
@@ -78,18 +112,20 @@ export default function Onboarding() {
         <Text style={styles.textInPres1}>Continue</Text>
       </Pressable>     
     </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     height: "100%",
     backgroundColor: "#FFFFFF",
     paddingHorizontal: 15,
     paddingTop: 10,
-    paddingBottom: 95,
+    
+    // paddingBottom: 95,
   },
   text1: {
     color: "#232323",

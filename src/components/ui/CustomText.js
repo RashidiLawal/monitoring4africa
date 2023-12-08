@@ -2,7 +2,7 @@ import React from 'react';
 import {  Text, StyleSheet } from 'react-native';
 
 
-import { COLORS, SIZES, FONTS } from '../store/constant/theme';
+import { COLORS, SIZES, FONTS } from '../../store/constant/theme';
 
 const CustomText = props => {
   // i18n.fallbacks = true;

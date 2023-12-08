@@ -6,88 +6,33 @@ import CustomView from './CustomView';
 import CustomText from './CustomText';
 import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { COLORS, SIZES } from '../store/constant/theme';
+import { COLORS, SIZES } from '../../store/constant/theme';
 
-const CustomInput = props => {
-  const {
-    label,
-    placeholder,
-    iconName,
-    secureTextEntry,
-    onIconClick,
-    value,
-    onChangeText,
-    onFocus,
-    style,
-    iconType: IconType = Icon,
-    labelInfo,
-    onLabelInfoClick,
-    multiline = true,
-    textcolor,
-    inputRef
-  } = props;
-
+const CustomInput = ({  label,
+  placeholder,
+  iconName,
+  secureTextEntry,
+  onIconClick,
+  value,
+  onChangeText,
+  onFocus,
+  style,
+  iconType: IconType = Icon,
+  labelInfo,
+  onLabelInfoClick,
+  multiline = false,
+  textcolor,
+  inputRef}) => 
+   {
   return (
-    <CustomView flex={false}>
-      {/* {label ? (
-        <CustomView flex={false} row>
-          <CustomText size={17} medium300 style={styles.label} lightGrey margin={[10, 0]}>
+    <CustomView flex={false} style={{width: '48%'}}>
+        {
+          label ? <CustomText size={14} margin={[0, 0, 5]}>
             {label}
-          </CustomText>
-          {labelInfo && (
-            <TouchableOpacity
-              style={styles.image}
-              onPress={() => {
-                onLabelInfoClick();
-              }}
-            >
-              <Image source={icons.info} />
-            </TouchableOpacity>
-          )}
-        </CustomView>
-      ) : null} */}
-      {iconName ? (
-        <CustomView
-          flex={false}
-          row
-          style={{
-            width: '100%',
-            borderRadius: SIZES.radius,
-            // backgroundColor: COLORS.inputGrey,
-            // ...style
-          }}
-        >
-          <View style={{ flexDirection: 'row' }}>
-            <TextInput
-              style={{ ...styles.phoneNext, ...style, }}
-              placeholder={placeholder}
-              secureTextEntry={secureTextEntry}
-              onChangeText={text => onChangeText(text)}
-              value={value}
-              autoCorrect={false}
-              selectTextOnFocus={true}
-              // textContentType="creditCardNumber"
-              autoCompleteType="off"
-              autoCapitalize="sentences"
-              multiline={multiline}
-              onFocus={onFocus}
-              ref={inputRef}
-              {...props}
-            />
-          </View>
-
-          <CustomView flex={false} center middle row style={{ width: 50 }}>
-            <IconType
-              name={iconName}
-              size={20}
-              onPress={() => onIconClick()}
-              color={COLORS.lightGrey}
-            />
-          </CustomView>
-        </CustomView>
-      ) : (
+          </CustomText> : null
+        }
         <TextInput
-          style={{ ...styles.phoneNext, ...style, ...textcolor, }}
+          style={{ ...styles.defaultStyle, ...style, ...textcolor, }}
           placeholder={placeholder}
           onChangeText={text => onChangeText(text)}
           value={value}
@@ -101,24 +46,19 @@ const CustomInput = props => {
           ref={inputRef}
           // {...props}
         />
-      )}
+     
     </CustomView>
   );
 };
 
 const styles = StyleSheet.create({
-  phoneNext: {
-    minHeight: 50,
-    borderRadius: SIZES.radius,
-    width: '100%',
-    // backgroundColor: COLORS.formBackground,
-    borderColor: COLORS.formBorder,
-    borderWidth: 0.7,
-    paddingHorizontal: 10,
-    paddingTop: 10,
-    alignItems: 'center',
-    alignSelf: 'center',
-    color: COLORS.descText,
+  defaultStyle: {
+    backgroundColor: "#F5F8FA",
+    // borderColor: "#31AEE8",
+    // borderWidth: 1,
+    paddingVertical: 20,
+    paddingHorizontal: 15,
+    borderRadius: 10,
     // fontFamily: 'avenir-regular'
   },
   label: {

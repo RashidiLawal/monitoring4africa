@@ -37,9 +37,10 @@ export const COLORS = {
   communityGrey: '#F4F6F7',
   SettingTabGrey: '#F8F8F8',
   inputBackground: '#F5F7F7',
-  greyText: '#818F90',
+  greyText: '#8A9BA3',
   formBackground: '#f9f9f9',
-  formBorder: '#aaa'
+  formBorder: '#aaa',
+  orange:'#EA5540',
 };
 
 export const SIZES = {

@@ -24,7 +24,13 @@ const Navigation = (props) => {
         //   props.profile?.email ? "Home" : "Onboarding"
         // }
         >
-          <Stack.Screen
+          <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
+          <Stack.Screen name="Login" component={Login} options={{ 
+            
+            headerShown: false,
+         
+          }} />
+          {/* <Stack.Screen
             name="Onboarding"
             component={Onboarding}
             
@@ -36,6 +42,7 @@ const Navigation = (props) => {
               headerLeft: () => (
                 <LeftArrow />
               ),
+
               headerRight: () => (
                 <Pressable 
                 // onPress={() => navigation.navigate("Login")} 
@@ -46,26 +53,9 @@ const Navigation = (props) => {
               ),
               headerShown: true,
             }}  
-          />
+          /> */}
 
-          <Stack.Screen
-            name="Login"
-            component={Login}
-            // options={{ headerShown: true }}
-            options={{
-              // headerTitle: () => <LeftArrow />,
-              headerLeft: () => (
-                <LeftArrow />
-              ),
-              // headerRight: () => (
-              //   <View>
-              //     <Text>Switch to</Text>
-              //     <Text>Log In</Text> 
-              //   </View>                               
-              // ),
-              headerShown: true,
-            }} 
-          />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
