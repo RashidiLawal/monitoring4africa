@@ -22,6 +22,7 @@ const CustomInput = ({  label,
   onLabelInfoClick,
   multiline = false,
   textcolor,
+  keyboardType='default',
   inputRef}) => 
    {
   return (
@@ -43,6 +44,8 @@ const CustomInput = ({  label,
           placeholderTextColor={COLORS.greyText}
           multiline={multiline}
           onFocus={onFocus}
+          keyboardType={keyboardType}
+          returnKeyLabel="done"
           ref={inputRef}
           // {...props}
         />
@@ -53,7 +56,7 @@ const CustomInput = ({  label,
 
 const styles = StyleSheet.create({
   defaultStyle: {
-    backgroundColor: "#F5F8FA",
+    backgroundColor: COLORS.inputBackground,
     // borderColor: "#31AEE8",
     // borderWidth: 1,
     paddingVertical: 20,

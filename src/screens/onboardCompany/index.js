@@ -4,103 +4,107 @@ import { StyleSheet, Text, View, Pressable, TextInput,  TouchableOpacity, Scroll
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
 import { Appbar } from "react-native-paper";
-import SimplelineIcon from "@expo/vector-icons/SimpleLineIcons";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Entypo from "@expo/vector-icons/Entypo";
 import CustomButton from "../../components/ui/CustomButton";
 import CustomText from "../../components/ui/CustomText";
 import CustomView from "../../components/ui/CustomView";
 import { COLORS } from "../../store/constant/theme";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
+import ArrowDown from "../../../assets/svgs/ArrowDown.svg";
 import CustomInput from "../../components/ui/CustomInput";
+import CountryModal from "../../components/ui/CountryModal";
 
 
-export default function Signup() {
+export default function OnboardCompany() {
   const [checked, setChecked] = useState(false);
   const navigation = useNavigation();
+  const [countryModalVisible, setCountryModalVisible] = useState(false)
 
   const handleToggle = () => {
     setChecked(!checked);
   };
+  const saveCountry = () => {
+
+  }
   return (
     <>   
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
-        <CustomView space="between" row flex  padding={[0, 15, 0, 5]}>
+        <CustomView padding={[0, 10]}>
         <Pressable
           onPress={() => navigation.goBack()}
+          shadow
+          padding={[10]}
+          margin={[0, 20]}
         >
           <BackIcon />
+          {/* <SimplelineIcon name="arrow-left" color={'white'} size={15} /> */}
         </Pressable>
-
-        <TouchableOpacity>
-          <CustomView row center>
-            <CustomText margin={[0, 5]}>Switch to</CustomText>
-            <CustomText color={COLORS.orange}>Log In</CustomText>
-          </CustomView>
-        </TouchableOpacity>
         </CustomView>
       </Appbar.Header>
+      <CountryModal
+      setModalVisible={setCountryModalVisible}
+      modalVisible={countryModalVisible}
+      submit={saveCountry}
+      />
       <ScrollView style={styles.container}>
-      <View style={styles.checkBoxAnd}>
-        <View style={styles.textAndInputs}>
-          <Text style={styles.text1}>Let’s get to know You</Text>
-          <CustomView  column >
-            <CustomView row wrap columnGap='15' rowGap='25'>               
-            <CustomView flexGrow='1' >
+      <CustomView >
+        <CustomView >
+          <CustomText size={20} weight="500" >Introduce Your Company</CustomText>
+          <CustomText size={14} descText>Provide essential details about your company</CustomText>
+          <CustomView  column margin={[15, 0]}>
+            <CustomView   rowGap={15} >               
+            <CustomView >
             <CustomInput
 
-              label='First Name'
+              label='Company Name'
 
-              placeholder="Enter First Name"
+              placeholder="Enter company name"
 
               />
             </CustomView > 
-            <CustomView flexGrow='1' >
-            <CustomInput
-
-              label='First Name'
-
-              placeholder="Enter First Name"
-
-              />
+            <CustomView >
+            <CustomText size={14} >Country</CustomText>
+                <Pressable onPress={()=>setCountryModalVisible(true)}>
+                <CustomView row center space="between" color={COLORS.inputBackground} radius={10} padding={[15,20]}>
+                    <CustomText color={COLORS.greyText} size={14}> Select your company's location </CustomText>
+                    <ArrowDown />
+                </CustomView>
+                </Pressable>
             </CustomView >                  
-                <CustomView  flexGrow='1'>
+                <CustomView >
                 <CustomInput
-                  label='Last Name'
-                  placeholder="Enter Last Name"
+                  label='Company Size'
+                  placeholder="Enter your company's size"
+                    keyboardType="number-pad"
                  
                 />
                 </CustomView>               
-                <CustomView style={styles.inputBox1}> 
-              <CustomInput
-                style={styles.input}
-                label="Work email"
-                placeholder="example@gmail.com"
-                placeholderTextColor="#8A9BA3"
-              />
-              <Text style={styles.textFailed}>Wrong email ID, try again</Text>
-            </CustomView>
+             
             </CustomView >
-           
+                   
+             <CustomView columnGap={15} row margin={[15, 0]}>
+             <CustomView  flexGrow='1'>
+                <CustomInput
+                  label='Code'
+                  placeholder="+234"
+                    keyboardType="number-pad"
+                 
+                />
+                </CustomView>  
+             <CustomView  flexGrow='5'>
+                <CustomInput
+                  label='Phone Number'
+                  placeholder="Enter phone number"
+                    keyboardType="number-pad"
+                 
+                />
+                </CustomView>     
+             </CustomView>
             
           </CustomView>
-        </View>
-        <View style={styles.checkBoxView}>
-          <CheckBox
-            onClick={() => handleToggle()}
-            style={styles.checkBox}
-            isChecked={checked}
-            checkBoxColor='#EA5540'
-            checkedCheckBoxColor="#EA5540"
-            uncheckedCheckBoxColor="#EA5540"
-          />
-          <View style={styles.texts}>
-            <Text style={styles.texts2}>I agree to the</Text>
-            <Text style={styles.texts1}>terms & condition</Text>
-            <Text style={styles.texts2}>and</Text>
-            <Text style={styles.texts1}>privacy policy</Text>
-          </View>
-        </View>
-      </View>   
+        </CustomView> 
+      </CustomView>   
       </ScrollView>
       <CustomView padding={[20, 20, 35]} color='#fff'>
       <CustomButton

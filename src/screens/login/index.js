@@ -92,14 +92,11 @@ const Login = () => {
           </View>
         </View>
 
-        <Pressable
-          style={({ pressed }) => [
-            styles.button1,
-            { backgroundColor: pressed ? "#bee5ed" : "#31AEE8" },
-          ]}
-        >
-          <Text style={styles.textInPres1}>Login</Text>
-        </Pressable>
+        <CustomButton
+        onPress={() => navigation.navigate("OnboardCompany")}
+      >
+        <CustomText white bold size={18}>Login</CustomText>
+      </CustomButton>  
       </View>
     </>
   );

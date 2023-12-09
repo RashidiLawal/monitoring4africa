@@ -7,28 +7,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { refreshProfile } from './src/store/actions/profile';
 import { refreshUserToken } from './src/store/actions/login';
 import { useFonts } from 'expo-font';
-let customFonts = {
-  'avenir-regular': require('./assets/fonts/avenir-regular.ttf'),
-  'avenir-semibold': require('./assets/fonts/avenir-semibold.ttf'),
-}
+
 const Entry = () => {
   const profile = useSelector(s => s.profile)
   const dispatch = useDispatch()
   const [loaded, setLoaded] = useState(false)
-  const [fontsLoaded, fontError] = useFonts({
-    'avenir-regular': require('./assets/fonts/avenir-regular.ttf'),
-    'avenir-semibold': require('./assets/fonts/avenir-semibold.ttf'),
-  });
 
-  // const onLayoutRootView = useCallback(async () => {
-  //   if (fontsLoaded || fontError) {
-  //     await SplashScreen.hideAsync();
-  //   }
-  // }, [fontsLoaded, fontError]);
-console.log(fontsLoaded)
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
 
 
     useEffect(() => { 
@@ -42,11 +26,7 @@ console.log(fontsLoaded)
     });
   }, [])
 
-
-  if (!fontsLoaded) {
-    return null;
-  }
-console.log(fontsLoaded)
+ 
   return (
     <>
       <Navigation profile={profile} />

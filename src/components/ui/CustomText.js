@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
   // default style
   text: {
     fontSize: SIZES.medium,
-    fontFamily:  'avenir-semibold'
+    // fontFamily:  'avenir-semibold'
   },
   // variations
   regular: {

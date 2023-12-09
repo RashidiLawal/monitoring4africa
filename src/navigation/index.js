@@ -7,6 +7,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 import Login from "../screens/login";
 import Onboarding from "../screens/onboarding";
 import Signup from "../screens/signup";
+import OnboardCompany from "../screens/onboardCompany";
 // import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
@@ -24,6 +25,7 @@ const Navigation = (props) => {
         // }
         >
           <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
+          <Stack.Screen name="OnboardCompany" component={OnboardCompany} options={{ headerShown: false }} />
           <Stack.Screen name="Login" component={Login} options={{
             headerShown: false,
           }} />

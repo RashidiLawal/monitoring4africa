@@ -13,7 +13,7 @@ export const COLORS = {
   deepprimary: 'rgba(7, 14, 17, 1)',
   deeptextprimary: '#00ACCD',
   secondary: '#007C93',
-  accent: '#BC5C00',
+  accent: 'rgba(15, 27, 36, 1)',
   tertiary: '#FF7C00',
   success: '#219653',
   error: '#fe3b30',
@@ -37,10 +37,8 @@ export const COLORS = {
   inputGrey: '#eaf0f1',
   communityGrey: '#F4F6F7',
   SettingTabGrey: '#F8F8F8',
-  inputBackground: '#F5F7F7',
-  greyText: '#8A9BA3',
-  formBackground: '#f9f9f9',
-  formBorder: '#aaa',
+  inputBackground: '#F5F8FA',
+  greyText: '#8A9BA3', 
   orange:'#EA5540',
 };
 

@@ -144,11 +144,11 @@ const CustomButton = ({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: COLORS.primary,
-      marginTop: SIZES.marginVertical,
+      // marginTop: SIZES.marginVertical,
       borderRadius: 10,
     },
     block && {
-      height: SIZES.medium * 3.3,
+      // height: SIZES.medium * 3.3,
       width: '100%',
       borderRadius: SIZES.buttonRadius,
     },
