@@ -14,7 +14,7 @@ import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import CustomInput from "../../components/ui/CustomInput";
 
 
-export default function Onboarding() {
+export default function Signup() {
   const [checked, setChecked] = useState(false);
   const navigation = useNavigation();
 

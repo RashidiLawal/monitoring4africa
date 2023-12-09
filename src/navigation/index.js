@@ -4,10 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
-import Login from "../screens/onboarding/Login";
-import Onboarding from "../screens/onboarding/onboarding";
-import { ViewComponent } from "react-native";
-import LeftArrow from "../../assets/svgs/LeftArrow";
+import Login from "../screens/login";
+import Onboarding from "../screens/onboarding";
+import Signup from "../screens/signup";
 // import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
@@ -25,37 +24,14 @@ const Navigation = (props) => {
         // }
         >
           <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
-          <Stack.Screen name="Login" component={Login} options={{ 
-            
+          <Stack.Screen name="Login" component={Login} options={{
             headerShown: false,
-         
           }} />
-          {/* <Stack.Screen
-            name="Onboarding"
-            component={Onboarding}
-            
-            options={{
-              headerStyle: {
-                
-              },
-              // headerTitle: () => <LeftArrow />,
-              headerLeft: () => (
-                <LeftArrow />
-              ),
+          <Stack.Screen name="Signup" component={Signup} options={{
+            headerShown: false,
+          }} />
 
-              headerRight: () => (
-                <Pressable 
-                // onPress={() => navigation.navigate("Login")} 
-                style={styles.leftText}>
-                  <Text style={styles.rightText2}>Switch to</Text>
-                  <Text style={styles.rightText1}>Log In</Text> 
-                </Pressable>                               
-              ),
-              headerShown: true,
-            }}  
-          /> */}
 
-          
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
@@ -68,14 +44,14 @@ export default Navigation;
 const styles = StyleSheet.create({
   leftText: {
     flexDirection: 'row',
-    marginRight:10,
-    width:100
+    marginRight: 10,
+    width: 100
   },
   rightText1: {
-    color:'#EA5540',
-    marginLeft:5,
+    color: '#EA5540',
+    marginLeft: 5,
   },
   rightText2: {
-    color:'#8A9BA3',
+    color: '#8A9BA3',
   }
 })

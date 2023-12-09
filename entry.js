@@ -20,9 +20,10 @@ const Entry = () => {
       }
       setLoaded(true)
     });
-  }, []);
+  }, [])
+
   if (!loaded) {
-    return (<CustomView center middle flex={true} style={{ flex: 1, width: 100 + '%' }} color="#000" >
+    return (<CustomView center middle flex={true} flexGrow    >
       {/* <Image style={{ width: 50 + '%', height: 50 }} source={require("./assets/images/splashscreen.png")} /> */}
     </CustomView>)
   }

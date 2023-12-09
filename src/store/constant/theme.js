@@ -10,7 +10,7 @@ export const COLORS = {
   lightprimary: 'rgba(81, 153, 230,0.1)',
   lightsecondary: 'rgba(245, 45, 69, 0.5)',
   primary: '#31AEE8',
-  deepprimary: '#14b0ce',
+  deepprimary: 'rgba(7, 14, 17, 1)',
   deeptextprimary: '#00ACCD',
   secondary: '#007C93',
   accent: '#BC5C00',

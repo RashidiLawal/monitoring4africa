@@ -40,7 +40,8 @@ const CustomButton = ({
   withoutFeedback,
   style,
   children,
-  block
+  block,
+  onPress
 }) => {
   const handleMargins = () => {
    
@@ -204,11 +205,11 @@ const CustomButton = ({
     ? TouchableNativeFeedback
     : withoutFeedback
     ? TouchableWithoutFeedback
-    : Pressable
-    ? pressable
+    : pressable
+    ? Pressable
     : TouchableOpacity;
   return (
-    <ButtonType accessibilityRole='button' disabled={disabled} style={buttonStyles} activeOpacity={opacity}>
+    <ButtonType onPress={onPress} accessibilityRole='button' disabled={disabled} style={buttonStyles} activeOpacity={opacity}>
       {children}
     </ButtonType>
   );
