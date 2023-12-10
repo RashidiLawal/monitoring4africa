@@ -6,13 +6,15 @@ import CustomView from './CustomView';
 import CustomText from './CustomText';
 import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
 import { COLORS, SIZES } from '../../store/constant/theme';
 
-const CustomInput = ({  label,
+const CustomInput = ({ textEntry, label,
   placeholder,
   iconName,
   secureTextEntry,
   onIconClick,
+  contentType,
   value,
   onChangeText,
   onFocus,
@@ -23,7 +25,7 @@ const CustomInput = ({  label,
   multiline = false,
   textcolor,
   keyboardType='default',
-  inputRef}) => 
+  inputRef, ...props}) => 
    {
   return (
     <CustomView flex={false} style={{width: '100%'}}>
@@ -46,8 +48,10 @@ const CustomInput = ({  label,
           onFocus={onFocus}
           keyboardType={keyboardType}
           returnKeyLabel="done"
+          secureTextEntry={textEntry}
           ref={inputRef}
-          // {...props}
+          {...props}
+        
         />
      
     </CustomView>

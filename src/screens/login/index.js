@@ -19,8 +19,10 @@ import CustomText from "../../components/ui/CustomText";
 import CustomView from "../../components/ui/CustomView";
 import CustomInput from "../../components/ui/CustomInput";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
+import Hidden from '../../../assets/svgs/Hidden.svg';
 import { useNavigation } from "@react-navigation/native";
 import { COLORS } from "../../store/constant/theme";
+import { Ionicons } from '@expo/vector-icons';
 
 const Login = () => {
   const [checked, setChecked] = useState(false);
@@ -47,8 +49,11 @@ const Login = () => {
             <CustomView style={styles.signAndLog}>
               <CustomText style={styles.text1}>Login to your Account</CustomText>
               <CustomView style={styles.twoText}>
-                <CustomText style={styles.text2}>Don’t have an account? </CustomText>
-                <CustomText style={styles.text3}>Sign Up</CustomText>
+                <CustomText color={COLORS.midGrey} size='15' bold margin={[]}>Don’t have an account? </CustomText>
+                <Pressable onPress={() => navigation.navigate('Signup')}>
+                 <CustomText color={COLORS.orange} bold size='15' >Sign Up</CustomText>
+                </Pressable>
+                
               </CustomView>
             </CustomView>
 
@@ -68,6 +73,7 @@ const Login = () => {
                   placeholder="*********"
                   placeholderTextColor="#8A9BA3"
                 />
+                
               </CustomView>
             </CustomView>
           </CustomView>
@@ -148,13 +154,13 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     letterSpacing: 1,
   },
-  text2: {
-    color: "#53666E",
-    fontSize: 15,
-    fontStyle: "normal",
-    fontWeight: "500",
-    letterSpacing: 0.1,
-  },
+  // text2: {
+  //   color: "#53666E",
+  //   fontSize: 15,
+  //   fontStyle: "normal",
+  //   fontWeight: "500",
+  //   letterSpacing: 0.1,
+  // },
   text3: {
     color: "#EA5540",
     fontSize: 15,

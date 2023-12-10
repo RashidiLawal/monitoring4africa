@@ -14,6 +14,7 @@ import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import CustomInput from "../../components/ui/CustomInput";
 
 
+
 export default function Signup() {
   const [checked, setChecked] = useState(false);
   const navigation = useNavigation();
@@ -33,8 +34,8 @@ export default function Signup() {
 
         <Pressable onPress={() => navigation.navigate('Login')}>
           <CustomView row center>
-            <CustomText margin={[0, 5]}>Switch to</CustomText>
-            <CustomText color={COLORS.orange}>Log In</CustomText>
+            <CustomText margin={[0, 5]} bold size='15'>Switch to</CustomText>
+            <CustomText bold size='15' color={COLORS.orange}>Log In</CustomText>
           </CustomView>
         </Pressable>
         </CustomView>
@@ -99,7 +100,7 @@ export default function Signup() {
       <CustomButton
         onPress={() => navigation.navigate("OnboardCompany")}
       >
-        <CustomText white bold size={18}>Continue</CustomText>
+        <CustomText white bold size={20}>Continue</CustomText>
       </CustomButton>  
       </CustomView>
     </>
