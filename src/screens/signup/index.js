@@ -65,20 +65,13 @@ export default function Signup() {
             </CustomView >                  
                 <CustomView  flexGrow='1'>
                 <CustomInput
-                  label='Last Name'
-                  placeholder="Enter Last Name"
+                  label='Work email'
+                  placeholder="example@gmail.com"
                  
                 />
-                </CustomView>               
-                <CustomView style={styles.inputBox1}> 
-              <CustomInput
-                style={styles.input}
-                label="Work email"
-                placeholder="example@gmail.com"
-                placeholderTextColor="#8A9BA3"
-              />
               <Text style={styles.textFailed}>Wrong email ID, try again</Text>
-            </CustomView>
+
+                </CustomView>               
             </CustomView >
            
             
