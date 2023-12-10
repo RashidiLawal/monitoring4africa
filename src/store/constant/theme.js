@@ -20,7 +20,7 @@ export const COLORS = {
   background: '#F2F5F7',
   profileLine: '#D7E2E4',
   transparent: '#67dbef',
-  descText: '#717171',
+  descText: 'rgba(83, 102, 110, 1)',
   green: '#4ED765',
   placeholder: '#cfd8dc',
   offprimary: '#21b9d7',

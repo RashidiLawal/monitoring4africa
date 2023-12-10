@@ -37,7 +37,9 @@ const CustomView = ({flex,
     safe,
     style,
     children,
-    background
+    background,
+    height, width,
+    round
     }) => {
     const handleMargins = () => {
         
@@ -145,6 +147,7 @@ const CustomView = ({flex,
         left && styles.left,
         right && styles.right,
         top && styles.top,
+        round && styles.round,
         bottom && styles.bottom,
         margin && {...handleMargins()},
         padding && {...handlePaddings()},
@@ -153,6 +156,8 @@ const CustomView = ({flex,
         space && {justifyContent: `space-${space}`},
         wrap && {flexWrap: 'wrap'},
         radius && {borderRadius: radius},
+        width && {width},
+        height && {height},
         // color shortcuts
         primary && {backgroundColor: COLORS.primary},
         secondary && {backgroundColor: COLORS.secondary},
@@ -230,6 +235,11 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 13,
         elevation: 2
+    },
+    round: {
+        borderRadius: 100+'%',
+        justifyContent: 'center', 
+        alignItems: 'center' ,
     },
     accent: {backgroundColor: COLORS.accent},
     primary: {backgroundColor: COLORS.primary},
