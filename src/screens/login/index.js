@@ -17,7 +17,7 @@ import Entypo from "@expo/vector-icons/Entypo";
 import CustomButton from "../../components/ui/CustomButton";
 import CustomText from "../../components/ui/CustomText";
 import CustomView from "../../components/ui/CustomView";
-import LeftArrow from "../../../assets/svgs/LeftArrow";
+import CustomInput from "../../components/ui/CustomInput";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import { useNavigation } from "@react-navigation/native";
 import { COLORS } from "../../store/constant/theme";
@@ -32,72 +32,59 @@ const Login = () => {
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
+        <CustomView padding={[0, 0, 0, 5]}>
         <Pressable
           onPress={() => navigation.goBack()}
-          shadow
-          padding={[10]}
-          margin={[0, 20]}
+          shadow         
         >
-          <BackIcon />
-          {/* <SimplelineIcon name="arrow-left" color={'white'} size={15} /> */}
-        </Pressable>
-
-        <CustomView center padding={[0]}>
-          {/* <CustomText>
-                       Supplies needed
-                    </CustomText> */}
-        </CustomView>
-        {/* <TouchableOpacity style={{ marginRight: 30 }}>
-         
-          <CustomView row center>
-            <CustomText margin={[0, 5]}>Switch to</CustomText>
-            <CustomText color={COLORS.orange}>Log In</CustomText>
-          </CustomView>
-        </TouchableOpacity> */}
+          <BackIcon />       
+        </Pressable>   
+        </CustomView>             
       </Appbar.Header>
-      <View style={styles.body}>
-        <View style={styles.termsText}>
-          <View style={styles.inputsAndLog}>
-            <View style={styles.signAndLog}>
-              <Text style={styles.text1}>Login to your Account</Text>
-              <View style={styles.twoText}>
-                <Text style={styles.text2}>Don’t have an account? </Text>
-                <Text style={styles.text3}>Sign Up</Text>
-              </View>
-            </View>
+      <ScrollView style={styles.container}>
+        <CustomView style={styles.termsText}>
+          <CustomView style={styles.inputsAndLog}>
+            <CustomView style={styles.signAndLog}>
+              <CustomText style={styles.text1}>Login to your Account</CustomText>
+              <CustomView style={styles.twoText}>
+                <CustomText style={styles.text2}>Don’t have an account? </CustomText>
+                <CustomText style={styles.text3}>Sign Up</CustomText>
+              </CustomView>
+            </CustomView>
 
-            <View style={styles.inputs}>
-              <View style={styles.inputBox}>
-                <Text style={styles.label}>Email</Text>
-                <TextInput
+            <CustomView style={styles.inputs}>
+              <CustomView style={styles.inputBox}>
+                <CustomText style={styles.label}>Email</CustomText>
+                <CustomInput
                   style={styles.input}
                   placeholder="example@gmail.com"
                   placeholderTextColor="#8A9BA3"
                 />
-              </View>
-              <View style={styles.inputBox}>
-                <Text style={styles.label}>Password</Text>
-                <TextInput
+              </CustomView>
+              <CustomView style={styles.inputBox}>
+                <CustomText style={styles.label}>Password</CustomText>
+                <CustomInput
                   style={styles.input}
                   placeholder="*********"
                   placeholderTextColor="#8A9BA3"
                 />
-              </View>
-            </View>
-          </View>
+              </CustomView>
+            </CustomView>
+          </CustomView>
 
-          <View style={styles.texts}>
-            <Text style={styles.text2}>Forget Password?</Text>
-            <Text style={styles.text3}>Reset</Text>
-          </View>
-        </View>
-
-        <CustomButton
+          <CustomView style={styles.texts}>
+            <CustomText style={styles.text2}>Forget Password?</CustomText>
+            <CustomText style={styles.text3}>Reset</CustomText>
+          </CustomView>
+        </CustomView>      
+      </ScrollView>
+      <CustomView padding={[20, 20, 35]} white>
+      <CustomButton
         onPress={() => navigation.navigate("OnboardCompany")}
       >
         <CustomText white bold size={18}>Login</CustomText>
-      </CustomButton>  
-      </View>
+      </CustomButton> 
+      </CustomView> 
     </>
   );
 };
@@ -108,11 +95,20 @@ const styles = StyleSheet.create({
   body: {
     justifyContent: "space-between",
     height: "100%",
-    backgroundColor: "#FFF",
+    
     backgroundColor: "#FFFFFF",
     paddingHorizontal: 15,
     paddingTop: 10,
     paddingBottom: 95,
+  },
+  container: {
+    backgroundColor: "#FFF",
+    flexDirection: "column",
+    height: "100%", 
+    paddingHorizontal: 15,
+    paddingTop: 5,
+    
+    // paddingBottom: 95,
   },
   inputsAndLog: {
     flexDirection: "column",

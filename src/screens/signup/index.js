@@ -31,12 +31,12 @@ export default function Signup() {
           <BackIcon />
         </Pressable>
 
-        <TouchableOpacity>
+        <Pressable onPress={() => navigation.navigate('Login')}>
           <CustomView row center>
             <CustomText margin={[0, 5]}>Switch to</CustomText>
             <CustomText color={COLORS.orange}>Log In</CustomText>
           </CustomView>
-        </TouchableOpacity>
+        </Pressable>
         </CustomView>
       </Appbar.Header>
       <ScrollView style={styles.container}>
