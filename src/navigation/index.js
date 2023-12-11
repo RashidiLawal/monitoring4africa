@@ -4,13 +4,17 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
-import Login from "../screens/login";
-import Onboarding from "../screens/onboarding";
-import Signup from "../screens/signup";
-import OnboardCompany from "../screens/onboardCompany";
+import Login from "../screens/login"; 
 import VerifyEmail from "../screens/VerifyEmail";
 import CreatePassword from "../screens/createpassword";
 import GetStarted from "../screens/started";
+import Onboarding from "../screens/onboarding/index";
+import Signup from "../screens/signup/index";
+import OnboardCompany from '../screens/onboardCompany/index'
+import OnboardSuccess from "../screens/onboardCompany/OnboardSuccess";
+import OnboardEmployeeSuccess from "../screens/OnboardEmployee/OnboardSuccess";
+import OnboardEmployee from "../screens/OnboardEmployee"; 
+import BottomTab from "./BottomTab";
 // import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
@@ -31,13 +35,17 @@ const Navigation = (props) => {
           <Stack.Screen name="GetStarted" component={GetStarted} options={{ headerShown: false }} />
           <Stack.Screen name="OnboardCompany" component={OnboardCompany} options={{ headerShown: false }} />
           <Stack.Screen name="CreatePassword" component={CreatePassword} options={{ headerShown: false }} /><Stack.Screen name="VerifyEmail" component={VerifyEmail} options={{ headerShown: false }} />
+          <Stack.Screen name="OnboardSuccess" component={OnboardSuccess} options={{ headerShown: false }} />
+          <Stack.Screen name="OnboardEmployee" component={OnboardEmployee} options={{ headerShown: false }} />
+          <Stack.Screen name="OnboardEmployeeSuccess" component={OnboardEmployeeSuccess} options={{ headerShown: false }} />
+          <Stack.Screen name="Home" component={BottomTab} options={{ headerShown: false }} />
           <Stack.Screen name="Login" component={Login} options={{
             headerShown: false,
           }} />
           <Stack.Screen name="Signup" component={Signup} options={{
             headerShown: false,
           }} />
-
+      
 
         </Stack.Navigator>
       </NavigationContainer>

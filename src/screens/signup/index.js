@@ -1,17 +1,8 @@
-import * as React from "react";
-import { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import React, { useState , useEffect} from "react";
+import { StyleSheet, Text, View, Pressable, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
-import { Appbar } from "react-native-paper";
+import { ActivityIndicator, Appbar } from "react-native-paper";
 import SimplelineIcon from "@expo/vector-icons/SimpleLineIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 import CustomButton from "../../components/ui/CustomButton";
@@ -21,19 +12,56 @@ import { COLORS } from "../../store/constant/theme";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import CustomInput from "../../components/ui/CustomInput";
 import CreatePassword from "../createpassword";
+import AxiosCall from "../../../utils/axios";
 
-export default function Signup() {
-  const [checked, setChecked] = useState(false);
+
+const Signup = () => {
   const navigation = useNavigation();
+  const [checked, setChecked] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailAvailable, setEmailAvailable] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(()=>{
+    if(email){
+       checkForAvailablility()
+    }
+  }, [email])
 
   const handleToggle = () => {
     setChecked(!checked);
-  };
+  }; 
+  const checkForAvailablility =  async () => {
+      try {
+        setIsLoading(true)
+        setError("")
+        const callObj = {
+          method: 'POST',
+          path:  'users/emailAvailability',
+          data: {email}
+        };
+        const response = await AxiosCall(callObj);
+        setEmailAvailable(true)
+        setIsLoading(false)
+      } catch (e) {
+        let errorResponse = 'Something went wrong. please try again';
+        if (e.response) {
+          const { error } = e.response.data;
+          errorResponse = error;
+        } 
+        setIsLoading(false)
+        setError(errorResponse)
+      }
+}
+
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
         <CustomView space="between" row flex padding={[0, 15, 0, 5]}>
-          <Pressable onPress={() => navigation.goBack()}>
+        <Pressable onPress={() => navigation.goBack()}>
             <BackIcon />
           </Pressable>
 
@@ -52,31 +80,38 @@ export default function Signup() {
       <ScrollView style={styles.container}>
         <View style={styles.checkBoxAnd}>
           <View style={styles.textAndInputs}>
-            <CustomText size={27} heavier color={COLORS.lightBlack} spacing={.5}>Let’s get to know You</CustomText>
-            <CustomView column>
-              <CustomView row wrap columnGap="15" rowGap="25">
-                <CustomView flexGrow="1">
+            <Text style={styles.text1}>Let’s get to know You</Text>
+            <CustomView column >
+              <CustomView row wrap rowGap='25' columnGap={15}>
+                <CustomView flexGrow='1' width={45+'%'}>
                   <CustomInput
-                    label="First Name"
+                    label='First Name'
                     placeholder="Enter First Name"
+                    onChangeText={setFirstName}
+                  />
+                </CustomView > 
+                <CustomView flexGrow='1' width={45+'%'}  >
+                  <CustomInput
+                    label='Last Name'
+                    placeholder="Enter Last Name"
+                    onChangeText={setLastName}
                   />
                 </CustomView>
-                <CustomView flexGrow="1">
-                  <CustomInput
-                    label="First Name"
-                    placeholder="Enter First Name"
-                  />
-                </CustomView>
-                <CustomView flexGrow="1">
+                <CustomView style={styles.inputBox1}>
                   <CustomInput
                     label="Work email"
                     placeholder="example@gmail.com"
+                    onChangeText={setEmail}
                   />
-                  <Text style={styles.textFailed}>
-                    Wrong email ID, try again
-                  </Text>
+                  {isLoading ?<CustomView row> 
+                  <ActivityIndicator size={14} color={COLORS.descText}/> 
+                  <CustomText margin={[0, 5]} size={14} descText>checking for availability</CustomText></CustomView>: null}
+                  {error ? <Text style={styles.textFailed}>{error}</Text> : null}
+                  {emailAvailable ? <CustomText size={14} color={COLORS.success}>Email is available</CustomText> : null}
                 </CustomView>
-              </CustomView>
+              </CustomView >
+
+
             </CustomView>
           </View>
           <View style={styles.checkBoxView}>
@@ -84,7 +119,7 @@ export default function Signup() {
               onClick={() => handleToggle()}
               style={styles.checkBox}
               isChecked={checked}
-              checkBoxColor="#EA5540"
+              checkBoxColor='#EA5540'
               checkedCheckBoxColor="#EA5540"
               uncheckedCheckBoxColor="#EA5540"
             />
@@ -97,16 +132,19 @@ export default function Signup() {
           </View>
         </View>
       </ScrollView>
-      <CustomView padding={[20, 20, 35]} color="#fff">
-        <CustomButton onPress={() => navigation.navigate("CreatePassword")}>
-          <CustomText white bold size={20}>
-            Continue
-          </CustomText>
+      <CustomView padding={[20, 20, 35]} color='#fff'>
+        <CustomButton
+        disabled={!checked || !firstName || !lastName || !email}
+          onPress={() => navigation.navigate("CreatePassword", {firstName, lastName, email})}
+        >
+          <CustomText white bold size={18}>Continue</CustomText>
         </CustomButton>
       </CustomView>
     </>
   );
 }
+
+export default Signup;
 
 const styles = StyleSheet.create({
   container: {
@@ -161,7 +199,7 @@ const styles = StyleSheet.create({
   },
   textFailed: {
     marginTop: 10,
-    color: "#EA5540",
+    color: '#EA5540',
     fontSize: 13,
     fontWeight: "500",
   },
