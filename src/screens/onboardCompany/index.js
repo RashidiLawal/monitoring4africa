@@ -50,7 +50,7 @@ export default function OnboardCompany() {
       <ScrollView style={styles.container}>
         <CustomView >
           <CustomView >
-            <CustomText size={20} weight="500" >Introduce Your Company</CustomText>
+            <CustomText size={25} style={styles.text1}>Introduce Your Company</CustomText>
             <CustomText size={14} descText>Provide essential details about your company</CustomText>
             <CustomView column margin={[15, 0]}>
               <CustomView rowGap={15} >
@@ -127,5 +127,11 @@ const styles = StyleSheet.create({
     paddingTop: 10,
 
     // paddingBottom: 95,
+  },
+
+  text1: {
+    color: "#232323",
+    fontStyle: "normal",
+    fontWeight: "700",
   },
 });

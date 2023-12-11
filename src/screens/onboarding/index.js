@@ -108,7 +108,7 @@ function Onboarding({ navigation }) {
 
         return (
             <CustomView padding={[0, 15, 20]}   >
-                <CustomText bold animated center  height={22} size={24} color={COLORS.primary}>
+                <CustomText heavy animated center  height={22} size={24} color={COLORS.primary}>
           {slide && slide.title}
         </CustomText>
                 <CustomText
@@ -126,7 +126,7 @@ function Onboarding({ navigation }) {
                {slideIndex == 2 ? 
                <> 
                <CustomButton  primary onPress={() => navigation.navigate('Signup')}>
-                        <CustomText white lightbold large >
+                        <CustomText white lightbold large heavy>
                             Get Started
                         </CustomText>
                     </CustomButton> 

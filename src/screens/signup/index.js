@@ -1,9 +1,8 @@
-import * as React from "react";
-import { useState } from "react";
-import { StyleSheet, Text, View, Pressable, TextInput,  TouchableOpacity, ScrollView } from "react-native";
+import React, { useState , useEffect} from "react";
+import { StyleSheet, Text, View, Pressable, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
-import { Appbar } from "react-native-paper";
+import { ActivityIndicator, Appbar } from "react-native-paper";
 import SimplelineIcon from "@expo/vector-icons/SimpleLineIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 import CustomButton from "../../components/ui/CustomButton";
@@ -12,102 +11,132 @@ import CustomView from "../../components/ui/CustomView";
 import { COLORS } from "../../store/constant/theme";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import CustomInput from "../../components/ui/CustomInput";
+import AxiosCall from "../../../utils/axios";
 
 
 export default function Signup() {
-  const [checked, setChecked] = useState(false);
   const navigation = useNavigation();
+  const [checked, setChecked] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailAvailable, setEmailAvailable] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(()=>{
+    if(email){
+       checkForAvailablility()
+    }
+  }, [email])
 
   const handleToggle = () => {
     setChecked(!checked);
-  };
-  return (
-    <>   
-      <Appbar.Header style={{ backgroundColor: "#fff" }}>
-        <CustomView space="between" row flex  padding={[0, 15, 0, 5]}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-        >
-          <BackIcon />
-        </Pressable>
+  }; 
+  const checkForAvailablility =  async () => {
+      try {
+        setIsLoading(true)
+        setError("")
+        const callObj = {
+          method: 'POST',
+          path:  'users/emailAvailability',
+          data: {email}
+        };
+        const response = await AxiosCall(callObj);
+        setEmailAvailable(true)
+        setIsLoading(false)
+      } catch (e) {
+        let errorResponse = 'Something went wrong. please try again';
+        if (e.response) {
+          const { error } = e.response.data;
+          errorResponse = error;
+        } 
+        setIsLoading(false)
+        setError(errorResponse)
+      }
+}
 
-        <TouchableOpacity>
-          <CustomView row center>
-            <CustomText margin={[0, 5]}>Switch to</CustomText>
-            <CustomText color={COLORS.orange}>Log In</CustomText>
-          </CustomView>
-        </TouchableOpacity>
+
+  return (
+    <>
+      <Appbar.Header style={{ backgroundColor: "#fff" }}>
+        <CustomView space="between" row flex padding={[0, 15, 0, 5]}>
+          <Pressable
+            onPress={() => navigation.goBack()}
+          >
+            <BackIcon />
+          </Pressable>
+
+          <TouchableOpacity>
+            <CustomView row center>
+              <CustomText margin={[0, 5]}>Switch to</CustomText>
+              <CustomText color={COLORS.orange}>Log In</CustomText>
+            </CustomView>
+          </TouchableOpacity>
         </CustomView>
       </Appbar.Header>
       <ScrollView style={styles.container}>
-      <View style={styles.checkBoxAnd}>
-        <View style={styles.textAndInputs}>
-          <Text style={styles.text1}>Let’s get to know You</Text>
-          <CustomView  column >
-            <CustomView row wrap columnGap='15' rowGap='25'>               
-            <CustomView flexGrow='1' >
-            <CustomInput
+        <View style={styles.checkBoxAnd}>
+          <View style={styles.textAndInputs}>
+            <Text style={styles.text1}>Let’s get to know You</Text>
+            <CustomView column >
+              <CustomView row wrap rowGap='25' columnGap={15}>
+                <CustomView flexGrow='1' width={45+'%'}>
+                  <CustomInput
+                    label='First Name'
+                    placeholder="Enter First Name"
+                    onChangeText={setFirstName}
+                  />
+                </CustomView > 
+                <CustomView flexGrow='1' width={45+'%'}  >
+                  <CustomInput
+                    label='Last Name'
+                    placeholder="Enter Last Name"
+                    onChangeText={setLastName}
+                  />
+                </CustomView>
+                <CustomView style={styles.inputBox1}>
+                  <CustomInput
+                    label="Work email"
+                    placeholder="example@gmail.com"
+                    onChangeText={setEmail}
+                  />
+                  {isLoading ?<CustomView row> 
+                  <ActivityIndicator size={14} color={COLORS.descText}/> 
+                  <CustomText margin={[0, 5]} size={14} descText>checking for availability</CustomText></CustomView>: null}
+                  {error ? <Text style={styles.textFailed}>{error}</Text> : null}
+                  {emailAvailable ? <CustomText size={14} color={COLORS.success}>Email is available</CustomText> : null}
+                </CustomView>
+              </CustomView >
 
-              label='First Name'
 
-              placeholder="Enter First Name"
-
-              />
-            </CustomView > 
-            <CustomView flexGrow='1' >
-            <CustomInput
-
-              label='First Name'
-
-              placeholder="Enter First Name"
-
-              />
-            </CustomView >                  
-                <CustomView  flexGrow='1'>
-                <CustomInput
-                  label='Last Name'
-                  placeholder="Enter Last Name"
-                 
-                />
-                </CustomView>               
-                <CustomView style={styles.inputBox1}> 
-              <CustomInput
-                style={styles.input}
-                label="Work email"
-                placeholder="example@gmail.com"
-                placeholderTextColor="#8A9BA3"
-              />
-              <Text style={styles.textFailed}>Wrong email ID, try again</Text>
             </CustomView>
-            </CustomView >
-           
-            
-          </CustomView>
-        </View>
-        <View style={styles.checkBoxView}>
-          <CheckBox
-            onClick={() => handleToggle()}
-            style={styles.checkBox}
-            isChecked={checked}
-            checkBoxColor='#EA5540'
-            checkedCheckBoxColor="#EA5540"
-            uncheckedCheckBoxColor="#EA5540"
-          />
-          <View style={styles.texts}>
-            <Text style={styles.texts2}>I agree to the</Text>
-            <Text style={styles.texts1}>terms & condition</Text>
-            <Text style={styles.texts2}>and</Text>
-            <Text style={styles.texts1}>privacy policy</Text>
+          </View>
+          <View style={styles.checkBoxView}>
+            <CheckBox
+              onClick={() => handleToggle()}
+              style={styles.checkBox}
+              isChecked={checked}
+              checkBoxColor='#EA5540'
+              checkedCheckBoxColor="#EA5540"
+              uncheckedCheckBoxColor="#EA5540"
+            />
+            <View style={styles.texts}>
+              <Text style={styles.texts2}>I agree to the</Text>
+              <Text style={styles.texts1}>terms & condition</Text>
+              <Text style={styles.texts2}>and</Text>
+              <Text style={styles.texts1}>privacy policy</Text>
+            </View>
           </View>
         </View>
-      </View>   
       </ScrollView>
       <CustomView padding={[20, 20, 35]} color='#fff'>
-      <CustomButton
-        onPress={() => navigation.navigate("OnboardCompany")}
-      >
-        <CustomText white bold size={18}>Continue</CustomText>
-      </CustomButton>  
+        <CustomButton
+        disabled={!checked || !firstName || !lastName || !email}
+          onPress={() => navigation.navigate("OnboardCompany", {firstName, lastName, email})}
+        >
+          <CustomText white bold size={18}>Continue</CustomText>
+        </CustomButton>
       </CustomView>
     </>
   );
@@ -121,7 +150,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     paddingHorizontal: 15,
     paddingTop: 10,
-    
+
     // paddingBottom: 95,
   },
   text1: {
@@ -166,14 +195,14 @@ const styles = StyleSheet.create({
   },
   textFailed: {
     marginTop: 10,
-    color:'#EA5540',
+    color: '#EA5540',
     fontSize: 13,
     fontWeight: "500",
   },
   checkBoxView: {
     flexDirection: "row",
     alignItems: "center",
-    columnGap:7,
+    columnGap: 7,
   },
   texts: {
     flexDirection: "row",
@@ -185,7 +214,7 @@ const styles = StyleSheet.create({
   },
   texts2: {
     fontSize: 13.5,
-    color: "#8A9BA3", 
+    color: "#8A9BA3",
   },
   button1: {
     borderRadius: 10,
@@ -198,5 +227,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     fontWeight: "700",
-  },  
+  },
 });

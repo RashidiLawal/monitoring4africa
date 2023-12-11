@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   },
   heavy: {
     // fontFamily: 'avenir-semibold',
-    fontWeight: '600'
+    fontWeight: '600',
   },
   medium300: {
     // fontFamily: 'avenir-regular'
