@@ -12,6 +12,7 @@ import CustomView from "../../components/ui/CustomView";
 import { COLORS } from "../../store/constant/theme";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import CustomInput from "../../components/ui/CustomInput";
+import CreatePassword from "../createpassword";
 
 
 
@@ -98,7 +99,7 @@ export default function Signup() {
       </ScrollView>
       <CustomView padding={[20, 20, 35]} color='#fff'>
       <CustomButton
-        onPress={() => navigation.navigate("OnboardCompany")}
+        onPress={() => navigation.navigate("CreatePassword")}
       >
         <CustomText white bold size={20}>Continue</CustomText>
       </CustomButton>  
