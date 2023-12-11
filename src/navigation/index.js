@@ -8,10 +8,10 @@ import Login from "../screens/login";
 import VerifyEmail from "../screens/VerifyEmail";
 import CreatePassword from "../screens/createpassword";
 import GetStarted from "../screens/started";
-import Onboarding from "../screens/Onboarding";
-import Signup from "../screens/Signup";
-import OnboardCompany from "../screens/OnboardCompany";
-import OnboardSuccess from "../screens/OnboardCompany/OnboardSuccess";
+import Onboarding from "../screens/onboarding/index";
+import Signup from "../screens/signup/index";
+import OnboardCompany from '../screens/onboardCompany/index'
+import OnboardSuccess from "../screens/onboardCompany/OnboardSuccess";
 import OnboardEmployeeSuccess from "../screens/OnboardEmployee/OnboardSuccess";
 import OnboardEmployee from "../screens/OnboardEmployee"; 
 import BottomTab from "./BottomTab";

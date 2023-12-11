@@ -16,7 +16,7 @@ import CustomInput from "../../components/ui/CustomInput";
 import CountryModal from "../../components/ui/CountryModal";
 
 
-export default function OnboardCompany() {
+const OnboardCompany= () => {
   const [checked, setChecked] = useState(false);
   const navigation = useNavigation();
   const [countryModalVisible, setCountryModalVisible] = useState(false)
@@ -116,7 +116,7 @@ export default function OnboardCompany() {
     </>
   );
 }
-
+export default OnboardCompany;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",

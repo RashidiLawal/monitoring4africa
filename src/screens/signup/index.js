@@ -15,7 +15,7 @@ import CreatePassword from "../createpassword";
 import AxiosCall from "../../../utils/axios";
 
 
-export default function Signup() {
+const Signup = () => {
   const navigation = useNavigation();
   const [checked, setChecked] = useState(false);
   const [email, setEmail] = useState("");
@@ -56,7 +56,6 @@ export default function Signup() {
         setError(errorResponse)
       }
 }
-
 
   return (
     <>
@@ -144,6 +143,8 @@ export default function Signup() {
     </>
   );
 }
+
+export default Signup;
 
 const styles = StyleSheet.create({
   container: {
