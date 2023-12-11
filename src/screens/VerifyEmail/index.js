@@ -22,55 +22,81 @@ const VerifyEmail = () => {
         </CustomView>
       </Appbar.Header>
       <ScrollView style={styles.container}>
-        <CustomView>
-          <CustomView>
-            <CustomText size={27} heavier color={COLORS.lightBlack} spacing={0.5}>Verify Your Email </CustomText>
-            <CustomText size={27} heavier color={COLORS.lightBlack} spacing={0.5}>With A Code</CustomText>
+        <CustomView column rowGap={28}>
+        <CustomView column rowGap={17}>
+          <CustomView column rowGap={2}>
+            <CustomText
+              size={27}
+              heavier
+              color={COLORS.lightBlack}
+              spacing={0.5}
+            >
+              Verify Your Email{" "}
+            </CustomText>
+            <CustomText
+              size={27}
+              heavier
+              color={COLORS.lightBlack}
+              spacing={0.5}
+            >
+              With A Code
+            </CustomText>
           </CustomView>
-          <CustomView>
-            <CustomText size={14.5}
-                color={COLORS.midGrey}
-                spacing={0.5}
-                height={18}>
+          <CustomView column rowGap={2}>
+            <CustomText
+              size={14.5}
+              color={COLORS.midGrey}
+              spacing={0.5}
+              height={18}
+            >
               We sent a code to akinsuyi@hotmail.com -- It
             </CustomText>
-            <CustomText size={14.5}
-                color={COLORS.midGrey}
-                spacing={0.5}
-                height={18}>helps us keep your account secure</CustomText>
+            <CustomText
+              size={14.5}
+              color={COLORS.midGrey}
+              spacing={0.5}
+              height={18}
+            >
+              helps us keep your account secure
+            </CustomText>
           </CustomView>
         </CustomView>
-        <CustomView>
-          <CustomView>
-            <CustomText size={14.5}
-                color={COLORS.lightBlack}
-                spacing={0.5}
-                height={18}>Verification Code</CustomText>
-            <CustomView row wrap rowGap='25' columnGap={15}>
-            <CustomView flexGrow='1'>
-            <CustomInput numberOfCharacters={1}/>
-            </CustomView>
-            <CustomView flexGrow='1'>
-            <CustomInput numberOfCharacters={1}/>
-            </CustomView>
-            <CustomView flexGrow='1'>
-            <CustomInput numberOfCharacters={1}/>
-            </CustomView>
-            <CustomView flexGrow='1'>
-            <CustomInput numberOfCharacters={1}/>
-            </CustomView>
-            <CustomView flexGrow='1'>
-            <CustomInput numberOfCharacters={1}/>
-            </CustomView>
-            <CustomView flexGrow='1'>
-            <CustomInput numberOfCharacters={1}/>
-            </CustomView>
+        <CustomView column rowGap={18}>
+          <CustomView column rowGap={10}>
+            <CustomText
+              size={14.5}
+              color={COLORS.lightBlack}
+              spacing={0.5}
+              height={18}
+            >
+              Verification Code
+            </CustomText>
+            <CustomView row wrap rowGap="25" columnGap={15}>
+              <CustomView flexGrow="1">
+                <CustomInput numberOfCharacters={1} />
+              </CustomView>
+              <CustomView flexGrow="1">
+                <CustomInput numberOfCharacters={1} />
+              </CustomView>
+              <CustomView flexGrow="1">
+                <CustomInput numberOfCharacters={1} />
+              </CustomView>
+              <CustomView flexGrow="1">
+                <CustomInput numberOfCharacters={1} />
+              </CustomView>
+              <CustomView flexGrow="1">
+                <CustomInput numberOfCharacters={1} />
+              </CustomView>
+              <CustomView flexGrow="1">
+                <CustomInput numberOfCharacters={1} />
+              </CustomView>
             </CustomView>
           </CustomView>
           <CustomView row spaced columnGap={130}>
             <CustomText color={COLORS.orange}>Resend Code</CustomText>
             <CustomText color={COLORS.orange}>Change your email</CustomText>
           </CustomView>
+        </CustomView>
         </CustomView>
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
