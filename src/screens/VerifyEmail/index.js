@@ -67,9 +67,9 @@ const VerifyEmail = () => {
             </CustomView>
             </CustomView>
           </CustomView>
-          <CustomView>
-            <CustomText>Resend Code</CustomText>
-            <CustomText>Change your email</CustomText>
+          <CustomView row spaced columnGap={130}>
+            <CustomText color={COLORS.orange}>Resend Code</CustomText>
+            <CustomText color={COLORS.orange}>Change your email</CustomText>
           </CustomView>
         </CustomView>
       </ScrollView>
