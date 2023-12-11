@@ -8,6 +8,7 @@ import { Appbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import GetStarted from "../started";
+import { COLORS } from "../../store/constant/theme";
 
 const VerifyEmail = () => {
   const navigation = useNavigation();
@@ -23,26 +24,47 @@ const VerifyEmail = () => {
       <ScrollView style={styles.container}>
         <CustomView>
           <CustomView>
-            <CustomText>Verify Your Email </CustomText>
-            <CustomText>With A Code</CustomText>
+            <CustomText size={27} heavier color={COLORS.lightBlack} spacing={0.5}>Verify Your Email </CustomText>
+            <CustomText size={27} heavier color={COLORS.lightBlack} spacing={0.5}>With A Code</CustomText>
           </CustomView>
           <CustomView>
-            <CustomText>
+            <CustomText size={14.5}
+                color={COLORS.midGrey}
+                spacing={0.5}
+                height={18}>
               We sent a code to akinsuyi@hotmail.com -- It
             </CustomText>
-            <CustomText>helps us keep your account secure</CustomText>
+            <CustomText size={14.5}
+                color={COLORS.midGrey}
+                spacing={0.5}
+                height={18}>helps us keep your account secure</CustomText>
           </CustomView>
         </CustomView>
         <CustomView>
           <CustomView>
-            <CustomText>Verification Code</CustomText>
-            <CustomView>
-              <CustomInput></CustomInput>
-              <CustomInput></CustomInput>
-              <CustomInput></CustomInput>
-              <CustomInput></CustomInput>
-              <CustomInput></CustomInput>
-              <CustomInput></CustomInput>
+            <CustomText size={14.5}
+                color={COLORS.lightBlack}
+                spacing={0.5}
+                height={18}>Verification Code</CustomText>
+            <CustomView row wrap rowGap='25' columnGap={15}>
+            <CustomView flexGrow='1'>
+            <CustomInput numberOfCharacters={1}/>
+            </CustomView>
+            <CustomView flexGrow='1'>
+            <CustomInput />
+            </CustomView>
+            <CustomView flexGrow='1'>
+            <CustomInput numberOfCharacters={1}/>
+            </CustomView>
+            <CustomView flexGrow='1'>
+            <CustomInput />
+            </CustomView>
+            <CustomView flexGrow='1'>
+            <CustomInput />
+            </CustomView>
+            <CustomView flexGrow='1'>
+            <CustomInput />
+            </CustomView>
             </CustomView>
           </CustomView>
           <CustomView>
