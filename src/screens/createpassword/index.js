@@ -90,28 +90,28 @@ const CreatePassword = ({route}) => {
         </CustomView>
         <CustomView column>
           <CustomView row>
-            <CustomView row center columnGap={3}>
+            <CustomView row center columnGap={3} margin={[0, 3, 0, 0]}>
               <GreenCheck />
-              <CustomText size={14}>Has at least 8 characters</CustomText>
+              <CustomText size={14} color={COLORS.lightgrey}>Has at least 8 characters</CustomText>
             </CustomView>
             <CustomView row center columnGap={3}>
               <GreenCheck />
-              <CustomText size={14}>Has an uppercase letter</CustomText>
+              <CustomText size={14} color={COLORS.lightgrey}>Has an uppercase letter</CustomText>
             </CustomView>
           </CustomView>
           <CustomView row>
-            <CustomView row center columnGap={3}>
+            <CustomView row center columnGap={3} margin={[0, 3, 0, 0]}>
               <Cancel />
-              <CustomText size={14}>Has a number</CustomText>
+              <CustomText size={14} color={COLORS.lightgrey}>Has a number</CustomText>
             </CustomView>
             <CustomView row center columnGap={3}>
               <Cancel />
-              <CustomText size={14}>Has a symbol</CustomText>
+              <CustomText size={14} color={COLORS.lightgrey}>Has a symbol</CustomText>
             </CustomView>
           </CustomView>
         </CustomView>
         <CustomView margin={[15,0]}>
-          <CustomInput label="Confirm Password" placeholder="*************" />
+          {/* <CustomInput label="Confirm Password" placeholder="*************" /> */}
           <CustomInput
           label='Confirm Password'
           placeholder='*************'
