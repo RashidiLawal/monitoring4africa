@@ -4,11 +4,62 @@ import {  Text, StyleSheet } from 'react-native';
 
 import { COLORS, SIZES, FONTS } from '../../store/constant/theme';
 
-const CustomText = props => {
+const CustomText = ({localeKey,
+  xsmall,
+  smallish,
+  small,
+  medium,
+  large,
+  xlarge,
+  xxlarge,
+  xxxlarge,
+  size,
+  //font-weight
+  regular,
+  bold,
+  semibold,
+  heavy,
+  heavier,
+  medium300,
+  lightbold,
+  light200,
+  //styling
+  transform,
+  align,
+  weight,
+  center,
+  right,
+  left,
+  spacing, // letter-spacing
+  height, // line-height
+  // colors
+  color,
+  accent,
+  primary,
+  deepprimary,
+  secondary,
+  tertiary,
+  black,
+  white,
+  midGrey,
+  success,
+  error,
+  style,
+  animated,
+  children,
+  margin,
+  padding,
+  lightGrey,
+  darkerGrey,
+  lighterGrey,
+  descText,
+  greyText,
+  underline,
+  ...props}) => {
   // i18n.fallbacks = true;
   // i18n.locale = localization.locale;
   const handleMargins = () => {
-    const { margin } = props;
+    
     if (typeof margin === 'number') {
       return {
         marginTop: margin,
@@ -53,7 +104,7 @@ const CustomText = props => {
   };
 
   const handlePaddings = () => {
-    const { padding } = props;
+    
     if (typeof padding === 'number') {
       return {
         paddingTop: padding,
@@ -97,62 +148,6 @@ const CustomText = props => {
       }
     }
   };
-
-  const {
-    //typography
-    localeKey,
-    xsmall,
-    smallish,
-    small,
-    medium,
-    large,
-    xlarge,
-    xxlarge,
-    xxxlarge,
-    size,
-    //font-weight
-    regular,
-    bold,
-    semibold,
-    heavy,
-    medium300,
-    lightbold,
-    light200,
-    //styling
-    transform,
-    align,
-    weight,
-    center,
-    right,
-    left,
-    spacing, // letter-spacing
-    height, // line-height
-    // colors
-    color,
-    accent,
-    primary,
-    deepprimary,
-    secondary,
-    tertiary,
-    black,
-    white,
-    midGrey,
-    success,
-    error,
-    style,
-    animated,
-    children,
-    margin,
-    padding,
-    lightGrey,
-    darkerGrey,
-    lighterGrey,
-    descText,
-    greyText,
-    underline,
-    ...rest
-  } = props;
-
   const textStyles = [
     styles.text,
     styles.rtl,
@@ -174,6 +169,7 @@ const CustomText = props => {
     bold && styles.bold,
     semibold && styles.semibold,
     heavy && styles.heavy,
+    heavier && styles.heavier,
     medium300 && styles.medium300,
     lightbold && styles.lightbold,
     light200 && styles.light200,
@@ -216,7 +212,7 @@ const CustomText = props => {
 
  
   return (
-    <Text style={[ ...textStyles, ]} {...rest} allowFontScaling={false}>
+    <Text style={[ ...textStyles, ]} {...props} allowFontScaling={false}>
       {children}
     </Text>
   );
@@ -243,6 +239,10 @@ const styles = StyleSheet.create({
   heavy: {
     // fontFamily: 'avenir-semibold',
     fontWeight: '600'
+  },
+  heavier: {
+    // fontFamily: 'avenir-semibold',
+    fontWeight: '700'
   },
   medium300: {
     // fontFamily: 'avenir-regular'

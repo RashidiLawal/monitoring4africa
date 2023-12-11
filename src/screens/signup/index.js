@@ -1,6 +1,14 @@
 import * as React from "react";
 import { useState } from "react";
-import { StyleSheet, Text, View, Pressable, TextInput,  TouchableOpacity, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
 import { Appbar } from "react-native-paper";
@@ -14,8 +22,6 @@ import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import CustomInput from "../../components/ui/CustomInput";
 import CreatePassword from "../createpassword";
 
-
-
 export default function Signup() {
   const [checked, setChecked] = useState(false);
   const navigation = useNavigation();
@@ -24,85 +30,79 @@ export default function Signup() {
     setChecked(!checked);
   };
   return (
-    <>   
+    <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
-        <CustomView space="between" row flex  padding={[0, 15, 0, 5]}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-        >
-          <BackIcon />
-        </Pressable>
+        <CustomView space="between" row flex padding={[0, 15, 0, 5]}>
+          <Pressable onPress={() => navigation.goBack()}>
+            <BackIcon />
+          </Pressable>
 
-        <Pressable onPress={() => navigation.navigate('Login')}>
-          <CustomView row center>
-            <CustomText margin={[0, 5]} bold size='15'>Switch to</CustomText>
-            <CustomText bold size='15' color={COLORS.orange}>Log In</CustomText>
-          </CustomView>
-        </Pressable>
+          <Pressable onPress={() => navigation.navigate("Login")}>
+            <CustomView row center>
+              <CustomText margin={[0, 5]} bold size="15">
+                Switch to
+              </CustomText>
+              <CustomText bold size="15" color={COLORS.orange}>
+                Log In
+              </CustomText>
+            </CustomView>
+          </Pressable>
         </CustomView>
       </Appbar.Header>
       <ScrollView style={styles.container}>
-      <View style={styles.checkBoxAnd}>
-        <View style={styles.textAndInputs}>
-          <Text style={styles.text1}>Let’s get to know You</Text>
-          <CustomView  column >
-            <CustomView row wrap columnGap='15' rowGap='25'>               
-            <CustomView flexGrow='1' >
-            <CustomInput
-
-              label='First Name'
-
-              placeholder="Enter First Name"
-
-              />
-            </CustomView > 
-            <CustomView flexGrow='1' >
-            <CustomInput
-
-              label='First Name'
-
-              placeholder="Enter First Name"
-
-              />
-            </CustomView >                  
-                <CustomView  flexGrow='1'>
-                <CustomInput
-                  label='Work email'
-                  placeholder="example@gmail.com"
-                 
-                />
-              <Text style={styles.textFailed}>Wrong email ID, try again</Text>
-
-                </CustomView>               
-            </CustomView >
-           
-            
-          </CustomView>
-        </View>
-        <View style={styles.checkBoxView}>
-          <CheckBox
-            onClick={() => handleToggle()}
-            style={styles.checkBox}
-            isChecked={checked}
-            checkBoxColor='#EA5540'
-            checkedCheckBoxColor="#EA5540"
-            uncheckedCheckBoxColor="#EA5540"
-          />
-          <View style={styles.texts}>
-            <Text style={styles.texts2}>I agree to the</Text>
-            <Text style={styles.texts1}>terms & condition</Text>
-            <Text style={styles.texts2}>and</Text>
-            <Text style={styles.texts1}>privacy policy</Text>
+        <View style={styles.checkBoxAnd}>
+          <View style={styles.textAndInputs}>
+            <CustomText size={27} heavier color={COLORS.lightBlack} spacing={.5}>Let’s get to know You</CustomText>
+            <CustomView column>
+              <CustomView row wrap columnGap="15" rowGap="25">
+                <CustomView flexGrow="1">
+                  <CustomInput
+                    label="First Name"
+                    placeholder="Enter First Name"
+                  />
+                </CustomView>
+                <CustomView flexGrow="1">
+                  <CustomInput
+                    label="First Name"
+                    placeholder="Enter First Name"
+                  />
+                </CustomView>
+                <CustomView flexGrow="1">
+                  <CustomInput
+                    label="Work email"
+                    placeholder="example@gmail.com"
+                  />
+                  <Text style={styles.textFailed}>
+                    Wrong email ID, try again
+                  </Text>
+                </CustomView>
+              </CustomView>
+            </CustomView>
+          </View>
+          <View style={styles.checkBoxView}>
+            <CheckBox
+              onClick={() => handleToggle()}
+              style={styles.checkBox}
+              isChecked={checked}
+              checkBoxColor="#EA5540"
+              checkedCheckBoxColor="#EA5540"
+              uncheckedCheckBoxColor="#EA5540"
+            />
+            <View style={styles.texts}>
+              <Text style={styles.texts2}>I agree to the</Text>
+              <Text style={styles.texts1}>terms & condition</Text>
+              <Text style={styles.texts2}>and</Text>
+              <Text style={styles.texts1}>privacy policy</Text>
+            </View>
           </View>
         </View>
-      </View>   
       </ScrollView>
-      <CustomView padding={[20, 20, 35]} color='#fff'>
-      <CustomButton
-        onPress={() => navigation.navigate("CreatePassword")}
-      >
-        <CustomText white bold size={20}>Continue</CustomText>
-      </CustomButton>  
+      <CustomView padding={[20, 20, 35]} color="#fff">
+        <CustomButton onPress={() => navigation.navigate("CreatePassword")}>
+          <CustomText white bold size={20}>
+            Continue
+          </CustomText>
+        </CustomButton>
       </CustomView>
     </>
   );
@@ -116,11 +116,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     paddingHorizontal: 15,
     paddingTop: 10,
-    
+
     // paddingBottom: 95,
   },
   text1: {
-    color: "#232323",
+    color: "",
     fontSize: 27,
     fontStyle: "normal",
     fontWeight: "700",
@@ -161,14 +161,14 @@ const styles = StyleSheet.create({
   },
   textFailed: {
     marginTop: 10,
-    color:'#EA5540',
+    color: "#EA5540",
     fontSize: 13,
     fontWeight: "500",
   },
   checkBoxView: {
     flexDirection: "row",
     alignItems: "center",
-    columnGap:7,
+    columnGap: 7,
   },
   texts: {
     flexDirection: "row",
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   },
   texts2: {
     fontSize: 13.5,
-    color: "#8A9BA3", 
+    color: "#8A9BA3",
   },
   button1: {
     borderRadius: 10,
@@ -193,5 +193,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     fontWeight: "700",
-  },  
+  },
 });

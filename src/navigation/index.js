@@ -10,6 +10,7 @@ import Signup from "../screens/signup";
 import OnboardCompany from "../screens/onboardCompany";
 import VerifyEmail from "../screens/VerifyEmail";
 import CreatePassword from "../screens/createpassword";
+import GetStarted from "../screens/started";
 // import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
@@ -27,6 +28,7 @@ const Navigation = (props) => {
         // }
         >
           <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
+          <Stack.Screen name="GetStarted" component={GetStarted} options={{ headerShown: false }} />
           <Stack.Screen name="OnboardCompany" component={OnboardCompany} options={{ headerShown: false }} />
           <Stack.Screen name="CreatePassword" component={CreatePassword} options={{ headerShown: false }} /><Stack.Screen name="VerifyEmail" component={VerifyEmail} options={{ headerShown: false }} />
           <Stack.Screen name="Login" component={Login} options={{

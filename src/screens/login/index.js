@@ -19,10 +19,10 @@ import CustomText from "../../components/ui/CustomText";
 import CustomView from "../../components/ui/CustomView";
 import CustomInput from "../../components/ui/CustomInput";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
-import Hidden from '../../../assets/svgs/Hidden.svg';
+import Hidden from "../../../assets/svgs/Hidden.svg";
 import { useNavigation } from "@react-navigation/native";
 import { COLORS } from "../../store/constant/theme";
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
 
 const Login = () => {
   const [checked, setChecked] = useState(false);
@@ -35,45 +35,46 @@ const Login = () => {
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
         <CustomView padding={[0, 0, 0, 5]}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-          shadow         
-        >
-          <BackIcon />       
-        </Pressable>   
-        </CustomView>             
+          <Pressable onPress={() => navigation.goBack()} shadow>
+            <BackIcon />
+          </Pressable>
+        </CustomView>
       </Appbar.Header>
       <ScrollView style={styles.container}>
         <CustomView style={styles.termsText}>
           <CustomView style={styles.inputsAndLog}>
             <CustomView style={styles.signAndLog}>
-              <CustomText style={styles.text1}>Login to your Account</CustomText>
+              <CustomText size={27} heavier color={COLORS.lightBlack} spacing={.5}>
+                Login to your Account
+              </CustomText>
               <CustomView style={styles.twoText}>
-                <CustomText color={COLORS.midGrey} size='15' bold margin={[]}>Don’t have an account? </CustomText>
-                <Pressable onPress={() => navigation.navigate('Signup')}>
-                 <CustomText color={COLORS.orange} bold size='15' >Sign Up</CustomText>
+                <CustomText color={COLORS.midGrey} size="15" bold margin={[]}>
+                  Don’t have an account?{" "}
+                </CustomText>
+                <Pressable onPress={() => navigation.navigate("Signup")}>
+                  <CustomText color={COLORS.orange} bold size="15">
+                    Sign Up
+                  </CustomText>
                 </Pressable>
-                
               </CustomView>
             </CustomView>
 
             <CustomView style={styles.inputs}>
               <CustomView style={styles.inputBox}>
-                <CustomText style={styles.label}>Email</CustomText>
+                
                 <CustomInput
-                  style={styles.input}
+                  label='Email'
                   placeholder="example@gmail.com"
-                  placeholderTextColor="#8A9BA3"
+                  
                 />
               </CustomView>
               <CustomView style={styles.inputBox}>
-                <CustomText style={styles.label}>Password</CustomText>
-                <CustomInput
-                  style={styles.input}
-                  placeholder="*********"
-                  placeholderTextColor="#8A9BA3"
-                />
                 
+                <CustomInput
+                  label='Password'
+                  placeholder="*********"
+                  
+                />
               </CustomView>
             </CustomView>
           </CustomView>
@@ -82,15 +83,15 @@ const Login = () => {
             <CustomText style={styles.text2}>Forget Password?</CustomText>
             <CustomText style={styles.text3}>Reset</CustomText>
           </CustomView>
-        </CustomView>      
+        </CustomView>
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
-      <CustomButton
-        onPress={() => navigation.navigate("OnboardCompany")}
-      >
-        <CustomText white bold size={18}>Login</CustomText>
-      </CustomButton> 
-      </CustomView> 
+        <CustomButton onPress={() => navigation.navigate("OnboardCompany")}>
+          <CustomText white bold size={18}>
+            Login
+          </CustomText>
+        </CustomButton>
+      </CustomView>
     </>
   );
 };
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
   body: {
     justifyContent: "space-between",
     height: "100%",
-    
+
     backgroundColor: "#FFFFFF",
     paddingHorizontal: 15,
     paddingTop: 10,
@@ -110,10 +111,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFF",
     flexDirection: "column",
-    height: "100%", 
+    height: "100%",
     paddingHorizontal: 15,
     paddingTop: 5,
-    
+
     // paddingBottom: 95,
   },
   inputsAndLog: {
@@ -134,12 +135,8 @@ const styles = StyleSheet.create({
   label: {
     marginBottom: 5,
   },
-  input: {
-    backgroundColor: "#F5F8FA",
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-    borderRadius: 10,
-  },
+  
+  
   termsText: {
     flexDirection: "column",
     rowGap: 10,
@@ -154,13 +151,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     letterSpacing: 1,
   },
-  // text2: {
-  //   color: "#53666E",
-  //   fontSize: 15,
-  //   fontStyle: "normal",
-  //   fontWeight: "500",
-  //   letterSpacing: 0.1,
-  // },
+  
   text3: {
     color: "#EA5540",
     fontSize: 15,

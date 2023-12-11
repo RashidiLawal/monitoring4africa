@@ -7,6 +7,7 @@ import { StyleSheet, Pressable, ScrollView } from "react-native";
 import { Appbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
+import GetStarted from "../started";
 
 const VerifyEmail = () => {
   const navigation = useNavigation();
@@ -51,7 +52,7 @@ const VerifyEmail = () => {
         </CustomView>
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate("OnboardCompany")}>
+        <CustomButton onPress={() => navigation.navigate("GetStarted")}>
           <CustomText white bold size={18}>
             Proceed
           </CustomText>
