@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
-import Login from "../screens/login"; 
+import Login from "../screens/Login"; 
 import VerifyEmail from "../screens/VerifyEmail";
 import CreatePassword from "../screens/createpassword";
 import GetStarted from "../screens/started";

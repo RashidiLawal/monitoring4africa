@@ -8,11 +8,13 @@ import {
   Platform,
   Pressable
 } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
 import { COLORS, SIZES } from '../../store/constant/theme';
 
 //constants
 
 const CustomButton = ({
+  loading,
   pressable,
   disabled,
   opacity,
@@ -144,6 +146,7 @@ const CustomButton = ({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: COLORS.primary,
+      flexDirection: 'row',
       // marginTop: SIZES.marginVertical,
       borderRadius: 10,
     },
@@ -210,7 +213,8 @@ const CustomButton = ({
     : TouchableOpacity;
   return (
     <ButtonType onPress={onPress} accessibilityRole='button' disabled={disabled} style={buttonStyles} activeOpacity={opacity}>
-      {children}
+     {loading ? <ActivityIndicator size={14} color="white" style={{marginRight: 5}}/> : null} 
+     {children}
     </ButtonType>
   );
 };

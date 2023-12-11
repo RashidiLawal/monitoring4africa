@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Pressable, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
@@ -12,6 +12,7 @@ import { COLORS } from "../../store/constant/theme";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import CustomInput from "../../components/ui/CustomInput";
 import CreatePassword from "../createpassword";
+import GreenCheck from '../../../assets/svgs/CheckG.svg'
 import AxiosCall from "../../../utils/axios";
 
 
@@ -25,43 +26,48 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  useEffect(()=>{
-    if(email){
-       checkForAvailablility()
-    }
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (email) {
+        checkForAvailablility()
+      }
+    }, 200);
+    return () => clearTimeout(timeoutId);
+
   }, [email])
 
   const handleToggle = () => {
     setChecked(!checked);
-  }; 
-  const checkForAvailablility =  async () => {
-      try {
-        setIsLoading(true)
-        setError("")
-        const callObj = {
-          method: 'POST',
-          path:  'users/emailAvailability',
-          data: {email}
-        };
-        const response = await AxiosCall(callObj);
-        setEmailAvailable(true)
-        setIsLoading(false)
-      } catch (e) {
-        let errorResponse = 'Something went wrong. please try again';
-        if (e.response) {
-          const { error } = e.response.data;
-          errorResponse = error;
-        } 
-        setIsLoading(false)
-        setError(errorResponse)
+  };
+  const checkForAvailablility = async () => {
+    try {
+      setIsLoading(true)
+      setError("")
+      setEmailAvailable("")
+      const callObj = {
+        method: 'POST',
+        path: 'users/emailAvailability',
+        data: { email }
+      };
+      const response = await AxiosCall(callObj);
+      setEmailAvailable(true)
+      setIsLoading(false)
+    } catch (e) {
+      let errorResponse = 'Something went wrong. please try again';
+      if (e.response) {
+        const { error } = e.response.data;
+        errorResponse = error;
       }
-}
+      setIsLoading(false)
+      setError(errorResponse)
+    }
+  }
 
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
         <CustomView space="between" row flex padding={[0, 15, 0, 5]}>
-        <Pressable onPress={() => navigation.goBack()}>
+          <Pressable onPress={() => navigation.goBack()}>
             <BackIcon />
           </Pressable>
 
@@ -83,14 +89,14 @@ const Signup = () => {
             <Text style={styles.text1}>Let’s get to know You</Text>
             <CustomView column >
               <CustomView row wrap rowGap='25' columnGap={15}>
-                <CustomView flexGrow='1' width={45+'%'}>
+                <CustomView flexGrow='1' width={45 + '%'}>
                   <CustomInput
                     label='First Name'
                     placeholder="Enter First Name"
                     onChangeText={setFirstName}
                   />
-                </CustomView > 
-                <CustomView flexGrow='1' width={45+'%'}  >
+                </CustomView >
+                <CustomView flexGrow='1' width={45 + '%'}  >
                   <CustomInput
                     label='Last Name'
                     placeholder="Enter Last Name"
@@ -103,11 +109,14 @@ const Signup = () => {
                     placeholder="example@gmail.com"
                     onChangeText={setEmail}
                   />
-                  {isLoading ?<CustomView row> 
-                  <ActivityIndicator size={14} color={COLORS.descText}/> 
-                  <CustomText margin={[0, 5]} size={14} descText>checking for availability</CustomText></CustomView>: null}
-                  {error ? <Text style={styles.textFailed}>{error}</Text> : null}
-                  {emailAvailable ? <CustomText size={14} color={COLORS.success}>Email is available</CustomText> : null}
+                  {isLoading ? <CustomView row>
+                    <ActivityIndicator size={14} color={COLORS.descText} />
+                    <CustomText margin={[0, 5]} size={14} descText>checking for availability</CustomText></CustomView> : null}
+                  {error ? <Text style={styles.textFailed}>{error}</Text> : 
+                  emailAvailable ? <CustomView row center>
+                    <GreenCheck /> 
+                    <CustomText margin={[0,5]} size={14} color={COLORS.success}>Email is available</CustomText>
+                  </CustomView> : null}
                 </CustomView>
               </CustomView >
 
@@ -134,8 +143,8 @@ const Signup = () => {
       </ScrollView>
       <CustomView padding={[20, 20, 35]} color='#fff'>
         <CustomButton
-        disabled={!checked || !firstName || !lastName || !email}
-          onPress={() => navigation.navigate("CreatePassword", {firstName, lastName, email})}
+          disabled={!checked || !firstName || !lastName || !email  || !emailAvailable}
+          onPress={() => navigation.navigate("CreatePassword", { firstName, lastName, email })}
         >
           <CustomText white bold size={18}>Continue</CustomText>
         </CustomButton>
