@@ -23,14 +23,50 @@ import Hidden from "../../../assets/svgs/Hidden.svg";
 import { useNavigation } from "@react-navigation/native";
 import { COLORS } from "../../store/constant/theme";
 import { Ionicons } from "@expo/vector-icons";
+import AxiosCall from "../../../utils/axios";
 
 const Login = () => {
   const [checked, setChecked] = useState(false);
   const navigation = useNavigation();
-
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+ 
   const handleToggle = () => {
     setChecked(!checked);
   };
+
+  
+  const submit = async () => {
+    try {
+      setIsLoading(true)
+      setError("")
+      const callObj = {
+        method: 'POST',
+        path: 'users/signin',
+        data: { email, password }
+      }
+      const response = await AxiosCall(callObj);
+      setIsLoading(false)
+      console.log(response)
+      if(!response?.userData?.verified){
+        navigation.navigate("VerifyEmail")
+      } else  if(!response?.userData?.onboarded){
+        navigation.navigate("OnboardCompany")
+      } else {
+        resetStackAndNavigate( navigation, "Home")
+      }
+    } catch (e) {console.log(e)
+      var errorResponse = 'Something went wrong. please try again';
+      if (e?.response) {
+        const { error } = e.response.data;
+        errorResponse = error;
+      }
+      setIsLoading(false)
+      setError(errorResponse)
+    }
+  }
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
@@ -65,29 +101,30 @@ const Login = () => {
                 <CustomInput
                   label='Email'
                   placeholder="example@gmail.com"
-                  
-                />
+                  onChangeText={setEmail}
+                />  
               </CustomView>
               <CustomView style={styles.inputBox}>
                 
                 <CustomInput
                   label='Password'
                   placeholder="*********"
-                  
+                  onChangeText={setPassword}
                 />
+        {error ? <CustomText size={14} color="red">{error}</CustomText> : null}
               </CustomView>
             </CustomView>
           </CustomView>
 
           <CustomView style={styles.texts}>
-            <CustomText style={styles.text2}>Forget Password?</CustomText>
-            <CustomText style={styles.text3}>Reset</CustomText>
+            <CustomText size={15} descText>Forget Password?</CustomText>
+            <CustomText size={15} color="red">Reset</CustomText>
           </CustomView>
         </CustomView>
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate("OnboardCompany")}>
-          <CustomText white bold size={18}>
+        <CustomButton loading={isLoading} disabled={!email || !password || isLoading} onPress={submit}>
+          <CustomText white bold size={18} heavy>
             Login
           </CustomText>
         </CustomButton>

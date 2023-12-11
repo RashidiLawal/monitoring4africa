@@ -9,7 +9,7 @@ import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { COLORS, SIZES } from '../../store/constant/theme';
 
-const CustomInput = ({ textEntry, label,
+const CustomInput = ({ label,
   placeholder,
   iconName,
   secureTextEntry,
@@ -49,8 +49,8 @@ const CustomInput = ({ textEntry, label,
           onFocus={onFocus}
           keyboardType={keyboardType}
           returnKeyLabel="done"
-          secureTextEntry={textEntry}
           maxLength={numberOfCharacters}
+          secureTextEntry={secureTextEntry}
           ref={inputRef}
           {...props}
         

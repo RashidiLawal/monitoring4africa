@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import CustomView from "../../components/ui/CustomView";
 import CustomText from "../../components/ui/CustomText";
 import CustomInput from "../../components/ui/CustomInput";
@@ -10,9 +10,47 @@ import GreenCheck from "../../../assets/svgs/CheckG.svg";
 import Cancel from "../../../assets/svgs/X.svg";
 import { useNavigation } from "@react-navigation/native";
 import { COLORS } from "../../store/constant/theme";
+import AxiosCall from "../../../utils/axios";
+import { resetStackAndNavigate } from "../../../utils";
 
-const CreatePassword = () => {
+
+const CreatePassword = ({route}) => {
   const navigation = useNavigation();
+  const [password, setPassword] = useState('');
+  const [cPassword, setCpassword] = useState('');
+  const [referral, setReferral] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+ 
+  useEffect(() => {
+      if (password && cPassword && password != cPassword) {
+        setError("Password does not match")
+      }  else setError('')
+  }, [password, cPassword])
+  
+  
+  const submit = async () => {
+    try {
+      setIsLoading(true)
+      setError("")
+      const callObj = {
+        method: 'POST',
+        path: 'users/signup',
+        data: { ...route.params, password, userType: 'employer' , referral}
+      }
+      const response = await AxiosCall(callObj);
+      setIsLoading(false)
+     resetStackAndNavigate( navigation, "VerifyEmail")
+    } catch (e) {
+      let errorResponse = 'Something went wrong. please try again';
+      if (e.response) {
+        const { error } = e.response.data;
+        errorResponse = error;
+      }
+      setIsLoading(false)
+      setError(errorResponse)
+    }
+  }
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
@@ -72,17 +110,31 @@ const CreatePassword = () => {
             </CustomView>
           </CustomView>
         </CustomView>
-        <CustomView>
+        <CustomView margin={[15,0]}>
           <CustomInput label="Confirm Password" placeholder="*************" />
           <CustomInput
-            label="Referral Code (Optional)"
-            placeholder="Enter referral code if any"
+          label='Confirm Password'
+          placeholder='*************'
+          onChangeText={setCpassword}
+          secureTextEntry
+          />
+          
+        </CustomView>
+        <CustomView >
+        <CustomInput
+          label='Referral Code (Optional)'
+          placeholder='Enter referral code if any'
+          onChangeText={setReferral}
           />
         </CustomView>
+        {error ? <CustomText size={14} color="red">{error}</CustomText> : null}
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate("VerifyEmail")}>
-          <CustomText white bold size={18}>
+      <CustomButton 
+        loading={isLoading}
+          disabled={!cPassword || !password || password != cPassword || isLoading}
+          onPress={submit}>
+          <CustomText white heavy size={18}>
             Proceed
           </CustomText>
         </CustomButton>
