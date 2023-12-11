@@ -51,19 +51,19 @@ const VerifyEmail = () => {
             <CustomInput numberOfCharacters={1}/>
             </CustomView>
             <CustomView flexGrow='1'>
-            <CustomInput />
+            <CustomInput numberOfCharacters={1}/>
             </CustomView>
             <CustomView flexGrow='1'>
             <CustomInput numberOfCharacters={1}/>
             </CustomView>
             <CustomView flexGrow='1'>
-            <CustomInput />
+            <CustomInput numberOfCharacters={1}/>
             </CustomView>
             <CustomView flexGrow='1'>
-            <CustomInput />
+            <CustomInput numberOfCharacters={1}/>
             </CustomView>
             <CustomView flexGrow='1'>
-            <CustomInput />
+            <CustomInput numberOfCharacters={1}/>
             </CustomView>
             </CustomView>
           </CustomView>
