@@ -20,21 +20,14 @@ export const COLORS = {
   background: '#F2F5F7',
   profileLine: '#D7E2E4',
   transparent: '#67dbef',
-  // descText: '#717171',
+  descText: 'rgba(83, 102, 110, 1)',
   green: '#4ED765',
-  placeholder: '#cfd8dc',
-  // offprimary: '#21b9d7',
-  //neutral
+  placeholder: '#cfd8dc', 
   black: '#000000',
   lightBlack:'#232323',
   white: '#ffffff',
-
-  //color variations
-  // darkGray: '#222435',
-  midGrey: '#53666E',
-  // lightGrey: '#999999',
-  // darkerGrey: '#414141',
-  // lighterGrey: '#ABAFB3',
+ 
+  midGrey: '#53666E', 
   inputGrey: '#eaf0f1',
   communityGrey: '#F4F6F7',
   SettingTabGrey: '#F8F8F8',
