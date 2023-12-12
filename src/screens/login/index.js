@@ -123,7 +123,9 @@ const Login = () => {
         </CustomView>
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton loading={isLoading} disabled={!email || !password || isLoading} onPress={submit}>
+        <CustomButton loading={isLoading}
+        // disabled={!email || !password || isLoading}
+        onPress={() => {navigation.navigate('Home'), submit}}>
           <CustomText white bold size={18} heavy>
             Login
           </CustomText>
