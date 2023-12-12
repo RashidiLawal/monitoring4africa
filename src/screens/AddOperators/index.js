@@ -12,7 +12,7 @@ import AxiosCall from "../../../utils/axios";
 import { resetStackAndNavigate } from "../../../utils";
 import Plus from '../../../assets/svgs/Plus.svg'
 
-const AddLabourers = () => {
+const AddOperators = () => {
     const navigation = useNavigation()
   return (
     <>
@@ -40,7 +40,7 @@ const AddLabourers = () => {
               color={COLORS.lightBlack}
               spacing={0.5}
             >
-              Add Labourers
+              Add Operators
             </CustomText>
 
             <CustomView column>
@@ -50,7 +50,7 @@ const AddLabourers = () => {
                 spacing={0.5}
                 height={18}
               >
-                Input the names of the labourers involved in the 
+                Input operators names for daily reporting
               </CustomText>
               <CustomText
                 size={14.5}
@@ -58,7 +58,7 @@ const AddLabourers = () => {
                 spacing={0.5}
                 height={18}
               >
-                project for accurate daily reporting purposes.
+               purposes in the project.
               </CustomText>
             </CustomView>
           </CustomView>
@@ -67,14 +67,14 @@ const AddLabourers = () => {
         <CustomView margin={[15, 0]} column rowGap={20}>
         <CustomView>
             <CustomInput
-            label="Labourer 1"
+            label="Operator 1"
             placeholder="Daniel Peter"
             secureTextEntry
           />
             </CustomView>
             <CustomView>
             <CustomInput
-            label="Labourer 2"
+            label="Operator 2"
             placeholder="Rossmund Pike"
             secureTextEntry
           />
@@ -86,7 +86,7 @@ const AddLabourers = () => {
         </CustomView>
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate('AddOperators')}>
+        <CustomButton onPress={() => navigation.navigate('ProjectInformation')}>
           <CustomText white heavy size={18}>
           Continue
           </CustomText>
@@ -96,7 +96,7 @@ const AddLabourers = () => {
   )
 }
 
-export default AddLabourers
+export default AddOperators
 
 const styles = StyleSheet.create({
     container: {
