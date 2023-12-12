@@ -73,10 +73,10 @@ const Signup = () => {
 
           <Pressable onPress={() => navigation.navigate("Login")}>
             <CustomView row center>
-              <CustomText margin={[0, 5]} bold size="15">
+              <CustomText margin={[0, 5]} bold size="17">
                 Switch to
               </CustomText>
-              <CustomText bold size="15" color={COLORS.orange}>
+              <CustomText bold size="17" color={COLORS.orange}>
                 Log In
               </CustomText>
             </CustomView>

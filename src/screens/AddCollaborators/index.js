@@ -16,10 +16,18 @@ const AddCollaborators = () => {
     const navigation = useNavigation()
   return (
     <>
-      <Appbar.Header style={{ backgroundColor: "#fff" }}>
-        <CustomView padding={[0, 0, 0, 5]}>
-          <Pressable onPress={() => navigation.goBack()} shadow>
+    <Appbar.Header style={{ backgroundColor: "#fff" }}>
+        <CustomView space="between" row flex padding={[0, 15, 0, 5]}>
+          <Pressable onPress={() => navigation.goBack()}>
             <BackIcon />
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate("Login")}>
+            <CustomView row center>
+              <CustomText bold size="17" color={COLORS.orange}>
+              Skip for now
+              </CustomText>
+            </CustomView>
           </Pressable>
         </CustomView>
       </Appbar.Header>
