@@ -22,6 +22,9 @@ import AddLabourers from "../screens/AddLabourers";
 import AddOperators from "../screens/AddOperators";
 import SubContractors from "../screens/SubContractors";
 import SubContractorSuccess from "../screens/SubContractors/SubContractorSuccess";
+import Equipments from "../screens/AddEquipments";
+import Materials from "../screens/AddMaterials";
+import ProjectSucced from "../screens/ProjectSuccessful";
 // import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
