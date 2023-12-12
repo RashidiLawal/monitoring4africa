@@ -17,6 +17,7 @@ import OnboardEmployee from "../screens/OnboardEmployee";
 import BottomTab from "./BottomTab";
 import NewProject from "../screens/newProject";
 import ProjectInformation from "../screens/ProjectInfo";
+import AddCollaborators from "../screens/AddCollaborators";
 // import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
@@ -34,6 +35,7 @@ const Navigation = (props) => {
         // }
         >
           <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
+          <Stack.Screen name="AddCollaborators" component={AddCollaborators} options={{ headerShown: false }} />
           <Stack.Screen name="ProjectInformation" component={ProjectInformation} options={{ headerShown: false }} />
           <Stack.Screen name="GetStarted" component={GetStarted} options={{ headerShown: false }} />
           <Stack.Screen name="NewProject" component={NewProject} options={{ headerShown: false }} />
