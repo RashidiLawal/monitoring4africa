@@ -14,7 +14,6 @@ const CustomText = ({localeKey,
   xxlarge,
   xxxlarge,
   size,
-  //font-weight
   regular,
   bold,
   semibold,
@@ -23,16 +22,14 @@ const CustomText = ({localeKey,
   medium300,
   lightbold,
   light200,
-  //styling
   transform,
   align,
   weight,
   center,
   right,
   left,
-  spacing, // letter-spacing
-  height, // line-height
-  // colors
+  spacing, 
+  height, 
   color,
   accent,
   primary,
@@ -56,8 +53,6 @@ const CustomText = ({localeKey,
   greyText,
   underline,
   ...props}) => {
-  // i18n.fallbacks = true;
-  // i18n.locale = localization.locale;
   const handleMargins = () => {
     
     if (typeof margin === 'number') {

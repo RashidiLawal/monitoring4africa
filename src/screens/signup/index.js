@@ -143,7 +143,7 @@ const Signup = () => {
       </ScrollView>
       <CustomView padding={[20, 20, 35]} color='#fff'>
         <CustomButton
-          disabled={!checked || !firstName || !lastName || !email  || !emailAvailable}
+          // disabled={!checked || !firstName || !lastName || !email  || !emailAvailable}
           onPress={() => navigation.navigate("CreatePassword", { firstName, lastName, email })}
         >
           <CustomText white bold size={18}>Continue</CustomText>

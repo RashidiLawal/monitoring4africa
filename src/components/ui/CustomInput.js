@@ -24,6 +24,7 @@ const CustomInput = ({ label,
   onLabelInfoClick,
   multiline = false,
   textcolor,
+  numberOfCharacters,
   keyboardType='default',
   inputRef, ...props}) => 
    {
@@ -48,6 +49,7 @@ const CustomInput = ({ label,
           onFocus={onFocus}
           keyboardType={keyboardType}
           returnKeyLabel="done"
+          maxLength={numberOfCharacters}
           secureTextEntry={secureTextEntry}
           ref={inputRef}
           {...props}

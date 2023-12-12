@@ -9,7 +9,6 @@ export const COLORS = {
   //base color
   lightprimary: 'rgba(81, 153, 230,0.1)',
   lightsecondary: 'rgba(245, 45, 69, 0.5)',
-  primary: '#31AEE8',
   deepprimary: 'rgba(7, 14, 17, 1)',
   // deeptextprimary: '#00ACCD',
   secondary: '#007C93',
@@ -24,16 +23,19 @@ export const COLORS = {
   green: '#4ED765',
   placeholder: '#cfd8dc', 
   black: '#000000',
-  lightBlack:'#232323',
   white: '#ffffff',
  
-  midGrey: '#53666E', 
+  
   inputGrey: '#eaf0f1',
   communityGrey: '#F4F6F7',
   SettingTabGrey: '#F8F8F8',
   inputBackground: '#F5F8FA',
-  greyText: '#8A9BA3', 
+  midGrey: '#53666E', 
+  greyText: '#8A9BA3',
+  lightgrey:'#858B97',
   orange:'#EA5540',
+  lightBlack:'#232323',
+  primary: '#31AEE8',
 };
 
 export const SIZES = {
