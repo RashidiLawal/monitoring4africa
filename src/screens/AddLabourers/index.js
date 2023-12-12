@@ -12,7 +12,7 @@ import AxiosCall from "../../../utils/axios";
 import { resetStackAndNavigate } from "../../../utils";
 import Plus from '../../../assets/svgs/Plus.svg'
 
-const AddCollaborators = () => {
+const AddLabourers = () => {
     const navigation = useNavigation()
   return (
     <>
@@ -40,17 +40,25 @@ const AddCollaborators = () => {
               color={COLORS.lightBlack}
               spacing={0.5}
             >
-              Add Collaborators
+              Add Labourers
             </CustomText>
 
             <CustomView column>
+            <CustomText
+                size={14.5}
+                color={COLORS.midGrey}
+                spacing={0.5}
+                height={18}
+              >
+                Input the names of the labourers involved in the 
+              </CustomText>
               <CustomText
                 size={14.5}
                 color={COLORS.midGrey}
                 spacing={0.5}
                 height={18}
               >
-                Select or add collaborators for the project
+                project for accurate daily reporting purposes.
               </CustomText>
             </CustomView>
           </CustomView>
@@ -59,32 +67,18 @@ const AddCollaborators = () => {
         <CustomView margin={[15, 0]} column rowGap={20}>
         <CustomView>
             <CustomInput
-            label="Collaborator 1"
-            placeholder="Fregusson Matthew"
+            label="Labourer 1"
+            placeholder="Daniel Peter"
             secureTextEntry
           />
             </CustomView>
             <CustomView>
             <CustomInput
-            label="Role"
-            placeholder="Select Role"
+            label="Labourer 2"
+            placeholder="Rossmund Pike"
             secureTextEntry
           />
-            </CustomView>
-            <CustomView>
-            <CustomInput
-            label="Collaborator 2"
-            placeholder="Enter collaborator’s name "
-            secureTextEntry
-          />
-            </CustomView>
-            <CustomView>
-            <CustomInput
-            label="Role"
-            placeholder="Select Role"
-            secureTextEntry
-          />
-            </CustomView>
+            </CustomView>       
         </CustomView> 
         <CustomView row center columnGap={5}>
         <CustomText color={COLORS.orange}>Add New Input field </CustomText>       
@@ -92,7 +86,7 @@ const AddCollaborators = () => {
         </CustomView>
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate('AddLabourers')}>
+        <CustomButton onPress={() => navigation.navigate('ProjectInformation')}>
           <CustomText white heavy size={18}>
           Continue
           </CustomText>
@@ -102,7 +96,7 @@ const AddCollaborators = () => {
   )
 }
 
-export default AddCollaborators
+export default AddLabourers
 
 const styles = StyleSheet.create({
     container: {
