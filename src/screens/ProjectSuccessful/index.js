@@ -31,11 +31,11 @@ export default function ProjectSucced() {
             <ScrollView contentContainerStyle={styles.container}>
                 <CustomView  flex={1}  bottom padding={[20, 0, 50]}>
                 <CustomText heavy center size={25} padding={[10,0]}>
-                    Almost there! Next is to Add equipments and materials
+                    All done! Project created Successfully!
                     </CustomText>
 
                     <CustomText center height={25} descText size={16}>
-                    Add equipments and materials to the project you have created
+                    Next is to upload a plan to get started!
                     </CustomText>
                 </CustomView>
 
@@ -43,7 +43,7 @@ export default function ProjectSucced() {
                     <CustomButton
                         onPress={() => navigation.navigate("OnboardEmployee")}
                     >
-                        <CustomText white heavy size={18}>Add Equipments</CustomText>
+                        <CustomText white heavy size={18}>Upload Plan</CustomText>
                     </CustomButton>
                     <CustomView center padding={[20, 0]}>
                         <TouchableOpacity  onPress={()=>resetStackAndNavigate(navigation, 'Home')}>

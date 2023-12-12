@@ -42,6 +42,9 @@ const Navigation = (props) => {
         // }
         >
           <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
+          <Stack.Screen name="Equipments" component={Equipments} options={{ headerShown: false }} />
+          <Stack.Screen name="Materials" component={Materials} options={{ headerShown: false }} />
+          <Stack.Screen name="ProjectSucced" component={ProjectSucced} options={{ headerShown: false }} />
           <Stack.Screen name="SubContractors" component={SubContractors} options={{ headerShown: false }} />
           <Stack.Screen name="AddOperators" component={AddOperators} options={{ headerShown: false }} />
           <Stack.Screen name="AddLabourers" component={AddLabourers} options={{ headerShown: false }} />

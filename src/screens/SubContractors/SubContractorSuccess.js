@@ -41,7 +41,7 @@ export default function SubContractorSuccess() {
 
                 <CustomView  padding={[0, 0, 40]}>
                     <CustomButton
-                        onPress={() => navigation.navigate("OnboardEmployee")}
+                        onPress={() => navigation.navigate("Equipments")}
                     >
                         <CustomText white heavy size={18}>Add Equipments</CustomText>
                     </CustomButton>

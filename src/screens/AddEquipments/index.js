@@ -40,7 +40,7 @@ const Equipments = () => {
               color={COLORS.lightBlack}
               spacing={0.5}
             >
-              Add Operators
+              Add Equipments
             </CustomText>
 
             <CustomView column>
@@ -50,15 +50,7 @@ const Equipments = () => {
                 spacing={0.5}
                 height={18}
               >
-                Input operators names for daily reporting
-              </CustomText>
-              <CustomText
-                size={14.5}
-                color={COLORS.midGrey}
-                spacing={0.5}
-                height={18}
-              >
-               purposes in the project.
+                Enter the names of each project equipment.
               </CustomText>
             </CustomView>
           </CustomView>
@@ -67,15 +59,15 @@ const Equipments = () => {
         <CustomView margin={[15, 0]} column rowGap={20}>
         <CustomView>
             <CustomInput
-            label="Operator 1"
-            placeholder="Daniel Peter"
+            label="Equipment 1"
+            placeholder="400Ltr Jiasung Cement mixer Tiaxing"
             secureTextEntry
           />
             </CustomView>
             <CustomView>
             <CustomInput
-            label="Operator 2"
-            placeholder="Rossmund Pike"
+            label="Equipment 2"
+            placeholder="200Ltr Jiasung Cement mixer Tiaxing"
             secureTextEntry
           />
             </CustomView>       
@@ -86,7 +78,7 @@ const Equipments = () => {
         </CustomView>
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate('SubContractors')}>
+        <CustomButton onPress={() => navigation.navigate('Materials')}>
           <CustomText white heavy size={18}>
           Continue
           </CustomText>
