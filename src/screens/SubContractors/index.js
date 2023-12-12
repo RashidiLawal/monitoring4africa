@@ -108,7 +108,7 @@ const SubContractors = () => {
         </CustomView>
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate("ProjectInformation")}>
+        <CustomButton onPress={() => navigation.navigate("SubContractorSuccess")}>
           <CustomText white heavy size={18}>
             Continue
           </CustomText>

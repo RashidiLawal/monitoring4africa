@@ -21,6 +21,7 @@ import AddCollaborators from "../screens/AddCollaborators";
 import AddLabourers from "../screens/AddLabourers";
 import AddOperators from "../screens/AddOperators";
 import SubContractors from "../screens/SubContractors";
+import SubContractorSuccess from "../screens/SubContractors/SubContractorSuccess";
 // import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
@@ -48,6 +49,7 @@ const Navigation = (props) => {
           <Stack.Screen name="OnboardCompany" component={OnboardCompany} options={{ headerShown: false }} />
           <Stack.Screen name="CreatePassword" component={CreatePassword} options={{ headerShown: false }} /><Stack.Screen name="VerifyEmail" component={VerifyEmail} options={{ headerShown: false }} />
           <Stack.Screen name="OnboardSuccess" component={OnboardSuccess} options={{ headerShown: false }} />
+          <Stack.Screen name="SubContractorSuccess" component={SubContractorSuccess} options={{ headerShown: false }} />
           <Stack.Screen name="OnboardEmployee" component={OnboardEmployee} options={{ headerShown: false }} />
           <Stack.Screen name="OnboardEmployeeSuccess" component={OnboardEmployeeSuccess} options={{ headerShown: false }} />
           <Stack.Screen name="Home" component={BottomTab} options={{ headerShown: false }} />
