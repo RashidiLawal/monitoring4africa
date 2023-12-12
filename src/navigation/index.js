@@ -15,6 +15,7 @@ import OnboardSuccess from "../screens/onboardCompany/OnboardSuccess";
 import OnboardEmployeeSuccess from "../screens/OnboardEmployee/OnboardSuccess";
 import OnboardEmployee from "../screens/OnboardEmployee"; 
 import BottomTab from "./BottomTab";
+import NewProject from "../screens/newProject";
 // import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
@@ -33,6 +34,7 @@ const Navigation = (props) => {
         >
           <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
           <Stack.Screen name="GetStarted" component={GetStarted} options={{ headerShown: false }} />
+          <Stack.Screen name="NewProject" component={NewProject} options={{ headerShown: false }} />
           <Stack.Screen name="OnboardCompany" component={OnboardCompany} options={{ headerShown: false }} />
           <Stack.Screen name="CreatePassword" component={CreatePassword} options={{ headerShown: false }} /><Stack.Screen name="VerifyEmail" component={VerifyEmail} options={{ headerShown: false }} />
           <Stack.Screen name="OnboardSuccess" component={OnboardSuccess} options={{ headerShown: false }} />

@@ -61,7 +61,7 @@ const CreatePassword = ({route}) => {
         </CustomView>
       </Appbar.Header>
       <ScrollView style={styles.container}>
-        <CustomView column rowGap={17}>
+      <CustomView column rowGap={17}>
           <CustomView column rowGap={13}>
           <CustomText size={27} heavier color={COLORS.lightBlack} spacing={0.5}>
             Create Your Password
@@ -146,11 +146,12 @@ const CreatePassword = ({route}) => {
 export default CreatePassword;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FFF",
-    flexDirection: "column",
-    height: "100%",
-    paddingHorizontal: 15,
-    paddingTop: 5,
-  },
-});
+    container: {
+      backgroundColor: "#FFF",
+      flexDirection: "column",
+      height: "100%",
+      paddingHorizontal: 15,
+      paddingTop: 5,
+    },
+  });
+  

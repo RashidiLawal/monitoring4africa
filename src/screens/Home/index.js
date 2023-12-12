@@ -50,9 +50,11 @@ export default function Home() {
                         <CustomText size={14} descText>Upload Plans</CustomText>
                     </CustomView>
                     <CustomView center>
+                        <Pressable onPress={() => navigation.navigate('NewProject')}>
                         <CustomView color={COLORS.deepprimary} round width={60} height={60}>
                             <Folder />
                         </CustomView>
+                        </Pressable>
                         <CustomText size={14} descText>Create Project</CustomText>
                     </CustomView>
                     <CustomView center>
