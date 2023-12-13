@@ -70,7 +70,7 @@ const Equipments = () => {
             placeholder="200Ltr Jiasung Cement mixer Tiaxing"
             secureTextEntry
           />
-            </CustomView>       
+            </CustomView> 
         </CustomView> 
         <CustomView row center columnGap={5}>
         <CustomText color={COLORS.orange}>Add New Input field </CustomText>       

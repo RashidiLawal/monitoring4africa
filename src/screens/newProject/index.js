@@ -4,7 +4,7 @@ import CustomText from "../../components/ui/CustomText";
 import CustomInput from "../../components/ui/CustomInput";
 import CustomButton from "../../components/ui/CustomButton";
 import { Appbar } from "react-native-paper";
-import { StyleSheet, ScrollView, Pressable } from "react-native";
+import { StyleSheet, ScrollView, Pressable, KeyboardAvoidingView } from "react-native";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import GreenCheck from "../../../assets/svgs/CheckG.svg";
 import Cancel from "../../../assets/svgs/X.svg";
@@ -24,7 +24,9 @@ const NewProject = () => {
           </Pressable>
         </CustomView>
       </Appbar.Header>
-      <ScrollView style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <ScrollView >
+        
         <CustomView column rowGap={17}>
           <CustomView column rowGap={13}>
             <CustomText
@@ -91,6 +93,7 @@ const NewProject = () => {
             />
           </CustomView>
         </CustomView>
+        
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton onPress={() => navigation.navigate('ProjectInformation')}>
@@ -99,6 +102,8 @@ const NewProject = () => {
           </CustomText>
         </CustomButton>
       </CustomView>
+      </KeyboardAvoidingView>
+      
     </>
   );
 };
@@ -107,6 +112,7 @@ export default NewProject;
 
 const styles = StyleSheet.create({
     container: {
+      flex:1,
       backgroundColor: "#FFF",
       flexDirection: "column",
       height: "100%",

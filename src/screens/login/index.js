@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   View,
+  KeyboardAvoidingView,
   Text,
   StyleSheet,
   TextInput,
