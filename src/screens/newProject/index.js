@@ -4,7 +4,7 @@ import CustomText from "../../components/ui/CustomText";
 import CustomInput from "../../components/ui/CustomInput";
 import CustomButton from "../../components/ui/CustomButton";
 import { Appbar } from "react-native-paper";
-import { StyleSheet, ScrollView, Pressable, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, ScrollView, Pressable, KeyboardAvoidingView, Platform } from "react-native";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import GreenCheck from "../../../assets/svgs/CheckG.svg";
 import Cancel from "../../../assets/svgs/X.svg";
@@ -24,9 +24,9 @@ const NewProject = () => {
           </Pressable>
         </CustomView>
       </Appbar.Header>
-      <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <ScrollView >
-        
+      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <ScrollView style={styles.container}> 
+           
         <CustomView column rowGap={17}>
           <CustomView column rowGap={13}>
             <CustomText
@@ -59,7 +59,6 @@ const NewProject = () => {
           </CustomView>
           <CustomInput label="Project name" placeholder="Waterview Park" />
         </CustomView>
-
         <CustomView margin={[15, 0]}>
           <CustomInput
             label="Project Address"
@@ -101,7 +100,7 @@ const NewProject = () => {
           Continue
           </CustomText>
         </CustomButton>
-      </CustomView>
+        </CustomView>
       </KeyboardAvoidingView>
       
     </>
@@ -118,5 +117,7 @@ const styles = StyleSheet.create({
       height: "100%",
       paddingHorizontal: 15,
       paddingTop: 5,
+      paddingBottom: 100,
+      
     },
   });
