@@ -4,7 +4,7 @@ import CustomText from "../../components/ui/CustomText";
 import CustomInput from "../../components/ui/CustomInput";
 import CustomButton from "../../components/ui/CustomButton";
 import { Appbar } from "react-native-paper";
-import { StyleSheet, ScrollView, Pressable } from "react-native";
+import { StyleSheet, ScrollView, Pressable, Platform, KeyboardAvoidingView } from "react-native";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import { useNavigation } from "@react-navigation/native";
 import { COLORS } from "../../store/constant/theme";
@@ -31,6 +31,7 @@ const Materials = () => {
           </Pressable>
         </CustomView>
       </Appbar.Header>
+      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView style={styles.container}>
         <CustomView column rowGap={17}>
           <CustomView column rowGap={13}>
@@ -84,6 +85,7 @@ const Materials = () => {
           </CustomText>
         </CustomButton>
       </CustomView>
+      </KeyboardAvoidingView>
     </>
   )
 }
@@ -97,5 +99,6 @@ const styles = StyleSheet.create({
       height: "100%",
       paddingHorizontal: 15,
       paddingTop: 5,
+      paddingBottom:100,
     },
   });

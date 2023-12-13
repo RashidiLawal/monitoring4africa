@@ -3,7 +3,7 @@ import CustomButton from '../../components/ui/CustomButton'
 import CustomText from '../../components/ui/CustomButton'
 import CustomInput from '../../components/ui/CustomButton'
 import CustomView from '../../components/ui/CustomButton'
-import {View, StyleSheet, TouchableOpacity, Pressable, ScrollView} from 'react-native'
+import {View, StyleSheet, TouchableOpacity, Pressable, ScrollView, Platform, KeyboardAvoidingView} from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import BackIcon from '../../../assets/svgs/ArrowLeft.svg'
 import Cancel from '../../../assets/svgs/X.svg'
@@ -21,6 +21,7 @@ const GetStarted = () => {
           </Pressable>
         </CustomView>
       </Appbar.Header>
+      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
     <ScrollView style={styles.container}>
     <CustomView>
           <CustomView>
@@ -65,6 +66,7 @@ const GetStarted = () => {
           </CustomText>
       </CustomButton>
     </CustomView>
+    </KeyboardAvoidingView>
     </>
   )
 }
@@ -87,6 +89,7 @@ const styles = StyleSheet.create({
       height: "100%",
       paddingHorizontal: 15,
       paddingTop: 5,
+      paddingBottom:100,
   
       // paddingBottom: 95,
     },

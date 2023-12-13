@@ -3,7 +3,7 @@ import CustomInput from "../../components/ui/CustomInput";
 import CustomButton from "../../components/ui/CustomButton";
 import CustomView from "../../components/ui/CustomView";
 import CustomText from "../../components/ui/CustomText";
-import { StyleSheet, Pressable, ScrollView } from "react-native";
+import { StyleSheet, Pressable, ScrollView, Platform, KeyboardAvoidingView } from "react-native";
 import { Appbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
@@ -21,6 +21,7 @@ const VerifyEmail = () => {
           </Pressable>
         </CustomView>
       </Appbar.Header>
+      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView style={styles.container}>
         <CustomView column rowGap={28}>
         <CustomView column rowGap={17}>
@@ -106,6 +107,7 @@ const VerifyEmail = () => {
           </CustomText>
         </CustomButton>
       </CustomView>
+      </KeyboardAvoidingView>
     </>
   );
 };
@@ -128,7 +130,7 @@ const styles = StyleSheet.create({
     height: "100%",
     paddingHorizontal: 15,
     paddingTop: 5,
-
+    paddingBottom:100,
     // paddingBottom: 95,
   },
 });

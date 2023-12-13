@@ -88,7 +88,7 @@ export default function Home() {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
-        // justifyContent: "space-between",
+        paddingBottom:100,
         height: "100%",
         backgroundColor: "#FFFFFF",
         paddingHorizontal: 20,

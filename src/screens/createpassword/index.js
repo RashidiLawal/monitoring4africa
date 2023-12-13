@@ -4,7 +4,7 @@ import CustomText from "../../components/ui/CustomText";
 import CustomInput from "../../components/ui/CustomInput";
 import CustomButton from "../../components/ui/CustomButton";
 import { Appbar } from "react-native-paper";
-import { StyleSheet, ScrollView, Pressable } from "react-native";
+import { StyleSheet, ScrollView, Pressable, Platform, KeyboardAvoidingView } from "react-native";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import GreenCheck from "../../../assets/svgs/CheckG.svg";
 import Cancel from "../../../assets/svgs/X.svg";
@@ -60,6 +60,7 @@ const CreatePassword = ({route}) => {
           </Pressable>
         </CustomView>
       </Appbar.Header>
+      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView style={styles.container}>
       <CustomView column rowGap={17}>
           <CustomView column rowGap={13}>
@@ -139,6 +140,7 @@ const CreatePassword = ({route}) => {
           </CustomText>
         </CustomButton>
       </CustomView>
+      </KeyboardAvoidingView>
     </>
   );
 };
@@ -152,6 +154,7 @@ const styles = StyleSheet.create({
       height: "100%",
       paddingHorizontal: 15,
       paddingTop: 5,
+      paddingBottom:100,
     },
   });
   

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { StyleSheet, Text, View, Pressable, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Pressable, Platform, KeyboardAvoidingView, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
 import { Appbar } from "react-native-paper";
@@ -38,6 +38,7 @@ export default function ProjectSucced() {
                     Next is to upload a plan to get started!
                     </CustomText>
                 </CustomView>
+                
 
                 <CustomView  padding={[0, 0, 40]}>
                     <CustomButton

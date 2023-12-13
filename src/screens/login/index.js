@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   View,
   KeyboardAvoidingView,
+  Platform,
   Text,
   StyleSheet,
   TextInput,
@@ -77,6 +78,7 @@ const Login = () => {
           </Pressable>
         </CustomView>
       </Appbar.Header>
+      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView style={styles.container}>
         <CustomView style={styles.termsText}>
           <CustomView style={styles.inputsAndLog}>
@@ -132,6 +134,7 @@ const Login = () => {
           </CustomText>
         </CustomButton>
       </CustomView>
+      </KeyboardAvoidingView>
     </>
   );
 };
@@ -154,6 +157,7 @@ const styles = StyleSheet.create({
     height: "100%",
     paddingHorizontal: 15,
     paddingTop: 5,
+    paddingBottom:100,
 
     // paddingBottom: 95,
   },
