@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Pressable, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Pressable,  KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
 import { ActivityIndicator, Appbar } from "react-native-paper";
@@ -83,6 +83,7 @@ const Signup = () => {
           </Pressable>
         </CustomView>
       </Appbar.Header>
+      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView style={styles.container}>
         <View style={styles.checkBoxAnd}>
           <View style={styles.textAndInputs}>
@@ -141,6 +142,7 @@ const Signup = () => {
           </View>
         </View>
       </ScrollView>
+      
       <CustomView padding={[20, 20, 35]} color='#fff'>
         <CustomButton
           // disabled={!checked || !firstName || !lastName || !email  || !emailAvailable}
@@ -149,6 +151,7 @@ const Signup = () => {
           <CustomText white bold size={18}>Continue</CustomText>
         </CustomButton>
       </CustomView>
+      </KeyboardAvoidingView>
     </>
   );
 }
@@ -158,13 +161,11 @@ export default Signup;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
-    // justifyContent: "space-between",
+    paddingBottom: 100,
     height: "100%",
     backgroundColor: "#FFFFFF",
     paddingHorizontal: 15,
     paddingTop: 10,
-
-    // paddingBottom: 95,
   },
   text1: {
     color: "",
