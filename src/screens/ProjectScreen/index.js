@@ -1,6 +1,15 @@
 import * as React from "react";
 import { useState } from "react";
-import { StyleSheet, Text, View, Pressable, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
 import { Appbar } from "react-native-paper";
@@ -12,112 +21,102 @@ import CustomView from "../../components/ui/CustomView";
 import CustomInput from "../../components/ui/CustomView";
 import { COLORS } from "../../store/constant/theme";
 import { resetStackAndNavigate } from "../../../utils";
-import Close from '../../../assets/svgs/Close.svg'
-import Plus from '../../../assets/svgs/Plus.svg'
+import Close from "../../../assets/svgs/Close.svg";
+import Plus from "../../../assets/svgs/Plus.svg";
+import WhiteDots from "../../../assets/svgs/WhiteDots.svg";
+import Chat from "../../../assets/svgs/Chat.svg";
+import User from "../../../assets/svgs/User.svg";
+import Tag from "../../../assets/svgs/Tag.svg";
+import Location from "../../../assets/svgs/location.svg";
+import AvatarList from "../../components/Avatar/AvatarLight";
 
 const ProjectScreen = () => {
-
-    // const [checked, setChecked] = useState(false);
-    const navigation = useNavigation();
+  // const [checked, setChecked] = useState(false);
+  const navigation = useNavigation();
   return (
     <>
-     <Appbar.Header style={{ backgroundColor: "#083145" }}>
+      <Appbar.Header style={{ backgroundColor: "#083145" }}>
         <CustomView space="between" row flex padding={[0, 15, 0, 5]}>
           <Pressable onPress={() => navigation.goBack()}>
             <Close />
           </Pressable>
-
-          <Pressable onPress={() => navigation.navigate("Login")}>
-            <CustomView row center>
-              <CustomText bold size="17" color={COLORS.orange}>
-              Skip for now
-              </CustomText>
-            </CustomView>
-          </Pressable>
+          <CustomView row center columnGap={15}>
+            <Pressable onPress={() => navigation.navigate("Login")}>
+              <CustomView>
+                <Chat />
+              </CustomView>
+            </Pressable>
+            <Pressable onPress={() => navigation.navigate("Login")}>
+              <CustomView>
+                <WhiteDots />
+              </CustomView>
+            </Pressable>
+          </CustomView>
         </CustomView>
       </Appbar.Header>
-      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView style={styles.container}>
-        <CustomView column rowGap={17}>
-          <CustomView column rowGap={13}>
-            <CustomText
-              size={27}
-              heavier
-              color={COLORS.lightBlack}
-              spacing={0.5}
-            >
-              PROJECT SCREEN
+        <CustomView column rowGap={13} color={COLORS.darkBlue}>
+          <CustomView padding={[10, 15, 0]}>
+            <CustomText size={27} heavier color={COLORS.white} spacing={3}>
+              Waterview Park
             </CustomText>
-
-            <CustomView column>
+          </CustomView>
+          <CustomView column rowGap={13} padding={[0, 15, 0]}>
+            <CustomView row center columnGap={10}>
+              <User />
               <CustomText
                 size={14.5}
-                color={COLORS.midGrey}
+                color={COLORS.GreyText}
                 spacing={0.5}
                 height={18}
               >
-                Select or add collaborators for the project
+                Adam Levine Applesauce
               </CustomText>
+            </CustomView>
+            <CustomView row center columnGap={10}>
+              <Location />
+              <CustomText
+                size={14.5}
+                color={COLORS.GreyText}
+                spacing={0.5}
+                height={18}
+              >
+                15, Jupiter St . Mars, AU 234156
+              </CustomText>
+            </CustomView>
+            <CustomView row center columnGap={15}>
+              <CustomView row center columnGap={6}white round padding={[5,10]}>
+                <Tag />
+                <CustomText
+                  size={12}
+                  bold
+                  color={COLORS.lightBlack}
+                  spacing={0.5}
+                  height={18}
+                >
+                  Status
+                </CustomText>
+              </CustomView>
+              <CustomView row center>
+                <AvatarList />
+              </CustomView>
             </CustomView>
           </CustomView>
         </CustomView>
-
-        <CustomView margin={[15, 0]} column rowGap={20}>
-        <CustomView>
-            <CustomInput
-            label="Collaborator 1"
-            placeholder="Fregusson Matthew"
-            secureTextEntry
-          />
-            </CustomView>
-            <CustomView>
-            <CustomInput
-            label="Role"
-            placeholder="Select Role"
-            secureTextEntry
-          />
-            </CustomView>
-            <CustomView>
-            <CustomInput
-            label="Collaborator 2"
-            placeholder="Enter collaborator’s name "
-            secureTextEntry
-          />
-            </CustomView>
-            <CustomView>
-            <CustomInput
-            label="Role"
-            placeholder="Select Role"
-            secureTextEntry
-          />
-            </CustomView>
-        </CustomView> 
-        <CustomView row center columnGap={5}>
-        <CustomText color={COLORS.orange}>Add New Input field </CustomText>       
-        <Plus />
-        </CustomView>
       </ScrollView>
-      <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate('AddLabourers')}>
-          <CustomText white heavy size={18}>
-          Continue
-          </CustomText>
-        </CustomButton>
-      </CustomView>
-      </KeyboardAvoidingView>
     </>
-  )
-}
+  );
+};
 
-export default ProjectScreen
+export default ProjectScreen;
 
 const styles = StyleSheet.create({
-    container: {
-      backgroundColor: "#FFF",
-      flexDirection: "column",
-      height: "100%",
-      paddingHorizontal: 15,
-      paddingTop: 5,
-      paddingBottom:100,
-    },
-  });
+  container: {
+    backgroundColor: "#FFF",
+    flexDirection: "column",
+    //   height: "100%",
+    //   paddingHorizontal: 15,
+    //   paddingTop: 5,
+    paddingBottom: 100,
+  },
+});

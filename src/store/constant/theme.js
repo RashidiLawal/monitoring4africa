@@ -24,12 +24,16 @@ export const COLORS = {
   placeholder: '#cfd8dc', 
   black: '#000000',
   white: '#ffffff',
+  Test:'#6AE29B',
+  Test2:'#8CD2F2',
  
   
-  inputGrey: '#eaf0f1',
+  
   communityGrey: '#F4F6F7',
   SettingTabGrey: '#F8F8F8',
+  darkBlue:'#083145',
   inputBackground: '#F5F8FA',
+  GreyText: '#E5E9EB',
   midGrey: '#53666E', 
   greyText: '#8A9BA3',
   lightgrey:'#858B97',
