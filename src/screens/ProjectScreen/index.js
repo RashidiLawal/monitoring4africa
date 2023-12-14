@@ -1,25 +1,30 @@
-import React, { useState, useEffect } from "react";
-import CustomView from "../../components/ui/CustomView";
-import CustomText from "../../components/ui/CustomText";
-import CustomInput from "../../components/ui/CustomInput";
-import CustomButton from "../../components/ui/CustomButton";
-import { Appbar } from "react-native-paper";
-import { StyleSheet, ScrollView, Pressable, Platform, KeyboardAvoidingView } from "react-native";
-import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
+import * as React from "react";
+import { useState } from "react";
+import { StyleSheet, Text, View, Pressable, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import CheckBox from "react-native-check-box";
+import { Appbar } from "react-native-paper";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import Entypo from "@expo/vector-icons/Entypo";
+import CustomButton from "../../components/ui/CustomButton";
+import CustomText from "../../components/ui/CustomText";
+import CustomView from "../../components/ui/CustomView";
+import CustomInput from "../../components/ui/CustomView";
 import { COLORS } from "../../store/constant/theme";
-import AxiosCall from "../../../utils/axios";
 import { resetStackAndNavigate } from "../../../utils";
+import Close from '../../../assets/svgs/Close.svg'
 import Plus from '../../../assets/svgs/Plus.svg'
 
-const AddCollaborators = () => {
-    const navigation = useNavigation()
+const ProjectScreen = () => {
+
+    // const [checked, setChecked] = useState(false);
+    const navigation = useNavigation();
   return (
     <>
-    <Appbar.Header style={{ backgroundColor: "#fff" }}>
+     <Appbar.Header style={{ backgroundColor: "#083145" }}>
         <CustomView space="between" row flex padding={[0, 15, 0, 5]}>
           <Pressable onPress={() => navigation.goBack()}>
-            <BackIcon />
+            <Close />
           </Pressable>
 
           <Pressable onPress={() => navigation.navigate("Login")}>
@@ -41,7 +46,7 @@ const AddCollaborators = () => {
               color={COLORS.lightBlack}
               spacing={0.5}
             >
-              Add Collaborators
+              PROJECT SCREEN
             </CustomText>
 
             <CustomView column>
@@ -104,15 +109,15 @@ const AddCollaborators = () => {
   )
 }
 
-export default AddCollaborators
+export default ProjectScreen
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FFF",
-    flexDirection: "column",
-    height: "100%",
-    paddingHorizontal: 15,
-    paddingTop: 5,
-    paddingBottom:100,
-  },
-});
+    container: {
+      backgroundColor: "#FFF",
+      flexDirection: "column",
+      height: "100%",
+      paddingHorizontal: 15,
+      paddingTop: 5,
+      paddingBottom:100,
+    },
+  });

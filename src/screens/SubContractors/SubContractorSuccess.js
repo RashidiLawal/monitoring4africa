@@ -11,7 +11,7 @@ import CustomText from "../../components/ui/CustomText";
 import CustomView from "../../components/ui/CustomView";
 import { COLORS } from "../../store/constant/theme";
 import { resetStackAndNavigate } from "../../../utils";
-import Cancel from '../../../assets/svgs/X.svg'
+import CloseGrey from '../../../assets/svgs/CloseGrey.svg'
 
 
 export default function SubContractorSuccess() {
@@ -23,7 +23,7 @@ export default function SubContractorSuccess() {
          <Appbar.Header style={{ backgroundColor: "#fff" }}>
         <CustomView padding={[0, 0, 0, 5]}>
           <Pressable onPress={() => navigation.goBack()} shadow>
-            <Cancel />
+            <CloseGrey />
           </Pressable>
         </CustomView>
       </Appbar.Header>

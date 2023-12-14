@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { StyleSheet, Text, View, Pressable, Platform, KeyboardAvoidingView, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Pressable, Platform, KeyboardAvoidingView, ScrollView, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
 import { Appbar } from "react-native-paper";
@@ -11,7 +11,7 @@ import CustomText from "../../components/ui/CustomText";
 import CustomView from "../../components/ui/CustomView";
 import { COLORS } from "../../store/constant/theme";
 import { resetStackAndNavigate } from "../../../utils";
-import Cancel from '../../../assets/svgs/X.svg'
+import CloseGrey from '../../../assets/svgs/CloseGrey.svg'
 
 
 export default function ProjectSucced() {
@@ -23,7 +23,7 @@ export default function ProjectSucced() {
          <Appbar.Header style={{ backgroundColor: "#fff" }}>
         <CustomView padding={[0, 0, 0, 5]}>
           <Pressable onPress={() => navigation.goBack()} shadow>
-            <Cancel />
+            <CloseGrey />
           </Pressable>
         </CustomView>
       </Appbar.Header>
@@ -47,7 +47,7 @@ export default function ProjectSucced() {
                         <CustomText white heavy size={18}>Upload Plan</CustomText>
                     </CustomButton>
                     <CustomView center padding={[20, 0]}>
-                        <TouchableOpacity  onPress={()=>resetStackAndNavigate(navigation, 'Home')}>
+                        <TouchableOpacity  onPress={()=>resetStackAndNavigate(navigation, 'ProjectScreen')}>
                             <CustomText primary heavy>Skip for Now</CustomText>
                         </TouchableOpacity>
                     </CustomView>

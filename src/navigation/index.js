@@ -25,6 +25,7 @@ import SubContractorSuccess from "../screens/SubContractors/SubContractorSuccess
 import Equipments from "../screens/AddEquipments";
 import Materials from "../screens/AddMaterials";
 import ProjectSucced from "../screens/ProjectSuccessful";
+import ProjectScreen from "../screens/ProjectScreen";
 // import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
@@ -42,6 +43,7 @@ const Navigation = (props) => {
         // }
         >
           <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
+          <Stack.Screen name="ProjectScreen" component={ProjectScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Equipments" component={Equipments} options={{ headerShown: false }} />
           <Stack.Screen name="Materials" component={Materials} options={{ headerShown: false }} />
           <Stack.Screen name="ProjectSucced" component={ProjectSucced} options={{ headerShown: false }} />
