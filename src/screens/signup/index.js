@@ -12,7 +12,7 @@ import { COLORS } from "../../store/constant/theme";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import CustomInput from "../../components/ui/CustomInput";
 import CreatePassword from "../createpassword";
-import GreenCheck from '../../../assets/svgs/CheckG.svg'
+import GreenCheck from '../../../assets/svgs/CheckGreen.svg'
 import AxiosCall from "../../../utils/axios";
 
 
@@ -25,20 +25,11 @@ const Signup = () => {
   const [lastName, setLastName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (email) {
-        checkForAvailablility()
-      }
-    }, 200);
-    return () => clearTimeout(timeoutId);
-
-  }, [email])
-
+ 
   const handleToggle = () => {
     setChecked(!checked);
   };
+
   const checkForAvailablility = async () => {
     try {
       setIsLoading(true)
@@ -52,9 +43,12 @@ const Signup = () => {
       const response = await AxiosCall(callObj);
       setEmailAvailable(true)
       setIsLoading(false)
+      console.log(response)
+      navigation.navigate("CreatePassword", { firstName, lastName, email })
     } catch (e) {
       let errorResponse = 'Something went wrong. please try again';
-      if (e.response) {
+console.log(e?.response?.data)
+if (e?.response) {
         const { error } = e.response.data;
         errorResponse = error;
       }
@@ -62,7 +56,6 @@ const Signup = () => {
       setError(errorResponse)
     }
   }
-
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
@@ -73,10 +66,10 @@ const Signup = () => {
 
           <Pressable onPress={() => navigation.navigate("Login")}>
             <CustomView row center>
-              <CustomText margin={[0, 5]} bold size="17">
+              <CustomText margin={[0, 5]} bold size={17}>
                 Switch to
               </CustomText>
-              <CustomText bold size="17" color={COLORS.orange}>
+              <CustomText bold size={17} color={COLORS.orange}>
                 Log In
               </CustomText>
             </CustomView>
@@ -145,8 +138,8 @@ const Signup = () => {
       
       <CustomView padding={[20, 20, 35]} color='#fff'>
         <CustomButton
-          // disabled={!checked || !firstName || !lastName || !email  || !emailAvailable}
-          onPress={() => navigation.navigate("CreatePassword", { firstName, lastName, email })}
+          disabled={!checked || !firstName || !lastName || !email || !checkForAvailablility}
+          onPress={checkForAvailablility}
         >
           <CustomText white bold size={18}>Continue</CustomText>
         </CustomButton>
@@ -168,7 +161,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   text1: {
-    color: "",
     fontSize: 27,
     fontStyle: "normal",
     fontWeight: "700",

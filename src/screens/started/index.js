@@ -6,8 +6,8 @@ import CustomView from '../../components/ui/CustomButton'
 import {View, StyleSheet, TouchableOpacity, Pressable, ScrollView, Platform, KeyboardAvoidingView} from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import BackIcon from '../../../assets/svgs/ArrowLeft.svg'
-import Cancel from '../../../assets/svgs/X.svg'
-import GreenCheck from '../../../assets/svgs/CheckG.svg'
+import Cancel from '../../../assets/svgs/Cancel.svg'
+import GreenCheck from '../../../assets/svgs/CheckGreen.svg'
 import { Appbar } from 'react-native-paper'
 
 const GetStarted = () => {

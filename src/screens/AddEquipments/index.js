@@ -24,7 +24,7 @@ const Equipments = () => {
 
           <Pressable onPress={() => navigation.navigate("Login")}>
             <CustomView row center>
-              <CustomText bold size="17" color={COLORS.orange}>
+              <CustomText bold size={17} color={COLORS.orange}>
               Skip for now
               </CustomText>
             </CustomView>

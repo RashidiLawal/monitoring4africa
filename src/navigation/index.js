@@ -4,14 +4,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
-import Login from "../screens/login/index"; 
+import Login from "../screens/Login/index"; 
 import VerifyEmail from "../screens/VerifyEmail";
 import CreatePassword from "../screens/createpassword";
 import GetStarted from "../screens/started";
-import Onboarding from "../screens/onboarding/index";
-import Signup from "../screens/signup/index";
-import OnboardCompany from '../screens/onboardCompany/index'
-import OnboardSuccess from "../screens/onboardCompany/OnboardSuccess";
+import Onboarding from "../screens/Onboarding/index";
+import Signup from "../screens/Signup/index";
+import OnboardCompany from '../screens/OnboardCompany/index'
+import OnboardSuccess from "../screens/OnboardCompany/OnboardSuccess";
 import OnboardEmployeeSuccess from "../screens/OnboardEmployee/OnboardSuccess";
 import OnboardEmployee from "../screens/OnboardEmployee"; 
 import BottomTab from "./BottomTab";
