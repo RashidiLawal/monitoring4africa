@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, Animated, ScrollView, StatusBar, ImageBackground, Pressable } from "react-native"
+import { View, StyleSheet, Image, Animated, ScrollView, StatusBar, ImageBackground, Pressable, TouchableOpacity } from "react-native"
 import CustomButton from "../../components/ui/CustomButton";
 import CustomView from "../../components/ui/CustomView";
 import CustomText from "../../components/ui/CustomText";
@@ -132,9 +132,9 @@ function Onboarding({ navigation }) {
                     </CustomButton> 
                     <CustomView center row  middle  margin={[10,5, 0]}>
                     <CustomText white>Already have an account?</CustomText>
-                    <Pressable onPress={()=>navigation.navigate('Login')}>
+                    <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
                         <CustomText color="red"> Log in</CustomText>
-                    </Pressable>
+                    </TouchableOpacity>
                     </CustomView>
                     </>: null}
                     

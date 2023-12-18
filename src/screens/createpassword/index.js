@@ -4,7 +4,7 @@ import CustomText from "../../components/ui/CustomText";
 import CustomInput from "../../components/ui/CustomInput";
 import CustomButton from "../../components/ui/CustomButton";
 import { Appbar } from "react-native-paper";
-import { StyleSheet, ScrollView, Pressable, Platform, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, ScrollView, Pressable, Platform, KeyboardAvoidingView, TouchableOpacity } from "react-native";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import GreenCheck from "../../../assets/svgs/CheckGreen.svg";
 import Cancel from "../../../assets/svgs/Cancel.svg";
@@ -53,15 +53,15 @@ const CreatePassword = ({route}) => {
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
-        <CustomView padding={[0, 0, 0, 5]}>
-          <Pressable onPress={() => navigation.goBack()} shadow>
+        <CustomView padding={[0, 15]}>
+          <TouchableOpacity onPress={() => navigation.goBack()} shadow>
             <BackIcon />
-          </Pressable>
+          </TouchableOpacity>
         </CustomView>
       </Appbar.Header>
-      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView style={styles.container}>
-      <CustomView column rowGap={17}>
+        <CustomView padding={[0,10]}>
+      <CustomView column rowGap={17}  >
           <CustomView column rowGap={13}>
           <CustomText size={27} heavier color={COLORS.lightBlack} spacing={0.5}>
             Create Your Password
@@ -92,8 +92,8 @@ const CreatePassword = ({route}) => {
           secureTextEntry
           placeholder="*************" />
         </CustomView>
-        <CustomView column>
-          <CustomView row>
+        <CustomView column  >
+          <CustomView row wrap >
             <CustomView row center columnGap={3} margin={[0, 3, 0, 0]}>
               <GreenCheck />
               <CustomText size={14} color={COLORS.lightgrey}>Has at least 8 characters</CustomText>
@@ -103,7 +103,7 @@ const CreatePassword = ({route}) => {
               <CustomText size={14} color={COLORS.lightgrey}>Has an uppercase letter</CustomText>
             </CustomView>
           </CustomView>
-          <CustomView row>
+          {/* <CustomView row>
             <CustomView row center columnGap={3} margin={[0, 3, 0, 0]}>
               <Cancel />
               <CustomText size={14} color={COLORS.lightgrey}>Has a number</CustomText>
@@ -112,9 +112,9 @@ const CreatePassword = ({route}) => {
               <Cancel />
               <CustomText size={14} color={COLORS.lightgrey}>Has a symbol</CustomText>
             </CustomView>
-          </CustomView>
+          </CustomView> */}
         </CustomView>
-        <CustomView margin={[15,0]}>
+        <CustomView  >
           {/* <CustomInput label="Confirm Password" placeholder="*************" /> */}
           <CustomInput
           label='Confirm Password'
@@ -132,6 +132,7 @@ const CreatePassword = ({route}) => {
           />
         </CustomView>
         {error ? <CustomText size={14} color="red">{error}</CustomText> : null}
+        </CustomView>
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
       <CustomButton 
@@ -143,7 +144,6 @@ const CreatePassword = ({route}) => {
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
     </>
   );
 };
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
       backgroundColor: "#FFF",
       flexDirection: "column",
       height: "100%",
-      paddingHorizontal: 15,
+      paddingHorizontal: 15, 
       paddingTop: 5,
       paddingBottom:100,
     },

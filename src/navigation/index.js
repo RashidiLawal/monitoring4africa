@@ -34,7 +34,6 @@ const Drawer = createDrawerNavigator();
 const Navigation = (props) => {
   const navigationRef = React.useRef();
   // const navigation = useNavigation();
-  console.log(props?.profile)
   return (
     <PaperProvider>
       <NavigationContainer ref={navigationRef}>

@@ -15,12 +15,13 @@ import ArrowDown from "../../../assets/svgs/ArrowDown.svg";
 import CustomInput from "../../components/ui/CustomInput";
 import CountryModal from "../../components/ui/CountryModal";
 import AxiosCall from "../../../utils/axios";
+import { resetStackAndNavigate } from "../../../utils";
 
 
 const OnboardCompany= () => {
   const [checked, setChecked] = useState(false);
   const [companyName, setCompanyName] = useState("");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState();
   const [countrySize, setCountrySize] = useState("");
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
@@ -43,11 +44,11 @@ const OnboardCompany= () => {
       const callObj = {
         method: 'POST',
         path: 'users/onboardCompany',
-        data: { companyName, country, countrySize, phone }
+        data: { companyName, country, countrySize, phone: country.dial_code + phone }
       };
       const response = await AxiosCall(callObj);
       setIsLoading(false)
-      navigation.navigate("OnboardSuccess")
+      resetStackAndNavigate(navigation,"OnboardSuccess")
     } catch (e) {
       let errorResponse = 'Something went wrong. please try again';
       if (e?.response) {
@@ -58,7 +59,7 @@ const OnboardCompany= () => {
       setError(errorResponse)
     }
   }
-  return (
+      return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
         <CustomView padding={[0, 10]}>
@@ -97,7 +98,11 @@ const OnboardCompany= () => {
                   <CustomText size={14} >Country</CustomText>
                   <Pressable onPress={() => setCountryModalVisible(true)}>
                     <CustomView row center space="between" color={COLORS.inputBackground} radius={10} padding={[15, 15]}>
-                      <CustomText color={COLORS.greyText} size={14}> Select your company's location </CustomText>
+                    {country?.name ?
+                      <CustomText   size={14}> {country?.name} </CustomText>
+                      : 
+                      <CustomText color={COLORS.greyText} size={14}>  Select your company's location </CustomText>
+                    }
                       <ArrowDown />
                     </CustomView>
                   </Pressable>
@@ -110,15 +115,16 @@ const OnboardCompany= () => {
                     onChangeText={setCountrySize}
                   />
                 </CustomView>
-
               </CustomView >
 
               <CustomView columnGap={15} row margin={[15, 0]}>
-                <CustomView flexGrow='1'>
+                <CustomView width={20+'%'}>
                   <CustomInput
                     label='Code'
                     placeholder="+234"
                     keyboardType="number-pad" 
+                    value={country?.dial_code}
+                    onChangeText={()=>{}}
                   />
                 </CustomView>
                 <CustomView flexGrow='5'>
@@ -127,10 +133,15 @@ const OnboardCompany= () => {
                     placeholder="Enter phone number"
                     keyboardType="number-pad"
                     onChangeText={setPhone}
+                    
                   />
                 </CustomView>
-              </CustomView>
-
+              </CustomView> 
+              {error ? 
+                <CustomText size={14} color='red'>
+                  {error}
+                  </CustomText> 
+                  : null}
             </CustomView>
           </CustomView>
         </CustomView>

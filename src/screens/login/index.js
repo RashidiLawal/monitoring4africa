@@ -6,7 +6,6 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  Pressable,
   ViewComponent,
   Image,
   ScrollView,
@@ -58,7 +57,7 @@ const Login = () => {
       } else {
         resetStackAndNavigate( navigation, "Home")
       }
-    } catch (e) {console.log(e)
+    } catch (e) {
       var errorResponse = 'Something went wrong. please try again';
       if (e?.response) {
         const { error } = e.response.data;
@@ -71,15 +70,15 @@ const Login = () => {
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
-        <CustomView padding={[0, 0, 0, 5]}>
-          <Pressable onPress={() => navigation.goBack()} shadow>
+        <CustomView padding={[0, 15]}>
+          <TouchableOpacity onPress={() => navigation.goBack()} shadow>
             <BackIcon />
-          </Pressable>
+          </TouchableOpacity>
         </CustomView>
       </Appbar.Header>
-      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      {/* <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}> */}
       <ScrollView style={styles.container}>
-        <CustomView style={styles.termsText}>
+        <CustomView style={styles.termsText} padding={[0, 10]}>
           <CustomView style={styles.inputsAndLog}>
             <CustomView style={styles.signAndLog}>
               <CustomText size={27} heavier color={COLORS.lightBlack} spacing={.5}>
@@ -89,11 +88,11 @@ const Login = () => {
                 <CustomText color={COLORS.midGrey} size="15" bold margin={[]}>
                   Don’t have an account?{" "}
                 </CustomText>
-                <Pressable onPress={() => navigation.navigate("Signup")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
                   <CustomText color={COLORS.orange} bold size="15">
                     Sign Up
                   </CustomText>
-                </Pressable>
+                </TouchableOpacity>
               </CustomView>
             </CustomView>
 
@@ -112,6 +111,7 @@ const Login = () => {
                   label='Password'
                   placeholder="*********"
                   onChangeText={setPassword}
+                  secureTextEntry
                 />
         {error ? <CustomText size={14} color="red">{error}</CustomText> : null}
               </CustomView>
@@ -133,7 +133,7 @@ const Login = () => {
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
+      {/* </KeyboardAvoidingView> */}
     </>
   );
 };

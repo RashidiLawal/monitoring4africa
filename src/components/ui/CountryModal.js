@@ -26,14 +26,13 @@ export default function CountryModal({ modalVisible, setModalVisible, submit, se
     }, [])
 
 
-    const unselect = (list) => {
+    const unselect = () => {
         setSelectedList(null)
     }
     const select = (list) => {
         setSelectedList(list)
     }
     const search = (text) => {
-        console.log(text)
         var result = []
         countries.map((list)=> {
             if(list.name.toLowerCase().indexOf(text) >= 0){
@@ -74,7 +73,6 @@ export default function CountryModal({ modalVisible, setModalVisible, submit, se
                                 <CustomInput
                                     label={'Search'}
                                     onChangeText={search}
-                                    autoCapitalize
                                     placeholder="Enter your country code"
                                 />
                                 <CustomText margin={[10, 0]}>
@@ -85,7 +83,7 @@ export default function CountryModal({ modalVisible, setModalVisible, submit, se
 
                                 <CustomView padding={[15, 0, 0]} >
                                     {suggestions.map((list, key) => (
-                                        <TouchableOpacity key={key} onPress={() => list?.name == selectedList?.name ? unselect(list?._id) : select(list?._id)}>
+                                        <TouchableOpacity key={key} onPress={() => list?.name == selectedList?.name ? unselect() : select(list)}>
                                             <CustomView key={key} flexDirection="row" space="between" padding={[15, 0]} >
                                                 <CustomView center row space="between" >
                                                     <CustomText accent>{list.name} ({list.dial_code}) </CustomText>
@@ -99,8 +97,10 @@ export default function CountryModal({ modalVisible, setModalVisible, submit, se
                             <CustomView flex={0} padding={[0]}>
                                 <CustomButton
                                     onPress={() => {
-                                        // saveSelectedCus(se) 
+                                        submit(selectedList) 
+                                        setModalVisible(false)
                                     }}
+                                    disabled={!selectedList}
                                 >
 
                                     <CustomText heavy white >

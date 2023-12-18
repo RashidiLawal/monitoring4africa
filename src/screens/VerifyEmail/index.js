@@ -3,7 +3,7 @@ import CustomInput from "../../components/ui/CustomInput";
 import CustomButton from "../../components/ui/CustomButton";
 import CustomView from "../../components/ui/CustomView";
 import CustomText from "../../components/ui/CustomText";
-import { StyleSheet, Pressable, ScrollView, Platform, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, Pressable, ScrollView, Platform, KeyboardAvoidingView, TouchableOpacity } from "react-native";
 import { Appbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
@@ -80,32 +80,23 @@ const VerifyEmail = ({route}) => {
   return (
     <>
       <Appbar.Header>
-        <CustomView padding={[0, 0, 0, 5]}>
+        <CustomView padding={[0,10]}>
           <Pressable onPress={() => navigation.goBack()} shadow>
             <BackIcon />
           </Pressable>
         </CustomView>
       </Appbar.Header>
-      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView style={styles.container}>
-        <CustomView column rowGap={28}>
+        <CustomView column rowGap={28} padding={[0, 10]}>
         <CustomView column rowGap={17}>
           <CustomView column rowGap={2}>
             <CustomText
               size={27}
               heavier
               color={COLORS.lightBlack}
-              spacing={0.5}
+              spacing={1}
             >
-              Verify Your Email{" "}
-            </CustomText>
-            <CustomText
-              size={27}
-              heavier
-              color={COLORS.lightBlack}
-              spacing={0.5}
-            >
-              With A Code
+              Verify Your Email With A Code
             </CustomText>
           </CustomView>
           <CustomView column rowGap={2}>
@@ -137,34 +128,36 @@ const VerifyEmail = ({route}) => {
             >
               Verification Code
             </CustomText>
-            {resendEmailStatus ? 
+            
+            <CustomView center>
+            <OTPInputView 
+                    style={{width: '100%', height: 100,}}
+                    autoFocusOnLoad
+                    pinCount={5} 
+                    keyboardType="number-pad"
+                    editable
+                    codeInputFieldStyle={{backgroundColor: COLORS.inputBackground, borderWidth: 0, color: 'black'}}
+                    onCodeFilled={submit}
+                    />
+            </CustomView>
+        {error ? <CustomText size={14} red>{error}</CustomText> : null}
+        {resendEmailStatus ? 
             <CustomView row>
             <GreenCheck />
              <CustomText
               size={14}
-              color={COLORS.green}
+              success
               spacing={0.5}
               height={18}
             > 
               Email has been resent successfully
             </CustomText> 
             </CustomView>: null}
-        {error ? <CustomText size={14} color="red">{error}</CustomText> : null}
-            <OTPInputView 
-                    style={{width: '80%', height: 100, marginLeft: '10%'}}
-                    autoFocusOnLoad
-                    pinCount={4} 
-                    keyboardType="number-pad"
-                    editable
-                    codeInputFieldStyle={{backgroundColor: COLORS.inputBackground}}
-                    onCodeFilled={submit}
-                    />
-          
           </CustomView>
           <CustomView row spaced columnGap={130}>
-           <Pressable onPress={resendEmail}>
-           <CustomText color={COLORS.orange}>Resend Code</CustomText>
-           </Pressable>
+           <TouchableOpacity onPress={resendEmail}>
+           <CustomText red size={14}>Resend Code</CustomText>
+           </TouchableOpacity>
             {/* <CustomText color={COLORS.orange}>Change your email</CustomText> */}
           </CustomView>
         </CustomView>
@@ -177,7 +170,6 @@ const VerifyEmail = ({route}) => {
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
     </>
   );
 };
