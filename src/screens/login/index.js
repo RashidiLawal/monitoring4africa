@@ -51,9 +51,8 @@ const Login = () => {
       }
       const response = await AxiosCall(callObj);
       setIsLoading(false)
-      console.log(response)
       if(!response?.userData?.verified){
-        navigation.navigate("VerifyEmail")
+        navigation.navigate("VerifyEmail", {email})
       } else  if(!response?.userData?.onboarded){
         navigation.navigate("OnboardCompany")
       } else {
@@ -127,8 +126,8 @@ const Login = () => {
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton loading={isLoading}
-        // disabled={!email || !password || isLoading}
-        onPress={() => {navigation.navigate('Home'), submit}}>
+        disabled={!email || !password || isLoading}
+        onPress={submit}>
           <CustomText white bold size={18} heavy>
             Login
           </CustomText>

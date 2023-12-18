@@ -28,7 +28,6 @@ const CreatePassword = ({route}) => {
       }  else setError('')
   }, [password, cPassword])
   
-  
   const submit = async () => {
     try {
       setIsLoading(true)
@@ -40,7 +39,7 @@ const CreatePassword = ({route}) => {
       }
       const response = await AxiosCall(callObj);
       setIsLoading(false)
-     resetStackAndNavigate( navigation, "VerifyEmail")
+     resetStackAndNavigate( navigation, "VerifyEmail", { ...route.params})
     } catch (e) {
       let errorResponse = 'Something went wrong. please try again';
       if (e.response) {
@@ -87,7 +86,11 @@ const CreatePassword = ({route}) => {
               </CustomText>
             </CustomView>
           </CustomView>
-          <CustomInput label="Password" placeholder="*************" />
+          <CustomInput 
+          label="Password" 
+          onChangeText={setPassword}
+          secureTextEntry
+          placeholder="*************" />
         </CustomView>
         <CustomView column>
           <CustomView row>

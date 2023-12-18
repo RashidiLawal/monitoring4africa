@@ -26,6 +26,7 @@ const CustomInput = ({ label,
   textcolor,
   numberOfCharacters,
   keyboardType='default',
+  autoCapitalize,
   inputRef, ...props}) => 
    {
   return (
@@ -43,7 +44,7 @@ const CustomInput = ({ label,
           selectTextOnFocus={true}
           autoCompleteType="off"
           autoCorrect={false}
-          autoCapitalize="none"
+          autoCapitalize={autoCapitalize || "none"}
           placeholderTextColor={COLORS.greyText}
           multiline={multiline}
           onFocus={onFocus}

@@ -14,10 +14,17 @@ import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import ArrowDown from "../../../assets/svgs/ArrowDown.svg";
 import CustomInput from "../../components/ui/CustomInput";
 import CountryModal from "../../components/ui/CountryModal";
+import AxiosCall from "../../../utils/axios";
 
 
 const OnboardCompany= () => {
   const [checked, setChecked] = useState(false);
+  const [companyName, setCompanyName] = useState("");
+  const [country, setCountry] = useState("");
+  const [countrySize, setCountrySize] = useState("");
+  const [phone, setPhone] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
   const [countryModalVisible, setCountryModalVisible] = useState(false)
 
@@ -26,6 +33,30 @@ const OnboardCompany= () => {
   };
   const saveCountry = () => {
 
+
+  
+  }
+  const submit = async () => {
+    try {
+      setIsLoading(true)
+      setError("")
+      const callObj = {
+        method: 'POST',
+        path: 'users/onboardCompany',
+        data: { companyName, country, countrySize, phone }
+      };
+      const response = await AxiosCall(callObj);
+      setIsLoading(false)
+      navigation.navigate("OnboardSuccess")
+    } catch (e) {
+      let errorResponse = 'Something went wrong. please try again';
+      if (e?.response) {
+        const { error } = e.response.data;
+        errorResponse = error;
+      }
+      setIsLoading(false)
+      setError(errorResponse)
+    }
   }
   return (
     <>
@@ -45,7 +76,7 @@ const OnboardCompany= () => {
       <CountryModal
         setModalVisible={setCountryModalVisible}
         modalVisible={countryModalVisible}
-        submit={saveCountry}
+        submit={setCountry}
       />
       <ScrollView style={styles.container}>
         <CustomView >
@@ -56,9 +87,8 @@ const OnboardCompany= () => {
               <CustomView rowGap={15} >
                 <CustomView >
                   <CustomInput
-
                     label='Company Name'
-
+                    onChangeText={setCompanyName}
                     placeholder="Enter company name"
 
                   />
@@ -77,7 +107,7 @@ const OnboardCompany= () => {
                     label='Company Size'
                     placeholder="Enter your company's size"
                     keyboardType="number-pad"
-
+                    onChangeText={setCountrySize}
                   />
                 </CustomView>
 
@@ -88,8 +118,7 @@ const OnboardCompany= () => {
                   <CustomInput
                     label='Code'
                     placeholder="+234"
-                    keyboardType="number-pad"
-
+                    keyboardType="number-pad" 
                   />
                 </CustomView>
                 <CustomView flexGrow='5'>
@@ -97,7 +126,7 @@ const OnboardCompany= () => {
                     label='Phone Number'
                     placeholder="Enter phone number"
                     keyboardType="number-pad"
-
+                    onChangeText={setPhone}
                   />
                 </CustomView>
               </CustomView>
@@ -108,7 +137,8 @@ const OnboardCompany= () => {
       </ScrollView>
       <CustomView padding={[20, 20, 35]} color='#fff'>
         <CustomButton
-          onPress={() => navigation.navigate("OnboardSuccess")}
+        loading={isLoading}
+          onPress={submit}
         >
           <CustomText white bold size={18}>Continue</CustomText>
         </CustomButton>

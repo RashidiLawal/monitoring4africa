@@ -47,7 +47,6 @@ const Signup = () => {
       navigation.navigate("CreatePassword", { firstName, lastName, email })
     } catch (e) {
       let errorResponse = 'Something went wrong. please try again';
-console.log(e?.response?.data)
 if (e?.response) {
         const { error } = e.response.data;
         errorResponse = error;

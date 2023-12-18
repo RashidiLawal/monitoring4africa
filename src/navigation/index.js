@@ -34,13 +34,16 @@ const Drawer = createDrawerNavigator();
 const Navigation = (props) => {
   const navigationRef = React.useRef();
   // const navigation = useNavigation();
+  console.log(props?.profile)
   return (
     <PaperProvider>
       <NavigationContainer ref={navigationRef}>
         <Stack.Navigator
-        // initialRouteName={
-        //   props.profile?.email ? "Home" : "Onboarding"
-        // }
+        initialRouteName={
+          props.profile?.onboarded ? "Home" :
+          !props.profile?.onboarded ? "OnboardCompany" :
+          "Onboarding"
+        }
         >
           <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
           <Stack.Screen name="ProjectScreen" component={ProjectScreen} options={{ headerShown: false }} />

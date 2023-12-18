@@ -18,9 +18,11 @@ import CustomInput from './CustomInput';
 export default function CountryModal({ modalVisible, setModalVisible, submit, selected }) {
 
     const [selectedList, setSelectedList] = useState(null)
+    const [suggestions, setSuggestions] = useState([])
     // const [modalVisible, setModalVisible] = useState(false)
 
     useEffect(() => {
+        setSuggestions(countries.slice(0, 4))
     }, [])
 
 
@@ -29,6 +31,16 @@ export default function CountryModal({ modalVisible, setModalVisible, submit, se
     }
     const select = (list) => {
         setSelectedList(list)
+    }
+    const search = (text) => {
+        console.log(text)
+        var result = []
+        countries.map((list)=> {
+            if(list.name.toLowerCase().indexOf(text) >= 0){
+                result.push(list)
+            }
+        })
+        setSuggestions(result)
     }
     // const check = (list) => {
     //     var arr = countries.filter((item)=> item.name == list.name);
@@ -61,6 +73,8 @@ export default function CountryModal({ modalVisible, setModalVisible, submit, se
                             <CustomView margin={[10, 0, 0]} style={{ borderBottomWidth: .5, borderBottomColor: COLORS.profileLine }}>
                                 <CustomInput
                                     label={'Search'}
+                                    onChangeText={search}
+                                    autoCapitalize
                                     placeholder="Enter your country code"
                                 />
                                 <CustomText margin={[10, 0]}>
@@ -70,7 +84,7 @@ export default function CountryModal({ modalVisible, setModalVisible, submit, se
                             <ScrollView contentContainerStyle={{ height: 280, paddingBottom: 20, }}>
 
                                 <CustomView padding={[15, 0, 0]} >
-                                    {countries.slice(0, 10).map((list, key) => (
+                                    {suggestions.map((list, key) => (
                                         <TouchableOpacity key={key} onPress={() => list?.name == selectedList?.name ? unselect(list?._id) : select(list?._id)}>
                                             <CustomView key={key} flexDirection="row" space="between" padding={[15, 0]} >
                                                 <CustomView center row space="between" >
