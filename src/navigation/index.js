@@ -40,9 +40,9 @@ const Navigation = (props) => {
       <NavigationContainer ref={navigationRef}>
         <Stack.Navigator
         initialRouteName={
-          props.profile?.onboarded ? "Home" :
-          !props.profile?.onboarded ? "OnboardCompany" :
-          "Onboarding"
+          !props.profile ?  "Onboarding" :
+          !props.profile.onboarded ? "OnboardCompany" :
+           "Home" 
         }
         >
           <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />

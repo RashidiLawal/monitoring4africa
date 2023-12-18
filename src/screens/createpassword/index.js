@@ -39,7 +39,7 @@ const CreatePassword = ({route}) => {
       }
       const response = await AxiosCall(callObj);
       setIsLoading(false)
-     resetStackAndNavigate( navigation, "VerifyEmail", { ...route.params})
+     navigation.navigate("VerifyEmail", { ...route.params})
     } catch (e) {
       let errorResponse = 'Something went wrong. please try again';
       if (e.response) {
