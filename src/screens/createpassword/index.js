@@ -124,7 +124,7 @@ const CreatePassword = ({route}) => {
           />
           
         </CustomView>
-        <CustomView >
+        <CustomView margin={[10, 0]}>
         <CustomInput
           label='Referral Code (Optional)'
           placeholder='Enter referral code if any'

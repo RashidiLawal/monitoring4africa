@@ -16,6 +16,8 @@ import UploadPlans from "../../../assets/svgs/UploadPlans.svg";
 import Folder from "../../../assets/svgs/Folder.svg";
 import EmptyFolder from "../../../assets/svgs/EmptyFolder.svg";
 import CustomInput from "../../components/ui/CustomInput";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { resetStackAndNavigate } from "../../../utils";
 
 
 export default function Home() {
@@ -23,26 +25,31 @@ export default function Home() {
 
     return (
         <CustomView safe white>
-            <CustomView padding={[0, 20]}> 
-            <CustomView row center middle  space="between"  >
-            <CustomView row center>
-                <CustomView color={COLORS.lightprimary} round width={40} height={40}>
-                    <CustomText size={14}  primary >ML</CustomText>
+            <CustomView padding={[0, 20]}>
+                <CustomView row center middle space="between"  >
+                    <TouchableOpacity onPress={() => {
+                        AsyncStorage.clear()
+                        resetStackAndNavigate(navigation, "Onboarding")
+                    }}>
+                    <CustomView row center>
+                        <CustomView color={COLORS.lightprimary} round width={40} height={40}>
+                            <CustomText size={14} primary >ML</CustomText>
+                        </CustomView>
+                        <CustomText margin={[0, 20]}>Welcome, Mike👋</CustomText>
+                    </CustomView>
+                    </TouchableOpacity>
+                    <CustomView padding={[5, 0, 0]}>
+                        <Notifications />
+                    </CustomView>
                 </CustomView>
-                    <CustomText margin={[0, 20]}>Welcome, Mike👋</CustomText>
+                <CustomView padding={[10, 0, 0]}>
+                    <CustomInput
+                        placeholder="What are you looking for?"
+                    />
                 </CustomView>
-                <CustomView padding={[5, 0, 0]}>
-                    <Notifications />
-                </CustomView>
-            </CustomView>
-            <CustomView padding={[10, 0, 0]}>
-                <CustomInput
-                    placeholder="What are you looking for?"
-                />
-            </CustomView>
             </CustomView>
             <ScrollView style={styles.container}>
-                <CustomView space="between"  row padding={[10, 10]}>
+                <CustomView space="between" row padding={[10, 10]}>
                     <CustomView center>
                         <CustomView color={COLORS.deepprimary} round width={60} height={60}>
                             <Report />
@@ -51,9 +58,9 @@ export default function Home() {
                     </CustomView>
                     <CustomView center>
                         <Pressable onPress={() => navigation.navigate('NewProject')}>
-                        <CustomView color={COLORS.deepprimary} round width={60} height={60}>
-                            <Folder />
-                        </CustomView>
+                            <CustomView color={COLORS.deepprimary} round width={60} height={60}>
+                                <Folder />
+                            </CustomView>
                         </Pressable>
                         <CustomText size={14} descText>Create Project</CustomText>
                     </CustomView>
@@ -64,18 +71,18 @@ export default function Home() {
                         <CustomText size={14} descText>Add Report</CustomText>
                     </CustomView>
                 </CustomView>
-                <CustomView padding={[10,0]} bold>
+                <CustomView padding={[10, 0]} bold>
                     <CustomText margin={[0, 0, 10]}>Projects</CustomText>
-                    <CustomView center radius={10} padding={[45, 20, 25]} style={{borderWidth: 0.5, borderColor: COLORS.profileLine,}}>
-                    <EmptyFolder />
+                    <CustomView center radius={10} padding={[45, 20, 25]} style={{ borderWidth: 0.5, borderColor: COLORS.profileLine, }}>
+                        <EmptyFolder />
                         <CustomText bold margin={[5, 0]}>No recent project</CustomText>
                         <CustomText descText size={15}>Projects created will appear here</CustomText>
                     </CustomView>
                 </CustomView>
-                <CustomView padding={[10,0]} bold>
+                <CustomView padding={[10, 0]} bold>
                     <CustomText margin={[0, 0, 10]}>Recent Reports</CustomText>
-                    <CustomView center radius={10} padding={[45, 20, 25]} style={{borderWidth: 0.5, borderColor: COLORS.profileLine,}}>
-                    <EmptyFolder />
+                    <CustomView center radius={10} padding={[45, 20, 25]} style={{ borderWidth: 0.5, borderColor: COLORS.profileLine, }}>
+                        <EmptyFolder />
                         <CustomText bold margin={[5, 0]}>No recent project</CustomText>
                         <CustomText descText size={15}>Projects report created will appear here</CustomText>
                     </CustomView>
@@ -88,7 +95,7 @@ export default function Home() {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
-        paddingBottom:100,
+        paddingBottom: 100,
         height: "100%",
         backgroundColor: "#FFFFFF",
         paddingHorizontal: 20,

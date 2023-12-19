@@ -30,17 +30,16 @@ import ProjectScreen from "../screens/ProjectScreen";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-
 const Navigation = (props) => {
   const navigationRef = React.useRef();
-  // const navigation = useNavigation();
+// const navigation = useNavigation();
   return (
     <PaperProvider>
       <NavigationContainer ref={navigationRef}>
         <Stack.Navigator
         initialRouteName={
           !props.profile ?  "Onboarding" :
-          !props.profile.onboarded ? "OnboardCompany" :
+          props.profile?.onboarded == false ? "OnboardCompany" :
            "Home" 
         }
         >

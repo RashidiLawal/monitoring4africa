@@ -62,12 +62,10 @@ const OnboardCompany= () => {
       return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
-        <CustomView padding={[0, 10]}>
+        <CustomView padding={[0, 15]}>
           <Pressable
             onPress={() => navigation.goBack()}
             shadow
-            padding={[10]}
-            margin={[0, 20]}
           >
             <BackIcon />
             {/* <SimplelineIcon name="arrow-left" color={'white'} size={15} /> */}
@@ -80,9 +78,9 @@ const OnboardCompany= () => {
         submit={setCountry}
       />
       <ScrollView style={styles.container}>
-        <CustomView >
+        <CustomView padding={[0, 10]}>
           <CustomView >
-            <CustomText size={25} style={styles.text1}>Introduce Your Company</CustomText>
+            <CustomText size={25} style={styles.text1} spacing={0.5}>Introduce Your Company</CustomText>
             <CustomText size={14} descText>Provide essential details about your company</CustomText>
             <CustomView column margin={[15, 0]}>
               <CustomView rowGap={15} >
@@ -165,7 +163,6 @@ const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: "#FFFFFF",
     paddingHorizontal: 15,
-    paddingTop: 10,
 
     // paddingBottom: 95,
   },
