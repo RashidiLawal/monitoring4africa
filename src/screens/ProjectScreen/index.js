@@ -61,7 +61,7 @@ const ProjectScreen = () => {
         </CustomView>
       </Appbar.Header>
       <ScrollView style={styles.container}>
-        <CustomView column rowGap={13} color={COLORS.darkBlue}>
+        <CustomView column rowGap={13} color={COLORS.darkBlue} padding={[0,0,25,0]} borderBottomLeftRadius={25} borderBottomRightRadius={25}>
           <CustomView padding={[10, 15, 0]}>
             <CustomText size={27} heavier color={COLORS.white} spacing={3}>
               Waterview Park
@@ -163,17 +163,10 @@ const styles = StyleSheet.create({
     //   paddingTop: 5,
     paddingBottom: 100,
   },
+  bottoms:{
+    borderBottomLeftRadius:5,
+    borderBottomRightRadius:5
+  }
 });
 
-// const styles = StyleSheet.create({
-//   container: {
-//       flexDirection: "column",
-//       paddingBottom:100,
-//       height: "100%",
-//       backgroundColor: "#FFFFFF",
-//       paddingHorizontal: 20,
-//       paddingTop: 10,
 
-//       // paddingBottom: 95,
-//   },
-// });

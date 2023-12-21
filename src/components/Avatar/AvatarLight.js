@@ -26,7 +26,7 @@ const AvatarList = () => {
   return (
     <CustomView style={styles.avatarListContainer}>
       {/* <Avatar  /> */}
-      {imageUrls.slice(0, 3).map((imageUrl, index) => (
+      {imageUrls.slice(0, 4).map((imageUrl, index) => (
         <Avatar source={imageUrl.avatarUrl} rounded/>
       ))}
       {imageUrls.length > 3 && (
