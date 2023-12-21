@@ -33,7 +33,7 @@ const AvatarList = () => {
     ))}
       </CustomView>
       {imageUrls.length > 3 && (
-        <CustomView style={styles.avatarContainer}>
+        <CustomView style={styles.avatarContainer} center>
           <CustomView radius={25} background={COLORS.white} padding={[0, 5]}>
             <CustomText style={styles.countText} size={15} >
               + {imageUrls.length - 3}
