@@ -31,8 +31,8 @@ const AvatarList = () => {
       ))}
       {imageUrls.length > 3 && (
         <CustomView style={styles.avatarContainer}>
-          <CustomView style={styles.countBadge}>
-            <CustomText style={styles.countText} >
+          <CustomView radius={25} background={COLORS.white} padding={[0, 5]}>
+            <CustomText style={styles.countText} size={15} >
               + {imageUrls.length - 3}
             </CustomText>
           </CustomView>
@@ -52,17 +52,9 @@ const styles = StyleSheet.create({
   avatarContainer: {
     marginRight: 10,
   },
-  countBadge: {
-    backgroundColor: "#fff",
-   
-    borderRadius: 25,
-    padding: 4,
-    // position: "absolute",
-    bottom: 0,
-    right: 0,
-  },
   countText: {
     color: "#000",
     fontWeight: "bold",
+    
   },
 });
