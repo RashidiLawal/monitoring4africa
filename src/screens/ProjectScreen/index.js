@@ -33,6 +33,7 @@ import Folder from "../../../assets/svgs/Folder.svg";
 import Camera from "../../../assets/svgs/Camera.svg";
 import Selector from "../../../assets/svgs/Selected.svg";
 import EmptyFolder from "../../../assets/svgs/EmptyFolder.svg";
+import {Stack} from '@rneui/base'
 
 
 
@@ -103,7 +104,7 @@ const ProjectScreen = () => {
                   Status
                 </CustomText>
               </CustomView>
-              <CustomView row center>
+              <CustomView row center >
                 <AvatarList />
               </CustomView>
             </CustomView>

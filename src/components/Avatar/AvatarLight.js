@@ -24,11 +24,14 @@ const AvatarList = () => {
     { avatarUrl:{uri:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2564&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},},
   ];
   return (
-    <CustomView style={styles.avatarListContainer}>
-      {/* <Avatar  /> */}
+    <CustomView style={styles.avatarListContainer} row center columnGap={-15}>
+      <CustomView row columnGap={-15}>
       {imageUrls.slice(0, 4).map((imageUrl, index) => (
+        
         <Avatar source={imageUrl.avatarUrl} rounded/>
-      ))}
+      
+    ))}
+      </CustomView>
       {imageUrls.length > 3 && (
         <CustomView style={styles.avatarContainer}>
           <CustomView radius={25} background={COLORS.white} padding={[0, 5]}>
@@ -45,10 +48,10 @@ const AvatarList = () => {
 export default AvatarList;
 
 const styles = StyleSheet.create({
-  avatarListContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
+  // avatarListContainer: {
+  //   flexDirection: "row",
+  //   alignItems: "center",
+  // },
   avatarContainer: {
     marginRight: 10,
   },
