@@ -35,6 +35,7 @@ import Selector from "../../../assets/svgs/Selected.svg";
 import EmptyFolder from "../../../assets/svgs/EmptyFolder.svg";
 
 
+
 const ProjectScreen = () => {
   // const [checked, setChecked] = useState(false);
   const navigation = useNavigation();
@@ -163,3 +164,16 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
 });
+
+// const styles = StyleSheet.create({
+//   container: {
+//       flexDirection: "column",
+//       paddingBottom:100,
+//       height: "100%",
+//       backgroundColor: "#FFFFFF",
+//       paddingHorizontal: 20,
+//       paddingTop: 10,
+
+//       // paddingBottom: 95,
+//   },
+// });
