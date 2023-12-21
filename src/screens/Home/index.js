@@ -42,7 +42,7 @@ export default function Home() {
             </CustomView>
             </CustomView>
             <ScrollView style={styles.container}>
-                <CustomView space="between"  row padding={[10, 10]}>
+            <CustomView space="between"  row padding={[10, 10]}>
                     <CustomView center>
                         <CustomView color={COLORS.deepprimary} round width={60} height={60}>
                             <Report />

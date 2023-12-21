@@ -29,6 +29,11 @@ import User from "../../../assets/svgs/User.svg";
 import Tag from "../../../assets/svgs/Tag.svg";
 import Location from "../../../assets/svgs/location.svg";
 import AvatarList from "../../components/Avatar/AvatarLight";
+import Folder from "../../../assets/svgs/Folder.svg";
+import Camera from "../../../assets/svgs/Camera.svg";
+import Selector from "../../../assets/svgs/Selected.svg";
+import EmptyFolder from "../../../assets/svgs/EmptyFolder.svg";
+
 
 const ProjectScreen = () => {
   // const [checked, setChecked] = useState(false);
@@ -46,7 +51,7 @@ const ProjectScreen = () => {
                 <Chat />
               </CustomView>
             </Pressable>
-            <Pressable onPress={() => navigation.navigate("Login")}>
+            <Pressable onPress={() => navigation.navigate("ProjectSucced")}>
               <CustomView>
                 <WhiteDots />
               </CustomView>
@@ -103,6 +108,44 @@ const ProjectScreen = () => {
             </CustomView>
           </CustomView>
         </CustomView>
+        <CustomView space="between"  row padding={[10, 10]}>
+                    <CustomView center>
+                        <CustomView color={COLORS.yellow} round width={60} height={60}>
+                            <Selector />
+                        </CustomView>
+                        <CustomText size={14} descText>Upload Plans</CustomText>
+                    </CustomView>
+                    <CustomView center>
+                        <Pressable onPress={() => navigation.navigate('NewProject')}>
+                        <CustomView color={COLORS.deepprimary} round width={60} height={60}>
+                            <Camera />
+                        </CustomView>
+                        </Pressable>
+                        <CustomText size={14} descText>Create Project</CustomText>
+                    </CustomView>
+                    <CustomView center>
+                        <CustomView color={COLORS.avatarRad} round width={60} height={60}>
+                            <Folder />
+                        </CustomView>
+                        <CustomText size={14} descText>Add Report</CustomText>
+                    </CustomView>
+                </CustomView>
+                <CustomView padding={[10,0]} bold>
+                    <CustomText margin={[0, 0, 10]}>Projects</CustomText>
+                    <CustomView center radius={10} padding={[45, 20, 25]} style={{borderWidth: 0.5, borderColor: COLORS.profileLine,}}>
+                    <EmptyFolder />
+                        <CustomText bold margin={[5, 0]}>No recent project</CustomText>
+                        <CustomText descText size={15}>Projects created will appear here</CustomText>
+                    </CustomView>
+                </CustomView>
+                <CustomView padding={[10,0]} bold>
+                    <CustomText margin={[0, 0, 10]}>Recent Reports</CustomText>
+                    <CustomView center radius={10} padding={[45, 20, 25]} style={{borderWidth: 0.5, borderColor: COLORS.profileLine,}}>
+                    <EmptyFolder />
+                        <CustomText bold margin={[5, 0]}>No recent project</CustomText>
+                        <CustomText descText size={15}>Projects report created will appear here</CustomText>
+                    </CustomView>
+                </CustomView>
       </ScrollView>
     </>
   );
