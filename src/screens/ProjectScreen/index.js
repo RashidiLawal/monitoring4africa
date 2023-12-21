@@ -108,7 +108,7 @@ const ProjectScreen = () => {
             </CustomView>
           </CustomView>
         </CustomView>
-        <CustomView space="between"  row padding={[10, 10]}>
+        <CustomView space="between"  row padding={[10, 35]}>
                     <CustomView center>
                         <CustomView color={COLORS.yellow} round width={60} height={60}>
                             <Selector />
@@ -130,7 +130,7 @@ const ProjectScreen = () => {
                         <CustomText size={14} descText>Add Report</CustomText>
                     </CustomView>
                 </CustomView>
-                <CustomView padding={[10,0]} bold>
+                <CustomView padding={[10,15]} bold>
                     <CustomText margin={[0, 0, 10]}>Projects</CustomText>
                     <CustomView center radius={10} padding={[45, 20, 25]} style={{borderWidth: 0.5, borderColor: COLORS.profileLine,}}>
                     <EmptyFolder />
@@ -138,7 +138,7 @@ const ProjectScreen = () => {
                         <CustomText descText size={15}>Projects created will appear here</CustomText>
                     </CustomView>
                 </CustomView>
-                <CustomView padding={[10,0]} bold>
+                <CustomView padding={[10,15]} bold>
                     <CustomText margin={[0, 0, 10]}>Recent Reports</CustomText>
                     <CustomView center radius={10} padding={[45, 20, 25]} style={{borderWidth: 0.5, borderColor: COLORS.profileLine,}}>
                     <EmptyFolder />
