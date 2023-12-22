@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextInput, StyleSheet, Image, TouchableOpacity, View } from 'react-native';
 
 //components
@@ -17,7 +17,7 @@ const CustomInput = ({ label,
   contentType,
   value,
   onChangeText,
-  onFocus,
+  // onFocus,
   style,
   iconType: IconType = Icon,
   labelInfo,
@@ -26,8 +26,17 @@ const CustomInput = ({ label,
   textcolor,
   numberOfCharacters,
   keyboardType='default',
+  autoCapitalize,
   inputRef, ...props}) => 
    {
+    const [borderWidth, setBorderWidth] = useState(0)
+    const onFocus = () => {
+       setBorderWidth(.5)
+    }
+  
+    const onBlur  = () => {
+      setBorderWidth(0)
+    }
   return (
     <CustomView flex={false} style={{width: '100%'}}>
         {
@@ -36,17 +45,18 @@ const CustomInput = ({ label,
           </CustomText> : null
         }
         <TextInput
-          style={{ ...styles.defaultStyle, ...style, ...textcolor, }}
+          style={{ ...styles.defaultStyle, ...style, ...textcolor,borderWidth }}
           placeholder={placeholder}
           onChangeText={text => onChangeText(text)}
           value={value}
           selectTextOnFocus={true}
           autoCompleteType="off"
           autoCorrect={false}
-          autoCapitalize="none"
+          autoCapitalize={autoCapitalize || "none"}
           placeholderTextColor={COLORS.greyText}
           multiline={multiline}
           onFocus={onFocus}
+          onBlur={onBlur}
           keyboardType={keyboardType}
           returnKeyLabel="done"
           maxLength={numberOfCharacters}
@@ -63,7 +73,7 @@ const CustomInput = ({ label,
 const styles = StyleSheet.create({
   defaultStyle: {
     backgroundColor: COLORS.inputBackground,
-    // borderColor: "#31AEE8",
+    borderColor: COLORS.primary,
     // borderWidth: 1,
     paddingVertical: 20,
     paddingHorizontal: 15,

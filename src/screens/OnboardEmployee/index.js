@@ -15,24 +15,50 @@ import ArrowDown from "../../../assets/svgs/ArrowDown.svg";
 import CustomInput from "../../components/ui/CustomInput";
 import CountryModal from "../../components/ui/CountryModal";
 import { resetStackAndNavigate } from "../../../utils";
+import AxiosCall from "../../../utils/axios";
 
 
 export default function OnboardEmployee() {
   const navigation = useNavigation();
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [items, setItems] = useState([{
     email: "",
     id: 1
 }])
 
-const onTyping = (text, item) => {
+const onTyping = (text, item, items) => {
   var data = items.map((i)=> {
     if(i.id == item.id) {
        i.email = text
        return i
     }
+    return i
   })
+  setItems(data)
 }
-
+const submit = async () => {
+  try {
+    setIsLoading(true)
+    setError("")
+    const callObj = {
+      method: 'POST',
+      path: 'users/addEmployee',
+      data: { employees: items }
+    };
+    const response = await AxiosCall(callObj);
+    setIsLoading(false)
+    resetStackAndNavigate(navigation,"OnboardEmployeeSuccess")
+  } catch (e) {
+    let errorResponse = 'Something went wrong. please try again';
+    if (e?.response) {
+      const { error } = e.response.data;
+      errorResponse = error;
+    }
+    setIsLoading(false)
+    setError(errorResponse)
+  }
+}
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
@@ -62,7 +88,7 @@ const onTyping = (text, item) => {
                {items.map((item, key)=> (
                  <CustomView  key={key}>
                  <CustomInput
-                   onChangeText={(text)=>onTyping(text, item)}
+                   onChangeText={(text)=>onTyping(text, item, items)}
                    label='Email'
 
                    placeholder="Enter employee's email"
@@ -77,12 +103,19 @@ const onTyping = (text, item) => {
               <CustomText color="red" margin={[10, 0]}> Add extra employee +</CustomText>
             </TouchableOpacity>
             </CustomView>
+            {error ? 
+                <CustomText size={14} color='red'>
+                  {error}
+                  </CustomText> 
+                  : null}
           </CustomView>
         </CustomView>
       </ScrollView>
       <CustomView padding={[20, 20, 35]} color='#fff'>
         <CustomButton
-          onPress={() => navigation.navigate("OnboardEmployeeSuccess")}
+        loading={isLoading}
+        disabled={isLoading || items[0].email == ""}
+          onPress={submit}
         >
           <CustomText white heavy size={18}>Add new Employee's</CustomText>
         </CustomButton>

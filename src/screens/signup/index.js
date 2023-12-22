@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Pressable,  KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
 import { ActivityIndicator, Appbar } from "react-native-paper";
@@ -12,12 +12,14 @@ import { COLORS } from "../../store/constant/theme";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import CustomInput from "../../components/ui/CustomInput";
 import CreatePassword from "../createpassword";
-import GreenCheck from '../../../assets/svgs/CheckG.svg'
+import GreenCheck from '../../../assets/svgs/CheckGreen.svg'
 import AxiosCall from "../../../utils/axios";
+import PolicyModal from "../../components/ui/PolicyModal";
 
 
 const Signup = () => {
   const navigation = useNavigation();
+  const [privacyModal, setPrivacyModal] = useState(false);
   const [checked, setChecked] = useState(false);
   const [email, setEmail] = useState("");
   const [emailAvailable, setEmailAvailable] = useState("");
@@ -26,19 +28,10 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (email) {
-        checkForAvailablility()
-      }
-    }, 200);
-    return () => clearTimeout(timeoutId);
-
-  }, [email])
-
   const handleToggle = () => {
     setChecked(!checked);
   };
+
   const checkForAvailablility = async () => {
     try {
       setIsLoading(true)
@@ -52,9 +45,11 @@ const Signup = () => {
       const response = await AxiosCall(callObj);
       setEmailAvailable(true)
       setIsLoading(false)
+      console.log(response)
+      navigation.navigate("CreatePassword", { firstName, lastName, email })
     } catch (e) {
       let errorResponse = 'Something went wrong. please try again';
-      if (e.response) {
+      if (e?.response) {
         const { error } = e.response.data;
         errorResponse = error;
       }
@@ -62,96 +57,111 @@ const Signup = () => {
       setError(errorResponse)
     }
   }
-
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
-        <CustomView space="between" row flex padding={[0, 15, 0, 5]}>
-          <Pressable onPress={() => navigation.goBack()}>
+        <CustomView space="between" row flex padding={[0, 15]}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <BackIcon />
-          </Pressable>
+          </TouchableOpacity>
 
-          <Pressable onPress={() => navigation.navigate("Login")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <CustomView row center>
-              <CustomText margin={[0, 5]} bold size="17">
+              <CustomText margin={[0, 5]} bold size={15}>
                 Switch to
               </CustomText>
-              <CustomText bold size="17" color={COLORS.orange}>
+              <CustomText bold size={15} color={COLORS.orange}>
                 Log In
               </CustomText>
             </CustomView>
-          </Pressable>
+          </TouchableOpacity>
         </CustomView>
       </Appbar.Header>
-      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <ScrollView style={styles.container}>
-        <View style={styles.checkBoxAnd}>
-          <View style={styles.textAndInputs}>
-            <Text style={styles.text1}>Let’s get to know You</Text>
-            <CustomView column >
-              <CustomView row wrap rowGap='25' columnGap={15}>
-                <CustomView flexGrow='1' width={45 + '%'}>
-                  <CustomInput
-                    label='First Name'
-                    placeholder="Enter First Name"
-                    onChangeText={setFirstName}
-                  />
+      <PolicyModal
+        setModalVisible={setPrivacyModal}
+        modalVisible={privacyModal}
+      />
+      {/* <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}> */}
+        <ScrollView style={styles.container}>
+          <View style={styles.checkBoxAnd}>
+            <View style={styles.textAndInputs}>
+              <Text style={styles.text1}>Let’s get to know You</Text>
+              <CustomView column >
+                <CustomView row wrap rowGap='25' columnGap={15}>
+                  <CustomView flexGrow='1' width={45 + '%'}>
+                    <CustomInput
+                      label='First Name'
+                      placeholder="Enter First Name"
+                      onChangeText={setFirstName}
+                    />
+                  </CustomView >
+                  <CustomView flexGrow='1' width={45 + '%'}  >
+                    <CustomInput
+                      label='Last Name'
+                      placeholder="Enter Last Name"
+                      onChangeText={setLastName}
+                    />
+                  </CustomView>
+                  <CustomView style={styles.inputBox1}>
+                    <CustomInput
+                      label="Work email"
+                      placeholder="example@gmail.com"
+                      onChangeText={setEmail}
+                    />
+                    {isLoading ? <CustomView row>
+                      <ActivityIndicator size={14} color={COLORS.descText} />
+                      <CustomText margin={[0, 5]} size={14} descText>checking for availability</CustomText></CustomView> : null}
+                    {error ? <Text style={styles.textFailed}>{error}</Text> :
+                      emailAvailable ? <CustomView row center>
+                        <GreenCheck />
+                        <CustomText margin={[0, 5]} size={14} color={COLORS.success}>Email is available</CustomText>
+                      </CustomView> : null}
+                  </CustomView>
                 </CustomView >
-                <CustomView flexGrow='1' width={45 + '%'}  >
-                  <CustomInput
-                    label='Last Name'
-                    placeholder="Enter Last Name"
-                    onChangeText={setLastName}
-                  />
-                </CustomView>
-                <CustomView style={styles.inputBox1}>
-                  <CustomInput
-                    label="Work email"
-                    placeholder="example@gmail.com"
-                    onChangeText={setEmail}
-                  />
-                  {isLoading ? <CustomView row>
-                    <ActivityIndicator size={14} color={COLORS.descText} />
-                    <CustomText margin={[0, 5]} size={14} descText>checking for availability</CustomText></CustomView> : null}
-                  {error ? <Text style={styles.textFailed}>{error}</Text> : 
-                  emailAvailable ? <CustomView row center>
-                    <GreenCheck /> 
-                    <CustomText margin={[0,5]} size={14} color={COLORS.success}>Email is available</CustomText>
-                  </CustomView> : null}
-                </CustomView>
-              </CustomView >
 
 
+              </CustomView>
+            </View>
+            <CustomView row  >
+             <CustomView  >
+             <CheckBox
+                onClick={() => handleToggle()}
+                style={styles.checkBox}
+                isChecked={checked}
+                checkBoxColor='#EA5540'
+                checkedCheckBoxColor="#EA5540"
+                uncheckedCheckBoxColor="#EA5540"
+              />
+             </CustomView >
+              <CustomView  row   padding={[0, 5]} wrap >
+                <CustomText size={14}  height={20}> I agree to the </CustomText>
+               <TouchableOpacity onPress={()=>setPrivacyModal(true)}> 
+                <CustomText size={14} red height={20}> terms & condition</CustomText>
+                </TouchableOpacity>
+                <CustomText size={14}  height={20}> and</CustomText>
+               <TouchableOpacity onPress={()=>setPrivacyModal(true)}> 
+                <CustomText size={14} red height={20}> privacy policy</CustomText>
+                </TouchableOpacity>
+              </CustomView>
+              {/* <View style={styles.texts}>
+                <Text style={styles.texts2}>I agree to the</Text>
+                <Text style={styles.texts1}>terms & condition</Text>
+                <Text style={styles.texts2}>and</Text>
+                <Text style={styles.texts1}>privacy policy</Text>
+              </View> */}
             </CustomView>
           </View>
-          <View style={styles.checkBoxView}>
-            <CheckBox
-              onClick={() => handleToggle()}
-              style={styles.checkBox}
-              isChecked={checked}
-              checkBoxColor='#EA5540'
-              checkedCheckBoxColor="#EA5540"
-              uncheckedCheckBoxColor="#EA5540"
-            />
-            <View style={styles.texts}>
-              <Text style={styles.texts2}>I agree to the</Text>
-              <Text style={styles.texts1}>terms & condition</Text>
-              <Text style={styles.texts2}>and</Text>
-              <Text style={styles.texts1}>privacy policy</Text>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
-      
-      <CustomView padding={[20, 20, 35]} color='#fff'>
-        <CustomButton
-          // disabled={!checked || !firstName || !lastName || !email  || !emailAvailable}
-          onPress={() => navigation.navigate("CreatePassword", { firstName, lastName, email })}
-        >
-          <CustomText white bold size={18}>Continue</CustomText>
-        </CustomButton>
-      </CustomView>
-      </KeyboardAvoidingView>
+        </ScrollView>
+
+        <CustomView padding={[20, 20, 35]} color='#fff'>
+          <CustomButton
+            disabled={!checked || !firstName || !lastName || !email || !checkForAvailablility}
+            onPress={checkForAvailablility}
+          >
+            <CustomText white bold size={18}>Continue</CustomText>
+          </CustomButton>
+        </CustomView>
+      {/* </KeyboardAvoidingView> */}
     </>
   );
 }
@@ -168,7 +178,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   text1: {
-    color: "",
     fontSize: 27,
     fontStyle: "normal",
     fontWeight: "700",
@@ -185,6 +194,8 @@ const styles = StyleSheet.create({
   checkBoxAnd: {
     flexDirection: "column",
     rowGap: 20,
+    paddingRight: 10,
+    paddingLeft: 10,
   },
   bottomContainer: {
     flexDirection: "row",

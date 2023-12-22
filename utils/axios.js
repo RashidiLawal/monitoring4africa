@@ -1,7 +1,7 @@
 
 import AsyncStorage from   "@react-native-async-storage/async-storage";
 import Axios from 'axios';
-export const baseURL =  "https://32a0-102-89-33-108.ngrok-free.app/api" 
+export const baseURL =  "https://9e92-102-89-47-12.ngrok-free.app/api" 
 
 const AxiosCall = async callObj => {
 

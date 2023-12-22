@@ -12,9 +12,6 @@ const Entry = () => {
   const profile = useSelector(s => s.profile)
   const dispatch = useDispatch()
   const [loaded, setLoaded] = useState(false)
-
-
-
     useEffect(() => { 
     AsyncStorage.getItem('userData', (err, result) => {
       if (result) {
@@ -26,10 +23,10 @@ const Entry = () => {
     });
   }, [])
 
- 
+  if(!loaded) return null
   return (
     <>
-      <Navigation profile={profile} />
+      <Navigation profile={profile?.profile} />
     </>
   );
 };
