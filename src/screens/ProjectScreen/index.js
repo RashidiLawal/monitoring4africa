@@ -136,13 +136,13 @@ const ProjectScreen = () => {
             </CustomView>
           </CustomView>
         </CustomView>
-        <CustomView background={COLORS.inputBackground} row  center margin={[20, 15]} padding={[10, 15]}>
+        <CustomView background={COLORS.inputBackground} row  columnGap={15} center margin={[20, 15]} padding={[10, 15]}>
           <CustomView borderColor={COLORS.deepGreen} borderWidth={7} round padding={[5]} >
             <CustomText size={13} bold>
               60%
             </CustomText>
           </CustomView>
-          <CustomView >
+          <CustomView style={{alignItems:'flex-satrt'}}>
             <CustomText heavy >
             You are almost done
             </CustomText>
@@ -151,7 +151,7 @@ const ProjectScreen = () => {
             Input details you skipped and finish setting up your project
             </CustomText>
           </CustomView>
-          <ArrowRight/>
+          <ArrowRight />
         </CustomView>
         <CustomView space="between" row padding={[10, 35]}>
           <CustomView center>
