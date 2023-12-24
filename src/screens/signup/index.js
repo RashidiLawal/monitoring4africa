@@ -81,7 +81,7 @@ const Signup = () => {
         setModalVisible={setPrivacyModal}
         modalVisible={privacyModal}
       />
-      {/* <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}> */}
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView style={styles.container}>
           <View style={styles.checkBoxAnd}>
             <View style={styles.textAndInputs}>
@@ -152,8 +152,8 @@ const Signup = () => {
             </CustomView>
           </View>
         </ScrollView>
-
-        <CustomView padding={[20, 20, 35]} color='#fff'>
+      </KeyboardAvoidingView>
+      <CustomView padding={[20, 20, 35]} color='#fff'>
           <CustomButton
             disabled={!checked || !firstName || !lastName || !email || !checkForAvailablility}
             onPress={checkForAvailablility}
@@ -161,7 +161,6 @@ const Signup = () => {
             <CustomText white bold size={18}>Continue</CustomText>
           </CustomButton>
         </CustomView>
-      {/* </KeyboardAvoidingView> */}
     </>
   );
 }
