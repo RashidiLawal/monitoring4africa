@@ -13,7 +13,40 @@ import { resetStackAndNavigate } from "../../../utils";
 import Plus from '../../../assets/svgs/Plus.svg'
 
 const AddCollaborators = () => {
-    const navigation = useNavigation()
+
+  const [collaboratorOne, setCollaboratorOne] = useState("");
+  const [collaboratorTwo, setCollaboratorTwo] = useState("");
+  const [roleOne, setRoleOne] = useState("");
+  const [roleTwo, setRoleTwo] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigation = useNavigation()
+
+  const submit = async () => {
+    try {
+      setIsLoading(true)
+      setError("")
+      const callObj = {
+        method: 'POST',
+        path: 'users/newProject',
+        data: { collaboratorOne, collaboratorTwo, roleOne, roleTwo}
+      };
+      const response = await AxiosCall(callObj);
+      setIsLoading(false)
+      navigation.navigate('AddLabourers')
+    } catch (e) {
+      let errorResponse = 'Something went wrong. please try again';
+      if (e?.response) {
+        const { error } = e.response.data;
+        errorResponse = error;
+      }
+      setIsLoading(false)
+      setError(errorResponse)
+      navigation.navigate('AddLabourers')
+    }
+  }
+
   return (
     <>
     <Appbar.Header style={{ backgroundColor: "#fff" }}>
@@ -62,30 +95,39 @@ const AddCollaborators = () => {
             <CustomInput
             label="Collaborator 1"
             placeholder="Fregusson Matthew"
-            secureTextEntry
+            onChangeText={setCollaboratorOne}
+
           />
             </CustomView>
             <CustomView>
             <CustomInput
             label="Role"
             placeholder="Select Role"
-            secureTextEntry
+            onChangeText={setRoleOne}
+
           />
             </CustomView>
             <CustomView>
             <CustomInput
             label="Collaborator 2"
             placeholder="Enter collaborator’s name "
-            secureTextEntry
+            onChangeText={setCollaboratorTwo}
+
           />
             </CustomView>
             <CustomView>
             <CustomInput
             label="Role"
             placeholder="Select Role"
-            secureTextEntry
+            onChangeText={setRoleTwo}
+
           />
             </CustomView>
+            {error ? 
+                <CustomText size={14} color='red'>
+                  {error}
+                  </CustomText> 
+                  : null}
         </CustomView> 
         <CustomView row center columnGap={5}>
         <CustomText color={COLORS.orange}>Add New Input field </CustomText>       
@@ -93,7 +135,11 @@ const AddCollaborators = () => {
         </CustomView>
       </ScrollView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate('AddLabourers')}>
+        <CustomButton
+        disabled={!collaboratorOne || !collaboratorTwo|| !roleOne || !roleTwo ||isLoading}
+        loading={isLoading}
+        onPress={submit}
+        >
           <CustomText white heavy size={18}>
           Continue
           </CustomText>

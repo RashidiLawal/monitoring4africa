@@ -100,7 +100,7 @@ const NewProject = () => {
           onChangeText={setAddress}
             label="Project Address"
             placeholder="12, Ocean Street, Earth, VE 290123"
-            secureTextEntry
+            
           />
         </CustomView>
         <CustomView row wrap rowGap="25" columnGap='20'>
