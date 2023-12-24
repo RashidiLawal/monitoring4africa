@@ -113,6 +113,7 @@ const ProjectInformation = () => {
                   : null}
         </CustomView>        
       </ScrollView>
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
         disabled={!clientName || !consultantName|| !superintendentName ||isLoading}
@@ -124,7 +125,6 @@ const ProjectInformation = () => {
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
     </>
   )
 }

@@ -115,6 +115,7 @@ const Equipments = () => {
         <Plus />
         </CustomView>
       </ScrollView>
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
         disabled={!equipmentOne || !equipmentTwo || isLoading}
@@ -126,7 +127,6 @@ const Equipments = () => {
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
     </>
   )
 }

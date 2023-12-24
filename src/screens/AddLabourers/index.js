@@ -123,6 +123,7 @@ const AddLabourers = () => {
         <Plus />
         </CustomView>
       </ScrollView>
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
         disabled={!labourerOne || !labourerTwo || isLoading}
@@ -134,7 +135,6 @@ const AddLabourers = () => {
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
     </>
   )
 }

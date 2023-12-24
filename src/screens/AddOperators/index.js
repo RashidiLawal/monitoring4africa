@@ -123,6 +123,7 @@ const AddOperators = () => {
         <Plus />
         </CustomView>
       </ScrollView>
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
         disabled={!operatorOne || !operatorTwo || isLoading}
@@ -134,7 +135,6 @@ const AddOperators = () => {
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
     </>
   )
 }

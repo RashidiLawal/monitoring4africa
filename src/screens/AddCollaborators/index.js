@@ -134,6 +134,7 @@ const AddCollaborators = () => {
         <Plus />
         </CustomView>
       </ScrollView>
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
         disabled={!collaboratorOne || !collaboratorTwo|| !roleOne || !roleTwo ||isLoading}
@@ -145,7 +146,6 @@ const AddCollaborators = () => {
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
     </>
   )
 }

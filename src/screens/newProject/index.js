@@ -137,6 +137,7 @@ const NewProject = () => {
                   </CustomText> 
                   : null}
       </ScrollView>
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
         disabled={!projectName || !address|| !city || !state ||isLoading}
@@ -148,8 +149,6 @@ const NewProject = () => {
           </CustomText>
         </CustomButton>
         </CustomView>
-      </KeyboardAvoidingView>
-      
     </>
   );
 };

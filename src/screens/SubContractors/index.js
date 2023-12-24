@@ -147,6 +147,8 @@ const SubContractors = () => {
           <Plus />
         </CustomView>
       </ScrollView>
+      
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
         disabled={!subContractorOne || !subContractorTwo || !subContractorOperatorOne || !subContractorOperatorTwo || isLoading}
@@ -158,7 +160,6 @@ const SubContractors = () => {
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
     </>
   );
 };

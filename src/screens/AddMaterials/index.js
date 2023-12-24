@@ -114,6 +114,7 @@ const Materials = () => {
         <Plus />
         </CustomView>
       </ScrollView>
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
         disabled={!materialOne || !materialTwo || isLoading}
@@ -125,7 +126,6 @@ const Materials = () => {
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
     </>
   )
 }
