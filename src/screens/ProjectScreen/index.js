@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   ScrollView,
   KeyboardAvoidingView,
+  Dimensions,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CheckBox from "react-native-check-box";
@@ -29,10 +30,24 @@ import User from "../../../assets/svgs/User.svg";
 import Tag from "../../../assets/svgs/Tag.svg";
 import Location from "../../../assets/svgs/location.svg";
 import AvatarList from "../../components/Avatar/AvatarLight";
+import Folder from "../../../assets/svgs/Folder.svg";
+import Camera from "../../../assets/svgs/Camera.svg";
+import Selector from "../../../assets/svgs/Selected.svg";
+import EmptyFolder from "../../../assets/svgs/EmptyFolder.svg";
+import ArrowRight from "../../../assets/svgs/arrow-right.svg";
+
+const { height } = Dimensions.get("window");
 
 const ProjectScreen = () => {
-  // const [checked, setChecked] = useState(false);
+  const [screenHeight, setScreenHeight] = useState(0);
+
   const navigation = useNavigation();
+
+  const onContentSizeChange = (contentHeight, contentWidth) => {
+    setScreenHeight(contentHeight);
+  };
+
+  const scrollEnable = screenHeight > height;
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#083145" }}>
@@ -46,7 +61,7 @@ const ProjectScreen = () => {
                 <Chat />
               </CustomView>
             </Pressable>
-            <Pressable onPress={() => navigation.navigate("Login")}>
+            <Pressable onPress={() => navigation.navigate("ProjectSucced")}>
               <CustomView>
                 <WhiteDots />
               </CustomView>
@@ -54,8 +69,19 @@ const ProjectScreen = () => {
           </CustomView>
         </CustomView>
       </Appbar.Header>
-      <ScrollView style={styles.container}>
-        <CustomView column rowGap={13} color={COLORS.darkBlue}>
+      <ScrollView
+        style={styles.container}
+        scrollEnabled={scrollEnable}
+        onContentSizeChange={onContentSizeChange}
+      >
+        <CustomView
+          column
+          rowGap={13}
+          color={COLORS.darkBlue}
+          padding={[0, 0, 25, 0]}
+          borderBottomLeftRadius={25}
+          borderBottomRightRadius={25}
+        >
           <CustomView padding={[10, 15, 0]}>
             <CustomText size={27} heavier color={COLORS.white} spacing={3}>
               Waterview Park
@@ -85,7 +111,14 @@ const ProjectScreen = () => {
               </CustomText>
             </CustomView>
             <CustomView row center columnGap={15}>
-              <CustomView row center columnGap={6}white round padding={[5,10]}>
+              <CustomView
+                row
+                center
+                columnGap={6}
+                white
+                round
+                padding={[5, 10]}
+              >
                 <Tag />
                 <CustomText
                   size={12}
@@ -103,6 +136,90 @@ const ProjectScreen = () => {
             </CustomView>
           </CustomView>
         </CustomView>
+        <CustomView background={COLORS.inputBackground} row  columnGap={15} center margin={[20, 15]} padding={[10, 15]}>
+          <CustomView borderColor={COLORS.deepGreen} borderWidth={7} round padding={[5]} >
+            <CustomText size={13} bold>
+              60%
+            </CustomText>
+          </CustomView>
+          <CustomView style={{alignItems:'flex-satrt'}}>
+            <CustomText heavy >
+            You are almost done
+            </CustomText>
+            
+            <CustomText style={{ width:200 }} size={13} color={COLORS.midGrey} center height={15} descText >
+            Input details you skipped and finish setting up your project
+            </CustomText>
+          </CustomView>
+          <ArrowRight />
+        </CustomView>
+        <CustomView space="between" row padding={[10, 35]}>
+          <CustomView center>
+            <CustomView color={COLORS.yellow} round width={60} height={60}>
+              <Selector />
+            </CustomView>
+            <CustomText size={14} descText>
+              Upload Plans
+            </CustomText>
+          </CustomView>
+          <CustomView center>
+            <Pressable onPress={() => navigation.navigate("NewProject")}>
+              <CustomView
+                color={COLORS.deepprimary}
+                round
+                width={60}
+                height={60}
+              >
+                <Camera />
+              </CustomView>
+            </Pressable>
+            <CustomText size={14} descText>
+              Create Project
+            </CustomText>
+          </CustomView>
+          <CustomView center>
+            <CustomView color={COLORS.avatarRad} round width={60} height={60}>
+              <Folder />
+            </CustomView>
+            <CustomText size={14} descText>
+              Add Report
+            </CustomText>
+          </CustomView>
+        </CustomView>
+        <CustomView padding={[10, 15]} bold>
+          <CustomText margin={[0, 0, 10]}>Projects</CustomText>
+          <CustomView
+            center
+            radius={10}
+            padding={[45, 20, 25]}
+            style={{ borderWidth: 0.5, borderColor: COLORS.profileLine }}
+          >
+            <EmptyFolder />
+            <CustomText bold margin={[5, 0]}>
+              No recent project
+            </CustomText>
+            <CustomText descText size={15}>
+              Projects created will appear here
+            </CustomText>
+          </CustomView>
+        </CustomView>
+        <CustomView padding={[10, 15]} bold>
+          <CustomText margin={[0, 0, 10]}>Recent Reports</CustomText>
+          <CustomView
+            center
+            radius={10}
+            padding={[45, 20, 25]}
+            style={{ borderWidth: 0.5, borderColor: COLORS.profileLine }}
+          >
+            <EmptyFolder />
+            <CustomText bold margin={[5, 0]}>
+              No recent project
+            </CustomText>
+            <CustomText descText size={15}>
+              Projects report created will appear here
+            </CustomText>
+          </CustomView>
+        </CustomView>
       </ScrollView>
     </>
   );
@@ -118,5 +235,11 @@ const styles = StyleSheet.create({
     //   paddingHorizontal: 15,
     //   paddingTop: 5,
     paddingBottom: 100,
+    
+    
+  },
+  bottoms: {
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
   },
 });

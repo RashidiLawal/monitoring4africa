@@ -27,8 +27,9 @@ export const COLORS = {
   Test:'#6AE29B',
   Test2:'#8CD2F2',
  
-  
-  
+  deepGreen:'#26C165',
+  avatarRad:'#F00D0D',
+  yellow:'#FFD253', 
   communityGrey: '#F4F6F7',
   SettingTabGrey: '#F8F8F8',
   darkBlue:'#083145',

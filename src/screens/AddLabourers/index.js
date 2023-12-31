@@ -13,7 +13,36 @@ import { resetStackAndNavigate } from "../../../utils";
 import Plus from '../../../assets/svgs/Plus.svg'
 
 const AddLabourers = () => {
-    const navigation = useNavigation()
+  const [labourerOne, setLabourerOne] = useState("");
+  const [labourerTwo, setLabourerTwo] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigation = useNavigation()
+
+  const submit = async () => {
+    try {
+      setIsLoading(true)
+      setError("")
+      const callObj = {
+        method: 'POST',
+        path: 'users/newProject',
+        data: { labourerOne, labourerTwo}
+      };
+      const response = await AxiosCall(callObj);
+      setIsLoading(false)
+      navigation.navigate('AddOperators')
+    } catch (e) {
+      let errorResponse = 'Something went wrong. please try again';
+      if (e?.response) {
+        const { error } = e.response.data;
+        errorResponse = error;
+      }
+      setIsLoading(false)
+      setError(errorResponse)
+      navigation.navigate('AddOperators')
+    }
+  }
   return (
     <>
     <Appbar.Header style={{ backgroundColor: "#fff" }}>
@@ -71,30 +100,41 @@ const AddLabourers = () => {
             <CustomInput
             label="Labourer 1"
             placeholder="Daniel Peter"
-            secureTextEntry
+            onChangeText={setLabourerOne}
+
           />
             </CustomView>
             <CustomView>
             <CustomInput
             label="Labourer 2"
             placeholder="Rossmund Pike"
-            secureTextEntry
+            onChangeText={setLabourerTwo}
+            
           />
-            </CustomView>       
+            </CustomView> 
+            {error ? 
+                <CustomText size={14} color='red'>
+                  {error}
+                  </CustomText> 
+                  : null}      
         </CustomView> 
         <CustomView row center columnGap={5}>
         <CustomText color={COLORS.orange}>Add New Input field </CustomText>       
         <Plus />
         </CustomView>
       </ScrollView>
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate('AddOperators')}>
+        <CustomButton
+        disabled={!labourerOne || !labourerTwo || isLoading}
+        loading={isLoading}
+        onPress={submit}
+        >
           <CustomText white heavy size={18}>
           Continue
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
     </>
   )
 }

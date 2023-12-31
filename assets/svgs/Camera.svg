@@ -1,0 +1,8 @@
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Camera">
+<rect width="30" height="30" fill="#0F1D24"/>
+<path id="Combined Shape" fill-rule="evenodd" clip-rule="evenodd" d="M5.75 8.75C4.64543 8.75 3.75 9.64543 3.75 10.75V21.75C3.75 22.8546 4.64543 23.75 5.75 23.75H24.25C25.3546 23.75 26.25 22.8546 26.25 21.75V10.75C26.25 9.64543 25.3546 8.75 24.25 8.75H5.75ZM10 16.25C10 19.0114 12.2386 21.25 15 21.25C17.7614 21.25 20 19.0114 20 16.25C20 13.4886 17.7614 11.25 15 11.25C12.2386 11.25 10 13.4886 10 16.25Z" fill="white"/>
+<rect id="Rectangle" opacity="0.3" x="11.25" y="5" width="7.5" height="2.5" rx="1.25" fill="white"/>
+<circle id="Oval 2" opacity="0.3" cx="15" cy="16.25" r="2.5" fill="white"/>
+</g>
+</svg>

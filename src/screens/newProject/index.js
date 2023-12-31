@@ -13,8 +13,40 @@ import { COLORS } from "../../store/constant/theme";
 import AxiosCall from "../../../utils/axios";
 import { resetStackAndNavigate } from "../../../utils";
 
-const NewProject = () => {
+const NewProject = () => { 
+  const [projectName, setProjectName] = useState("");
+  const [address, setAddress] = useState();
+  const [city, setCity] = useState("");
+  const [state, setstate] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigation = useNavigation();
+
+  const submit = async () => {
+    try {
+      setIsLoading(true)
+      setError("")
+      const callObj = {
+        method: 'POST',
+        path: 'users/newProject',
+        data: { projectName, address, city, state }
+      };
+      const response = await AxiosCall(callObj);
+      setIsLoading(false)
+      navigation.navigate('ProjectInformation')
+    } catch (e) {
+      let errorResponse = 'Something went wrong. please try again';
+      if (e?.response) {
+        const { error } = e.response.data;
+        errorResponse = error;
+      }
+      setIsLoading(false)
+      setError(errorResponse)
+      navigation.navigate('ProjectInformation')
+    }
+  }
+
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
@@ -57,24 +89,31 @@ const NewProject = () => {
               </CustomText>
             </CustomView>
           </CustomView>
-          <CustomInput label="Project name" placeholder="Waterview Park" />
+          <CustomInput
+          label="Project name"
+          onChangeText={setProjectName}
+          placeholder="Waterview Park"
+          />
         </CustomView>
         <CustomView margin={[15, 0]}>
           <CustomInput
+          onChangeText={setAddress}
             label="Project Address"
             placeholder="12, Ocean Street, Earth, VE 290123"
-            secureTextEntry
+            
           />
         </CustomView>
         <CustomView row wrap rowGap="25" columnGap='20'>
           <CustomView flexGrow="1" width='40%'>
             <CustomInput
+            onChangeText={setCity}
               label="City"
               placeholder="Venus"
             />
           </CustomView>
           <CustomView flexGrow="1" width='40%'>
             <CustomInput
+            onChangeText={setstate}
               label="State"
               placeholder="Earth"
             />
@@ -92,17 +131,24 @@ const NewProject = () => {
             />
           </CustomView>
         </CustomView>
-        
+        {error ? 
+                <CustomText size={14} color='red'>
+                  {error}
+                  </CustomText> 
+                  : null}
       </ScrollView>
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate('ProjectInformation')}>
+        <CustomButton
+        disabled={!projectName || !address|| !city || !state ||isLoading}
+        loading={isLoading}
+        onPress={submit}
+        >
           <CustomText white heavy size={18}>
           Continue
           </CustomText>
         </CustomButton>
         </CustomView>
-      </KeyboardAvoidingView>
-      
     </>
   );
 };

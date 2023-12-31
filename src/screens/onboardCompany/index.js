@@ -147,7 +147,7 @@ const OnboardCompany= () => {
       <CustomView padding={[20, 20, 35]} color='#fff'>
         <CustomButton
         loading={isLoading}
-          onPress={submit}
+        onPress={submit}
         >
           <CustomText white bold size={18}>Continue</CustomText>
         </CustomButton>

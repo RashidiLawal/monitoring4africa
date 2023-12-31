@@ -12,7 +12,39 @@ import AxiosCall from "../../../utils/axios";
 import { resetStackAndNavigate } from "../../../utils";
 
 const ProjectInformation = () => {
-    const navigation = useNavigation()
+
+  const [clientName, setClienttName] = useState("");
+  const [consultantName, setConsultantName] = useState("");
+  const [superintendentName, setSuperintendentName] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigation = useNavigation()
+
+  const submit = async () => {
+    try {
+      setIsLoading(true)
+      setError("")
+      const callObj = {
+        method: 'POST',
+        path: 'users/newProject',
+        data: { clientName, consultantName, superintendentName}
+      };
+      const response = await AxiosCall(callObj);
+      setIsLoading(false)
+      navigation.navigate('AddCollaborators')
+    } catch (e) {
+      let errorResponse = 'Something went wrong. please try again';
+      if (e?.response) {
+        const { error } = e.response.data;
+        errorResponse = error;
+      }
+      setIsLoading(false)
+      setError(errorResponse)
+      navigation.navigate('AddCollaborators')
+    }
+  }
+
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
@@ -53,34 +85,46 @@ const ProjectInformation = () => {
             <CustomInput
             label="Client Name"
             placeholder="Waterview Park"
-            secureTextEntry
+            onChangeText={setClienttName}
+            
           />
             </CustomView>
             <CustomView>
             <CustomInput
             label="Consultant Name"
             placeholder="Input consultant name"
-            secureTextEntry
+            
+            onChangeText={setConsultantName}
           />
             </CustomView>
             <CustomView>
             <CustomInput
+            keyboardType='default'
             label="Superintendent Name"
             placeholder="Input superintendent name"
-            secureTextEntry
+            // secureTextEntry
+            onChangeText={setSuperintendentName}
           />
             </CustomView>
-            
+            {error ? 
+                <CustomText size={14} color='red'>
+                  {error}
+                  </CustomText> 
+                  : null}
         </CustomView>        
       </ScrollView>
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate('AddCollaborators')}>
+        <CustomButton
+        disabled={!clientName || !consultantName|| !superintendentName ||isLoading}
+        loading={isLoading}
+        onPress={submit}
+        >
           <CustomText white heavy size={18}>
           Continue
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
     </>
   )
 }

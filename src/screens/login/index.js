@@ -76,7 +76,7 @@ const Login = () => {
           </TouchableOpacity>
         </CustomView>
       </Appbar.Header>
-      {/* <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}> */}
+      <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView style={styles.container}>
         <CustomView style={styles.termsText} padding={[0, 10]}>
           <CustomView style={styles.inputsAndLog}>
@@ -124,16 +124,18 @@ const Login = () => {
           </CustomView>
         </CustomView>
       </ScrollView>
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton loading={isLoading}
+        <CustomButton
+        loading={isLoading}
         disabled={!email || !password || isLoading}
         onPress={submit}>
+          
           <CustomText white bold size={18} heavy>
             Login
           </CustomText>
         </CustomButton>
       </CustomView>
-      {/* </KeyboardAvoidingView> */}
     </>
   );
 };

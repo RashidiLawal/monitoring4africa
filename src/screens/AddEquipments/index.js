@@ -13,7 +13,37 @@ import { resetStackAndNavigate } from "../../../utils";
 import Plus from '../../../assets/svgs/Plus.svg'
 
 const Equipments = () => {
-    const navigation = useNavigation()
+  const [equipmentOne, setEquipmentOne] = useState("");
+  const [equipmentTwo, setEquipmentTwo] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigation = useNavigation()
+
+  const submit = async () => {
+    try {
+      setIsLoading(true)
+      setError("")
+      const callObj = {
+        method: 'POST',
+        path: 'users/newProject',
+        data: { equipmentOne, equipmentTwo}
+      };
+      const response = await AxiosCall(callObj);
+      setIsLoading(false)
+      navigation.navigate('Materials')
+    } catch (e) {
+      let errorResponse = 'Something went wrong. please try again';
+      if (e?.response) {
+        const { error } = e.response.data;
+        errorResponse = error;
+      }
+      setIsLoading(false)
+      setError(errorResponse)
+      navigation.navigate('Materials')
+    }
+  }
+
   return (
     <>
     <Appbar.Header style={{ backgroundColor: "#fff" }}>
@@ -58,34 +88,45 @@ const Equipments = () => {
         </CustomView>
 
         <CustomView margin={[15, 0]} column rowGap={20}>
-        <CustomView>
+            <CustomView>
             <CustomInput
             label="Equipment 1"
             placeholder="400Ltr Jiasung Cement mixer Tiaxing"
-            secureTextEntry
+            onChangeText={setEquipmentOne}
+
           />
             </CustomView>
             <CustomView>
             <CustomInput
             label="Equipment 2"
             placeholder="200Ltr Jiasung Cement mixer Tiaxing"
-            secureTextEntry
+            onChangeText={setEquipmentTwo}
+
           />
             </CustomView> 
+            {error ? 
+                <CustomText size={14} color='red'>
+                  {error}
+                  </CustomText> 
+                  : null} 
         </CustomView> 
         <CustomView row center columnGap={5}>
         <CustomText color={COLORS.orange}>Add New Input field </CustomText>       
         <Plus />
         </CustomView>
       </ScrollView>
+      </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
-        <CustomButton onPress={() => navigation.navigate('Materials')}>
+        <CustomButton
+        disabled={!equipmentOne || !equipmentTwo || isLoading}
+        loading={isLoading}
+        onPress={submit}
+        >
           <CustomText white heavy size={18}>
           Continue
           </CustomText>
         </CustomButton>
       </CustomView>
-      </KeyboardAvoidingView>
     </>
   )
 }
