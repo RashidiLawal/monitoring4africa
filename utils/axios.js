@@ -1,7 +1,7 @@
 
 import AsyncStorage from   "@react-native-async-storage/async-storage";
 import Axios from 'axios';
-export const baseURL =  "https://9e92-102-89-47-12.ngrok-free.app/api" 
+export const baseURL =  "https://389e-102-88-63-240.ngrok-free.app/api" 
 
 const AxiosCall = async callObj => {
 
@@ -9,7 +9,6 @@ const AxiosCall = async callObj => {
 
   let url = `${baseURL}/${path}`;
   const token = await AsyncStorage.getItem('token');
- 
   const headers = {
     Authorization: `${token}`,
     'Content-Type': contentType || 'application/json',

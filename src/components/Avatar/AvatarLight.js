@@ -6,7 +6,7 @@ import WoMan from "../../../assets/svgs/Ellipse Female.svg";
 import Man from "../../../assets/svgs/Ellipse Man.svg";
 import { COLORS } from "../../store/constant/theme";
 import { Image,StyleSheet } from 'react-native';
-import { Avatar } from '@rneui/themed';
+// import { Avatar } from '@rneui/themed';
 
 
 
@@ -26,11 +26,11 @@ const AvatarList = () => {
   return (
     <CustomView style={styles.avatarListContainer} row center columnGap={-15}>
       <CustomView row columnGap={-15}>
-      {imageUrls.slice(0, 4).map((imageUrl, index) => (
+      {/* {imageUrls.slice(0, 4).map((imageUrl, index) => (
         
         <Avatar source={imageUrl.avatarUrl} rounded/>
       
-    ))}
+    ))} */}
       </CustomView>
       {imageUrls.length > 3 && (
         <CustomView style={styles.avatarContainer} center>

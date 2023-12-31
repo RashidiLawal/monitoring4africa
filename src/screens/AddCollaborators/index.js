@@ -12,7 +12,7 @@ import AxiosCall from "../../../utils/axios";
 import { resetStackAndNavigate } from "../../../utils";
 import Plus from '../../../assets/svgs/Plus.svg'
 
-const AddCollaborators = () => {
+const AddCollaborators = ({route}) => {
 
   const [collaboratorOne, setCollaboratorOne] = useState("");
   const [collaboratorTwo, setCollaboratorTwo] = useState("");
@@ -20,7 +20,7 @@ const AddCollaborators = () => {
   const [roleTwo, setRoleTwo] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+console.log(route)
   const navigation = useNavigation()
 
   const submit = async () => {

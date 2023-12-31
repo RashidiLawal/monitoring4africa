@@ -11,38 +11,18 @@ import { COLORS } from "../../store/constant/theme";
 import AxiosCall from "../../../utils/axios";
 import { resetStackAndNavigate } from "../../../utils";
 
-const ProjectInformation = () => {
+const ProjectInformation = ({route}) => {
 
-  const [clientName, setClienttName] = useState("");
+  const [clientName, setClientName] = useState("");
   const [consultantName, setConsultantName] = useState("");
-  const [superintendentName, setSuperintendentName] = useState("");
+  const [superIntendentName, setSuperIntendentName] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  var { data } = route?.params
   const navigation = useNavigation()
 
   const submit = async () => {
-    try {
-      setIsLoading(true)
-      setError("")
-      const callObj = {
-        method: 'POST',
-        path: 'users/newProject',
-        data: { clientName, consultantName, superintendentName}
-      };
-      const response = await AxiosCall(callObj);
-      setIsLoading(false)
-      navigation.navigate('AddCollaborators')
-    } catch (e) {
-      let errorResponse = 'Something went wrong. please try again';
-      if (e?.response) {
-        const { error } = e.response.data;
-        errorResponse = error;
-      }
-      setIsLoading(false)
-      setError(errorResponse)
-      navigation.navigate('AddCollaborators')
-    }
+      navigation.navigate('AddCollaborators',{data: {...data, client: {clientName, consultantName, superIntendentName}}})
   }
 
   return (
@@ -85,7 +65,7 @@ const ProjectInformation = () => {
             <CustomInput
             label="Client Name"
             placeholder="Waterview Park"
-            onChangeText={setClienttName}
+            onChangeText={setClientName}
             
           />
             </CustomView>
@@ -103,7 +83,7 @@ const ProjectInformation = () => {
             label="Superintendent Name"
             placeholder="Input superintendent name"
             // secureTextEntry
-            onChangeText={setSuperintendentName}
+            onChangeText={setSuperIntendentName}
           />
             </CustomView>
             {error ? 
@@ -116,7 +96,7 @@ const ProjectInformation = () => {
       </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
-        disabled={!clientName || !consultantName|| !superintendentName ||isLoading}
+        disabled={!clientName || !consultantName|| !superIntendentName ||isLoading}
         loading={isLoading}
         onPress={submit}
         >

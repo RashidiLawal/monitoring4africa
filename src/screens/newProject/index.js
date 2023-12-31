@@ -14,37 +14,18 @@ import AxiosCall from "../../../utils/axios";
 import { resetStackAndNavigate } from "../../../utils";
 
 const NewProject = () => { 
-  const [projectName, setProjectName] = useState("");
+  const [name, setName] = useState("");
   const [address, setAddress] = useState();
   const [city, setCity] = useState("");
   const [state, setstate] = useState("");
   const [error, setError] = useState("");
+  const [startDate, setStartDate] = useState("3/3/2003");
+  const [endDate, setEndDate] = useState("2/2/2002");
   const [isLoading, setIsLoading] = useState(false);
-
   const navigation = useNavigation();
 
-  const submit = async () => {
-    try {
-      setIsLoading(true)
-      setError("")
-      const callObj = {
-        method: 'POST',
-        path: 'users/newProject',
-        data: { projectName, address, city, state }
-      };
-      const response = await AxiosCall(callObj);
-      setIsLoading(false)
-      navigation.navigate('ProjectInformation')
-    } catch (e) {
-      let errorResponse = 'Something went wrong. please try again';
-      if (e?.response) {
-        const { error } = e.response.data;
-        errorResponse = error;
-      }
-      setIsLoading(false)
-      setError(errorResponse)
-      navigation.navigate('ProjectInformation')
-    }
+  const submit =  () => {
+    navigation.navigate('ProjectInformation', {data: { name, address, city, state, startDate, endDate } })
   }
 
   return (
@@ -91,7 +72,7 @@ const NewProject = () => {
           </CustomView>
           <CustomInput
           label="Project name"
-          onChangeText={setProjectName}
+          onChangeText={setName}
           placeholder="Waterview Park"
           />
         </CustomView>
@@ -120,6 +101,7 @@ const NewProject = () => {
           </CustomView>
           <CustomView flexGrow="1" width='40%'>
             <CustomInput
+              onChangeText={setStartDate}
               label="Start Date"
               placeholder="Select start date"
             />
@@ -127,6 +109,7 @@ const NewProject = () => {
           <CustomView flexGrow="1" width='40%'>
             <CustomInput
               label="End Date"
+              onChangeText={setEndDate}
               placeholder="Select end date"
             />
           </CustomView>
@@ -140,7 +123,7 @@ const NewProject = () => {
       </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
-        disabled={!projectName || !address|| !city || !state ||isLoading}
+        disabled={!name || !address|| !city || !state ||isLoading}
         loading={isLoading}
         onPress={submit}
         >

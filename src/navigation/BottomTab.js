@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BottomNavigation, } from 'react-native-paper';
-import Home from '../screens/Home';
+import Home from '../screens/home';
 import { COLORS } from '../store/constant/theme';
 import HomeIcon from "../../assets/svgs/HomeIcon.svg"
 import SearchIcon from "../../assets/svgs/SearchIcon.svg"
