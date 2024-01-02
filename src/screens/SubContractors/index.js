@@ -11,40 +11,42 @@ import { COLORS } from "../../store/constant/theme";
 import AxiosCall from "../../../utils/axios";
 import { resetStackAndNavigate } from "../../../utils";
 import Plus from "../../../assets/svgs/Plus.svg";
+import { TouchableOpacity } from "react-native";
 
-const SubContractors = () => {
-  const [subContractorOne, setSubContractorOne] = useState("");
-  const [subContractorTwo, setSubContractorTwo] = useState("");
-  const [subContractorOperatorOne, setSubContractorOperatorOne] = useState("");
-  const [subContractorOperatorTwo, setSubContractorOperatorTwo] = useState("");
+const SubContractors = ({route}) => {
+  var  data  = route?.params?.data
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const navigation = useNavigation()
+  const [subContractors, setSubContractors] = useState([{
+    name: "",
+    description: "",
+    id: 1
+  }])
 
-  const submit = async () => {
-    try {
-      setIsLoading(true)
-      setError("")
-      const callObj = {
-        method: 'POST',
-        path: 'users/newProject',
-        data: { subContractorOne, subContractorTwo, subContractorOperatorOne, subContractorOperatorTwo}
-      };
-      const response = await AxiosCall(callObj);
-      setIsLoading(false)
-      navigation.navigate('SubContractorSuccess')
-    } catch (e) {
-      let errorResponse = 'Something went wrong. please try again';
-      if (e?.response) {
-        const { error } = e.response.data;
-        errorResponse = error;
+
+  const onTyping = (text, item, items, type) => {
+    var data = items.map((i) => {
+      if (i.id == item.id) {
+        i[type] = text
+        return i
       }
-      setIsLoading(false)
-      setError(errorResponse)
-      navigation.navigate('SubContractorSuccess')
-    }
+      return i
+    })
+    setSubContractors(data)
   }
+  const submit = async () => {
+    navigation.navigate('SubContractorSuccess', { data: { ...data, subContractors  } })
+  }
+
+  const checkDisabled = () => {
+    var check = false
+    subContractors.map((item)=>{
+      if(!item.name || !item.description) check = true;
+    })
+  return check
+  } 
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#fff" }}>
@@ -53,7 +55,7 @@ const SubContractors = () => {
             <BackIcon />
           </Pressable>
 
-          <Pressable onPress={() => navigation.navigate("Login")}>
+          <Pressable onPress={() => navigation.navigate("SubContractorSuccess")}>
             <CustomView row center>
               <CustomText bold size={17} color={COLORS.orange}>
                 Skip for now
@@ -95,63 +97,48 @@ const SubContractors = () => {
             </CustomView>
           </CustomView>
         </CustomView>
-        <CustomView margin={[15, 0]}>
-          <CustomText heavier size={17}>Subcontractor 1</CustomText>
-          <CustomView row wrap rowGap="25" columnGap="20">
-            <CustomView flexGrow="1" width="40%">
-              <CustomInput
-                label="Operator 1"
-                placeholder="Daniel Peter"
-                onChangeText={setSubContractorOne}
+        {subContractors.map((item, key) => (
+       
+         <CustomView margin={[15, 0]}>
+         <CustomText heavier size={17}>Subcontractor {key+1}</CustomText>
+         <CustomView row wrap rowGap="25" columnGap="20">
+           <CustomView flexGrow="1" width="40%">
+             <CustomInput
+               label="Name "
+               placeholder="Enter name"
+            onChangeText={(text) => onTyping(text, item, subContractors, 'name')}
 
-              />
-            </CustomView>
-            <CustomView flexGrow="1" width="40%">
-              <CustomInput
-                label="Operator 2"
-                placeholder="Rossmund Pike"
-                onChangeText={setSubContractorTwo}
+             />
+           </CustomView>
+           <CustomView flexGrow="1" width="40%">
+             <CustomInput
+               label="Description "
+               placeholder="Enter description"
+               onChangeText={(text) => onTyping(text, item, subContractors, 'description')}
 
-              />
-            </CustomView>
-          </CustomView>
-        </CustomView>
-        <CustomView margin={[15, 0]}>
-          <CustomText heavier size={17}>Subcontractor 2</CustomText>
-          <CustomView row wrap rowGap="25" columnGap="20">
-            <CustomView flexGrow="1" width="40%">
-              <CustomInput
-                label="Operator 1"
-                placeholder="Daniel Peter"
-                onChangeText={setSubContractorOperatorOne}
-
-              />
-            </CustomView>
-            <CustomView flexGrow="1" width="40%">
-              <CustomInput
-                label="Operator 2"
-                placeholder="Rossmund Pike"
-                onChangeText={setSubContractorOperatorTwo}
-                
-              />
-            </CustomView>
-          </CustomView>
-        </CustomView>
+             />
+           </CustomView>
+         </CustomView>
+       </CustomView> 
+        ))}
+       
         {error ? 
                 <CustomText size={14} color='red'>
                   {error}
                   </CustomText> 
                   : null}   
+        <TouchableOpacity onPress={()=>setSubContractors([...subContractors, {name: '', description: '' , id: Math.floor(Math.random() * 100000)+1}])}>
         <CustomView row center columnGap={5}>
           <CustomText color={COLORS.orange}>Add New Input field </CustomText>
           <Plus />
         </CustomView>
+        </TouchableOpacity>
       </ScrollView>
       
       </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
-        disabled={!subContractorOne || !subContractorTwo || !subContractorOperatorOne || !subContractorOperatorTwo || isLoading}
+        disabled={checkDisabled()}
         loading={isLoading}
         onPress={submit}
         >

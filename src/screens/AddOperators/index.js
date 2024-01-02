@@ -4,7 +4,7 @@ import CustomText from "../../components/ui/CustomText";
 import CustomInput from "../../components/ui/CustomInput";
 import CustomButton from "../../components/ui/CustomButton";
 import { Appbar } from "react-native-paper";
-import { StyleSheet, ScrollView, Pressable, Platform, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, ScrollView, Pressable, Platform, KeyboardAvoidingView, TouchableOpacity } from "react-native";
 import BackIcon from "../../../assets/svgs/ArrowLeft.svg";
 import { useNavigation } from "@react-navigation/native";
 import { COLORS } from "../../store/constant/theme";
@@ -12,37 +12,41 @@ import AxiosCall from "../../../utils/axios";
 import { resetStackAndNavigate } from "../../../utils";
 import Plus from '../../../assets/svgs/Plus.svg'
 
-const AddOperators = () => {
-  const [operatorOne, setOperatorOne] = useState("");
-  const [operatorTwo, setOperatorTwo] = useState("");
+const AddOperators = ({route}) => {
+  var data = route?.params?.data
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const navigation = useNavigation()
 
-  const submit = async () => {
-    try {
-      setIsLoading(true)
-      setError("")
-      const callObj = {
-        method: 'POST',
-        path: 'users/newProject',
-        data: { operatorOne, operatorTwo}
-      };
-      const response = await AxiosCall(callObj);
-      setIsLoading(false)
-      navigation.navigate('SubContractors')
-    } catch (e) {
-      let errorResponse = 'Something went wrong. please try again';
-      if (e?.response) {
-        const { error } = e.response.data;
-        errorResponse = error;
+  const [operators, setOperators] = useState([{
+    name: "",
+    id: 1
+  }])
+
+
+  const onTyping = (text, item, items) => {
+    var data = items.map((i) => {
+      if (i.id == item.id) {
+        i['name'] = text
+        return i
       }
-      setIsLoading(false)
-      setError(errorResponse)
-      navigation.navigate('SubContractors')
-    }
+      return i
+    })
+    setOperators(data)
   }
+  const submit = async () => {
+    navigation.navigate('SubContractors', { data: { ...data, operators  } })
+  }
+
+  const checkDisabled = () => {
+    var check = false
+    operators.map((item)=>{
+      if(!item.name) check = true;
+    })
+  return check
+  } 
+ 
   return (
     <>
     <Appbar.Header style={{ backgroundColor: "#fff" }}>
@@ -51,7 +55,7 @@ const AddOperators = () => {
             <BackIcon />
           </Pressable>
 
-          <Pressable onPress={() => navigation.navigate("Login")}>
+          <Pressable onPress={() => navigation.navigate("SubContractors")}>
             <CustomView row center>
               <CustomText bold size={17} color={COLORS.orange}>
               Skip for now
@@ -95,38 +99,34 @@ const AddOperators = () => {
           </CustomView>
         </CustomView>
 
+        {operators.map((item, key) => (
         <CustomView margin={[15, 0]} column rowGap={20}>
         <CustomView>
             <CustomInput
-            label="Operator 1"
+            label={"Operator "+  (key+1)}
             placeholder="Daniel Peter"
-            onChangeText={setOperatorOne}
-
-          />
-            </CustomView>
-            <CustomView>
-            <CustomInput
-            label="Operator 2"
-            placeholder="Rossmund Pike"
-            onChangeText={setOperatorTwo}
+            onChangeText={(text) => onTyping(text, item, operators)}
 
           />
             </CustomView> 
-            {error ? 
+        </CustomView> 
+        ))}
+   {error ? 
                 <CustomText size={14} color='red'>
                   {error}
                   </CustomText> 
                   : null}       
-        </CustomView> 
+        <TouchableOpacity onPress={()=>setOperators([...operators, {name: '', id: Math.floor(Math.random() * 100000)+1}])}>
         <CustomView row center columnGap={5}>
         <CustomText color={COLORS.orange}>Add New Input field </CustomText>       
         <Plus />
         </CustomView>
+        </TouchableOpacity>
       </ScrollView>
       </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
-        disabled={!operatorOne || !operatorTwo || isLoading}
+        disabled={checkDisabled()}
         loading={isLoading}
         onPress={submit}
         >

@@ -14,10 +14,13 @@ import { resetStackAndNavigate } from "../../../utils";
 import CloseGrey from '../../../assets/svgs/CloseGrey.svg'
 
 
-export default function SubContractorSuccess() {
-    const [checked, setChecked] = useState(false);
+export default function SubContractorSuccess({route}) {
+  var  data  = route?.params?.data
+  const [checked, setChecked] = useState(false);
     const navigation = useNavigation();
-
+    const submit = async () => {
+        navigation.navigate('Equipments', { data: { ...data  } })
+      }
     return (
         <>
          <Appbar.Header style={{ backgroundColor: "#fff" }}>
@@ -41,12 +44,12 @@ export default function SubContractorSuccess() {
 
                 <CustomView  padding={[0, 0, 40]}>
                     <CustomButton
-                        onPress={() => navigation.navigate("Equipments")}
+                        onPress={() =>  navigation.navigate('Equipments', { data: { ...data  } })}
                     >
                         <CustomText white heavy size={18}>Add Equipments</CustomText>
                     </CustomButton>
                     <CustomView center padding={[20, 0]}>
-                        <TouchableOpacity  onPress={()=>resetStackAndNavigate(navigation, 'Home')}>
+                        <TouchableOpacity  onPress={submit}>
                             <CustomText primary heavy>Skip for Now</CustomText>
                         </TouchableOpacity>
                     </CustomView>

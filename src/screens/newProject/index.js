@@ -25,7 +25,7 @@ const NewProject = () => {
   const navigation = useNavigation();
 
   const submit =  () => {
-    navigation.navigate('ProjectInformation', {data: { name, address, city, state, startDate, endDate } })
+    navigation.navigate('ProjectInformation', {data: { name, address, city, state,   } })
   }
 
   return (

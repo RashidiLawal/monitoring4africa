@@ -11,27 +11,53 @@ import { COLORS } from "../../store/constant/theme";
 import AxiosCall from "../../../utils/axios";
 import { resetStackAndNavigate } from "../../../utils";
 import Plus from '../../../assets/svgs/Plus.svg'
+import { TouchableOpacity } from "react-native";
 
-const Materials = () => {
-  const [materialOne, setMaterialOne] = useState("");
-  const [materialTwo, setMaterialTwo] = useState("");
+const Materials = ({route}) => {
+  var  data  = route?.params?.data
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const navigation = useNavigation()
 
+  const [materials, setMaterials] = useState([{
+    name: "",
+    id: 1
+  }])
+
+
+  const onTyping = (text, item, items) => {
+    var data = items.map((i) => {
+      if (i.id == item.id) {
+        i['name'] = text
+        return i
+      }
+      return i
+    })
+    setMaterials(data)
+  } 
+
+  const checkDisabled = () => {
+    var check = false
+    materials.map((item)=>{
+      if(!item.name) check = true;
+    })
+  return check
+  }  
+
   const submit = async () => {
     try {
       setIsLoading(true)
       setError("")
+      console.log(data)
       const callObj = {
         method: 'POST',
-        path: 'users/newProject',
-        data: { materialOne, materialTwo}
+        path: 'projects/create',
+        data: {...data, materials}
       };
       const response = await AxiosCall(callObj);
       setIsLoading(false)
-      navigation.navigate('ProjectSucced')
+      resetStackAndNavigate(navigation, 'ProjectSucced')
     } catch (e) {
       let errorResponse = 'Something went wrong. please try again';
       if (e?.response) {
@@ -40,7 +66,6 @@ const Materials = () => {
       }
       setIsLoading(false)
       setError(errorResponse)
-      navigation.navigate('ProjectSucced')
     }
   }
   return (
@@ -51,13 +76,13 @@ const Materials = () => {
             <BackIcon />
           </Pressable>
 
-          <Pressable onPress={() => navigation.navigate("Login")}>
+          {/* <Pressable onPress={submit}>
             <CustomView row center>
               <CustomText bold size={17} color={COLORS.orange}>
               Skip for now
               </CustomText>
             </CustomView>
-          </Pressable>
+          </Pressable> */}
         </CustomView>
       </Appbar.Header>
       <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -86,38 +111,33 @@ const Materials = () => {
           </CustomView>
         </CustomView>
 
-        <CustomView margin={[15, 0]} column rowGap={20}>
-        <CustomView>
+        {materials.map((item, key) => (
+        <CustomView key={key} margin={[15, 0]} column rowGap={20}>
             <CustomInput
-            label="Material 1"
-            placeholder="Smooth sabd"
-            onChangeText={setMaterialOne}
+            label={"Material "+  (key+1)}
+            placeholder="Enter material name"
+            onChangeText={(text) => onTyping(text, item, materials)}
 
           />
-            </CustomView>
-            <CustomView>
-            <CustomInput
-            label="Material 2"
-            placeholder="Cement"
-            onChangeText={setMaterialTwo}
-
-          />
-            </CustomView>  
+        </CustomView> 
+        ))}
             {error ? 
                 <CustomText size={14} color='red'>
                   {error}
                   </CustomText> 
                   : null}      
-        </CustomView> 
+         
+        <TouchableOpacity onPress={()=>setMaterials([...materials, {name: '', id: Math.floor(Math.random() * 100000)+1}])}>
         <CustomView row center columnGap={5}>
         <CustomText color={COLORS.orange}>Add New Input field </CustomText>       
         <Plus />
         </CustomView>
+        </TouchableOpacity>
       </ScrollView>
       </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
-        disabled={!materialOne || !materialTwo || isLoading}
+        disabled={checkDisabled()}
         loading={isLoading}
         onPress={submit}
         >

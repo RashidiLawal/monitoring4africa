@@ -11,38 +11,42 @@ import { COLORS } from "../../store/constant/theme";
 import AxiosCall from "../../../utils/axios";
 import { resetStackAndNavigate } from "../../../utils";
 import Plus from '../../../assets/svgs/Plus.svg'
+import { TouchableOpacity } from "react-native";
 
-const Equipments = () => {
-  const [equipmentOne, setEquipmentOne] = useState("");
-  const [equipmentTwo, setEquipmentTwo] = useState("");
+const Equipments = ({route}) => {
+  var  data  = route?.params?.data
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const navigation = useNavigation()
 
-  const submit = async () => {
-    try {
-      setIsLoading(true)
-      setError("")
-      const callObj = {
-        method: 'POST',
-        path: 'users/newProject',
-        data: { equipmentOne, equipmentTwo}
-      };
-      const response = await AxiosCall(callObj);
-      setIsLoading(false)
-      navigation.navigate('Materials')
-    } catch (e) {
-      let errorResponse = 'Something went wrong. please try again';
-      if (e?.response) {
-        const { error } = e.response.data;
-        errorResponse = error;
+  const [equipments, setEquipments] = useState([{
+    name: "",
+    id: 1
+  }])
+
+
+  const onTyping = (text, item, items) => {
+    var data = items.map((i) => {
+      if (i.id == item.id) {
+        i['name'] = text
+        return i
       }
-      setIsLoading(false)
-      setError(errorResponse)
-      navigation.navigate('Materials')
-    }
+      return i
+    })
+    setEquipments(data)
   }
+  const submit = async () => {
+    navigation.navigate('Materials', { data: { ...data, equipments  } })
+  }
+
+  const checkDisabled = () => {
+    var check = false
+    equipments.map((item)=>{
+      if(!item.name) check = true;
+    })
+  return check
+  }  
 
   return (
     <>
@@ -52,7 +56,7 @@ const Equipments = () => {
             <BackIcon />
           </Pressable>
 
-          <Pressable onPress={() => navigation.navigate("Login")}>
+          <Pressable onPress={() => navigation.navigate("Materials")}>
             <CustomView row center>
               <CustomText bold size={17} color={COLORS.orange}>
               Skip for now
@@ -86,39 +90,28 @@ const Equipments = () => {
             </CustomView>
           </CustomView>
         </CustomView>
-
+        {equipments.map((item, key) => (
         <CustomView margin={[15, 0]} column rowGap={20}>
-            <CustomView>
             <CustomInput
-            label="Equipment 1"
-            placeholder="400Ltr Jiasung Cement mixer Tiaxing"
-            onChangeText={setEquipmentOne}
+            label={"Equipment "+  (key+1)}
+            placeholder="Enter equipment name"
+            onChangeText={(text) => onTyping(text, item, equipments)}
 
           />
-            </CustomView>
-            <CustomView>
-            <CustomInput
-            label="Equipment 2"
-            placeholder="200Ltr Jiasung Cement mixer Tiaxing"
-            onChangeText={setEquipmentTwo}
-
-          />
-            </CustomView> 
-            {error ? 
-                <CustomText size={14} color='red'>
-                  {error}
-                  </CustomText> 
-                  : null} 
         </CustomView> 
+        ))}
+       
+       <TouchableOpacity onPress={()=>setEquipments([...equipments, {name: '', id: Math.floor(Math.random() * 100000)+1}])}>
         <CustomView row center columnGap={5}>
         <CustomText color={COLORS.orange}>Add New Input field </CustomText>       
         <Plus />
         </CustomView>
+        </TouchableOpacity>
       </ScrollView>
       </KeyboardAvoidingView>
       <CustomView padding={[20, 20, 35]} white>
         <CustomButton
-        disabled={!equipmentOne || !equipmentTwo || isLoading}
+        disabled={checkDisabled()}
         loading={isLoading}
         onPress={submit}
         >

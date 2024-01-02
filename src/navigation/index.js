@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
-import Login from "../screens/login/index"; 
+import Login from "../screens/login/index";
 import VerifyEmail from "../screens/verifyEmail";
 import CreatePassword from "../screens/createpassword";
 import GetStarted from "../screens/started";
@@ -13,7 +13,7 @@ import Signup from "../screens/signup/index";
 import OnboardCompany from '../screens/onboardCompany/index'
 import OnboardSuccess from "../screens/onboardCompany/OnboardSuccess";
 import OnboardEmployeeSuccess from "../screens/onboardEmployee/OnboardSuccess";
-import OnboardEmployee from "../screens/onboardEmployee"; 
+import OnboardEmployee from "../screens/onboardEmployee";
 import BottomTab from "./bottomTab";
 import NewProject from "../screens/newProject";
 import ProjectInformation from "../screens/projectInfo";
@@ -32,16 +32,16 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Navigation = (props) => {
   const navigationRef = React.useRef();
-// const navigation = useNavigation();
   return (
     <PaperProvider>
       <NavigationContainer ref={navigationRef}>
         <Stack.Navigator
-        initialRouteName={
-          !props.profile ?  "Onboarding" :
-          props.profile?.onboarded == false ? "OnboardCompany" :
-           "Home" 
-        }
+          // initialRouteName={
+          //   !props.profile ?  "Onboarding" :
+          //   props.profile?.onboarded == false ? "OnboardCompany" :
+          //    "Home" 
+          // }
+          initialRouteName="Home"
         >
           <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
           <Stack.Screen name="ProjectScreen" component={ProjectScreen} options={{ headerShown: false }} />
@@ -68,7 +68,7 @@ const Navigation = (props) => {
           <Stack.Screen name="Signup" component={Signup} options={{
             headerShown: false,
           }} />
-      
+
 
         </Stack.Navigator>
       </NavigationContainer>
